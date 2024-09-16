@@ -12,7 +12,16 @@
     filter: drop-shadow(0 0 5px var(--mantine-primary-color-2));
 }
 
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px 0 var(--mantine-primary-color-1);
+    }
+    100% {
+        box-shadow: 0 0 20px 5px var(--mantine-primary-color-1);
+    }
+}
+
 .circleShadow {
-    box-shadow: 0 0 20px 5px var(--mantine-primary-color-1);
-    border: 5px solid var(--mantine-primary-color-1);
+    border: 3px solid var(--mantine-primary-color-1);
+    animation: glowing 1s infinite alternate ease-in-out;
 }
