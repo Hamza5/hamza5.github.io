@@ -18,6 +18,6 @@ export const theme = createTheme({
         paleBlue
     },
     primaryColor: 'paleBlue',
-    white: paleBlue[0],
+    white: paleBlue[1],
     black: paleBlue[9],
 });

@@ -1,6 +1,5 @@
 import {AppShellHeader, Text, Avatar, Stack, Title, Flex, Box} from "@mantine/core";
 import styles from "./header.module.css";
-import 'animate.css';
 
 type HeaderProps = {
     name: string;
@@ -13,8 +12,8 @@ export default function Header(props: HeaderProps) {
         <AppShellHeader className={`${styles.banner} animate__animated animate__slideInDown`}>
             <Flex gap="md" h="100%" px="md" direction="row" align="center">
                 <Box className="animate__animated animate__rollIn animate__delay-1s"
-                     h={{base: "70%", md: "80%"}}>
-                    <Avatar src={props.avatarURL} alt={props.name} style={{zIndex: 10}}
+                     h={{base: "70%", md: "80%"}} style={{zIndex: 100}}>
+                    <Avatar src={props.avatarURL} alt={props.name}
                             className={`${styles.circleShadow}`} w="fit-content" h="100%"
                     />
                 </Box>
