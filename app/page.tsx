@@ -2,7 +2,7 @@ import {AppShell, AppShellMain, Box, Text} from '@mantine/core';
 import Header from './components/header';
 import {Notice} from "./components/notice";
 import SlidingTexts from "./components/sliding_texts";
-import {gradientText} from "./components/header.module.css";
+import styles from "./components/header.module.css";
 
 export default function Page() {
   return (
@@ -10,7 +10,7 @@ export default function Page() {
       <Header name="Hamza Abbad" avatarURL="/avatar.svg" shortDescription="Engineer in Artificial Intelligence and Computer Science" />
       <AppShellMain>
           <Box className="animate__animated animate__fadeInDown animate__delay-4s" ta="center">
-              <Text fz={{base: 24, md: 32}} className={gradientText}>
+              <Text fz={{base: 24, md: 32}} className={styles.gradientText}>
                   You have just found a
               </Text>
               <SlidingTexts>
