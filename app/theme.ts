@@ -20,4 +20,5 @@ export const theme = createTheme({
     primaryColor: 'paleBlue',
     white: paleBlue[1],
     black: paleBlue[9],
+    defaultRadius: 'lg',
 });
