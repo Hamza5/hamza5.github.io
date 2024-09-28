@@ -1,0 +1,6 @@
+.animate__animated.animate__delay-6s {
+    -webkit-animation-delay: calc(1s * 6);
+    animation-delay: calc(1s * 6);
+    -webkit-animation-delay: calc(var(--animate-delay) * 6);
+    animation-delay: calc(var(--animate-delay) * 6);
+}

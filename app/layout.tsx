@@ -5,6 +5,7 @@ import "animate.css"
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import {theme} from "@/app/theme";
 import {Metadata} from "next";
+import "./global.css";
 
 
 export const metadata: Metadata = {
