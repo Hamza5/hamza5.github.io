@@ -17,7 +17,7 @@ export default function SlidingTexts({children}: { children: React.ReactNode[] }
             interval.stop();
         };
     }, []);
-    return <Box fw="bold" fz={{base: 32, md: 48}} h={{base: 50, md: 65}} c="paleBlue.5"
+    return <Box fw="bold" fz={{base: 32, md: 48}} h={{base: 40, md: 68}} c="paleBlue.5"
                 style={{overflow: "hidden", textShadow: `-1px 0  ${shadowColor}, 0 1px  ${shadowColor}, 1px 0  ${shadowColor}, 0 -1px  ${shadowColor}`}}>
         <Box style={{transition: `transform 0.5s`, transform: `translateY(${translation})`}}>
             {children}

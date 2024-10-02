@@ -1,5 +1,6 @@
 import {AppShell, AppShellMain, Box, Group, Stack, Text, Button, Flex} from '@mantine/core';
 import {IconBrandGithub, IconBrandUpwork, IconExternalLink} from "@tabler/icons-react";
+import * as motion from "framer-motion/client";
 import Header from './components/header';
 import {Notice} from "./components/notice";
 import SlidingTexts from "./components/sliding_texts";
@@ -10,7 +11,8 @@ export default function Page() {
     <AppShell padding="md" header={{height: 150}}>
       <Header name="Hamza Abbad" avatarURL="/avatar.svg" shortDescription="Engineer in Artificial Intelligence and Computer Science" />
       <AppShellMain>
-          <Stack className="animate__animated animate__fadeInDown animate__delay-4s" ta="center" gap="xs">
+          <motion.div initial={{opacity: 0, y: -50}} animate={{opacity: 1, y: 0}} transition={{delay: 3, duration: 0.5}}>
+          <Stack ta="center" gap={0}>
               <Text fz={{base: 24, md: 32}} className={styles.gradientText}>
                   You have just found a
               </Text>
@@ -22,17 +24,20 @@ export default function Page() {
                   <Box>AI Engineer</Box>
                   <Box>Graphics Designer</Box>
               </SlidingTexts>
-              <Group justify="center" mt="md" className="animate__animated animate__fadeInDown animate__delay-5s">
+              <motion.div initial={{opacity: 0, y: -50}} animate={{opacity: 1, y: 0}} transition={{delay: 4, duration: 0.5}}>
+              <Group justify="center" mt={{base: "md", md: "lg"}}>
                   <Button component="a" href="https://github.com/Hamza5" target="_blank" rel="noopener noreferrer"
                           size="xl" leftSection={<IconBrandGithub />} rightSection={<IconExternalLink />} color="gray">
                       Check out my code
                   </Button>
-                  <Button component="a" href="https://www.upwork.com/freelancers/hamza325" target="_blank" rel="noopener noreferrer"
+                  <Button component="a" href="https://www.upwork.com/freelancers/~017dc88577730bcb57" target="_blank" rel="noopener noreferrer"
                           size="xl" leftSection={<IconBrandUpwork />} rightSection={<IconExternalLink />} color="green">
                       Hire me
                   </Button>
               </Group>
-              <Stack className="animate__animated animate__fadeInDown animate__delay-6s" style={{zIndex: -1}} mt="md">
+              </motion.div>
+              <motion.div initial={{opacity: 0, y: -100}} animate={{opacity: 1, y: 0}} transition={{delay: 4.5, duration: 0.5}}>
+              <Stack mt="md">
                   <Text fz={{base: 24, md: 32}} fw="bold" className={styles.gradientText}>
                       Most used technologies
                   </Text>
@@ -45,7 +50,9 @@ export default function Page() {
                              alt="Node.js" title="Node.js" width={120} height={40}/>
                   </Flex>
               </Stack>
+              </motion.div>
           </Stack>
+          </motion.div>
         <Notice />
       </AppShellMain>
     </AppShell>
