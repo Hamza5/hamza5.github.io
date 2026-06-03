@@ -5,12 +5,14 @@ import {
   faLinkedin,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import SlidingTexts from "./components/sliding-texts";
+import BasicInfoSection from "./components/basic-info/basic-info-section";
 
 export default function Home() {
   return (
-    <main className="synthwave-hero min-h-screen flex items-center justify-center">
+    <main>
+      <div className="synthwave-hero min-h-screen flex items-center justify-center" style={{ position: "relative" }}>
       {/* All hero content sits above the CSS pseudo-element grid */}
       <div
         style={{ position: "relative", zIndex: 10 }}
@@ -114,6 +116,14 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <a href="#about" className="scroll-chevron" aria-label="Scroll to about section">
+        <FontAwesomeIcon icon={faChevronDown} />
+      </a>
+    </div>
+
+    <BasicInfoSection />
     </main>
   );
 }
