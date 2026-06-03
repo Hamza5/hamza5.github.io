@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/* Class-based dark mode — toggled via JS on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Register font utilities for Tailwind */
+@theme inline {
+  --font-display: var(--font-orbitron);
+  --font-sans: var(--font-space);
+}
+
+/* ─── Light theme (default) ──────────────────────────────────────────────── */
+:root {
+  --bg: #f0f4ff;
+  --fg: #0d0d1a;
+  --fg-muted: #5a6a8a;
+  --accent-cyan: #0099bb;
+  --accent-purple: #6d28d9;
+  --glow-cyan: rgba(0, 153, 187, 0.55);
+  --grid-bright: rgba(79, 70, 229, 0.22);
+  --grid-dim: rgba(79, 70, 229, 0.08);
+}
+
+/* ─── Dark theme ─────────────────────────────────────────────────────────── */
+.dark {
+  --bg: #050510;
+  --fg: #e8ecff;
+  --fg-muted: #8892b0;
+  --accent-cyan: #00d4ff;
+  --accent-purple: #9d65f0;
+  --glow-cyan: rgba(0, 212, 255, 0.5);
+  --grid-bright: rgba(0, 212, 255, 0.18);
+  --grid-dim: rgba(0, 212, 255, 0.06);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* ─── Gradient text ─────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ─── Synthwave hero background ─────────────────────────────────────────── */
+.synthwave-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Perspective grid floor */
+.synthwave-hero::before {
+  content: '';
+  position: absolute;
+  bottom: -5%;
+  left: 50%;
+  width: 280%;
+  height: 45%;
+  transform: translateX(-50%) perspective(320px) rotateX(68deg);
+  transform-origin: 50% 100%;
+  background-image:
+    linear-gradient(var(--grid-bright) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-bright) 1px, transparent 1px),
+    linear-gradient(var(--grid-dim) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-dim) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 15px 15px, 15px 15px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Horizon glow line — sits at the visual top of the grid floor */
+.synthwave-hero::after {
+  content: '';
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-cyan) 30%,
+    var(--accent-purple) 70%,
+    transparent 100%
+  );
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Avatar glow ring ──────────────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px var(--accent-cyan),
+      0 0 20px 8px var(--glow-cyan);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px var(--accent-cyan),
+      0 0 44px 18px var(--glow-cyan);
+  }
+}
+
+.avatar-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ─── Entrance animations ───────────────────────────────────────────────── */
+@keyframes fade-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.entrance-1 {
+  opacity: 0;
+  animation: fade-slide-down 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+.entrance-2 {
+  opacity: 0;
+  animation: fade-slide-down 0.6s ease forwards;
+  animation-delay: 0.6s;
+}
+.entrance-3 {
+  opacity: 0;
+  animation: fade-slide-down 0.6s ease forwards;
+  animation-delay: 0.95s;
+}
+.entrance-4 {
+  opacity: 0;
+  animation: fade-in 0.7s ease forwards;
+  animation-delay: 1.3s;
+}
+.entrance-5 {
+  opacity: 0;
+  animation: fade-in 0.7s ease forwards;
+  animation-delay: 1.7s;
+}
+
+/* ─── Theme toggle button ───────────────────────────────────────────────── */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 35%, transparent);
+  color: var(--fg-muted);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 14px var(--glow-cyan);
+}
+
+/* ─── Buttons ───────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border: 2px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  background: transparent;
+  box-shadow: 0 0 14px var(--glow-cyan);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--accent-cyan);
+  color: var(--bg);
+  box-shadow: 0 0 28px var(--glow-cyan);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6875rem 1.125rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 40%, transparent);
+  color: var(--fg-muted);
+  background: transparent;
+  transition: border-color 0.2s, color 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-stackoverflow:hover {
+  border-color: #f48024;
+  color: #f48024;
+}
+
+.btn-linkedin:hover {
+  border-color: #0a66c2;
+  color: #0a66c2;
+}
