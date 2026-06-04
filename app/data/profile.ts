@@ -43,6 +43,43 @@ export interface ContactInfo {
   phones: Phone[];
 }
 
+// ---------------------------------------------------------------------------
+// Timeline — unified education + work history, sorted descending by endYear.
+//
+// Design notes:
+//  - `category` drives the visual accent colour (education → purple, work → cyan).
+//  - `type` drives the badge label on each card.
+//  - `endYear` is used as the primary sort key; for ongoing entries use the
+//    current year or 9999 to pin them to the top.
+//  - `startYear` equals `endYear` for single-year entries (e.g. an exam).
+//  - `logoSrc` is relative to /public (e.g. "/images/logos/usthb_logo.png").
+//  - `institutionUrl` is used to make the logo a clickable link.
+// ---------------------------------------------------------------------------
+
+export type TimelineEntryType =
+  | "bachelor"
+  | "master"
+  | "phd"
+  | "language"
+  | "certificate"
+  | "course"
+  | "internship"
+  | "job"
+  | "freelance";
+
+export type TimelineEntryCategory = "education" | "work";
+
+export interface TimelineEntry {
+  type: TimelineEntryType;
+  category: TimelineEntryCategory;
+  institution: string;
+  logoSrc: string;
+  institutionUrl: string;
+  title: string;
+  startYear: number;
+  endYear: number;
+}
+
 export interface Profile {
   fullName: string;
   shortDescription: string;
@@ -50,6 +87,7 @@ export interface Profile {
   personal: PersonalDetails;
   languages: Language[];
   location: Location;
+  timeline: TimelineEntry[];
 }
 
 // ---------------------------------------------------------------------------
@@ -121,4 +159,128 @@ export const profile: Profile = {
     longitude: -0.5866758062029425,
     timezone: "Africa/Algiers",
   },
+
+  // Sorted descending by endYear, then by startYear for same-endYear entries.
+  timeline: [
+    {
+      type: "job",
+      category: "work",
+      institution: "SMRIS-CRTI",
+      logoSrc: "/images/logos/SMRIS-CRTI_logo.png",
+      institutionUrl: "https://www.smris-crti.dz/",
+      title: "State Engineer for Research Support",
+      startYear: 2025,
+      endYear: 9999, // Ongoing
+    },
+    {
+      type: "freelance",
+      category: "work",
+      institution: "Upwork",
+      logoSrc: "/images/logos/upwork_logo.png",
+      institutionUrl: "https://www.upwork.com/",
+      title: "Web Scraping and Web Developement projects",
+      startYear: 2024,
+      endYear: 2025,
+    },
+    {
+      type: "freelance",
+      category: "work",
+      institution: "Hsoub Academy",
+      logoSrc: "/images/logos/Hsoub_academy.png",
+      institutionUrl: "https://academy.hsoub.com/",
+      title: "Helping students in Python programming",
+      startYear: 2024,
+      endYear: 2024,
+    },
+    {
+      type: "phd",
+      category: "education",
+      institution: "Wuhan University of Technology (WHUT)",
+      logoSrc: "/images/logos/whut_logo.png",
+      institutionUrl: "https://www.whut.edu.cn/",
+      title: "PhD in Arabic Natural Language Processing using Deep Learning",
+      startYear: 2018,
+      endYear: 2024,
+    },
+    {
+      type: "job",
+      category: "work",
+      institution: "Data Impact",
+      logoSrc: "/images/logos/dataimpact_logo.png",
+      institutionUrl: "https://www.dataimpact.io/",
+      title: "Web scraping for digital shelf",
+      startYear: 2022,
+      endYear: 2022,
+    },
+    {
+      type: "course",
+      category: "education",
+      institution: "EdX",
+      logoSrc: "/images/logos/edx_logo.png",
+      institutionUrl: "https://www.edx.org/",
+      title: "Reinforcement Learning Explained",
+      startYear: 2019,
+      endYear: 2019,
+    },
+    {
+      type: "certificate",
+      category: "education",
+      institution: "International Education Specialists (IDP)",
+      logoSrc: "/images/logos/idp_logo.png",
+      institutionUrl: "https://www.idp.com/",
+      title: "International English Language Testing System (IELTS)",
+      startYear: 2018,
+      endYear: 2018,
+    },
+    {
+      type: "course",
+      category: "education",
+      institution: "Coursera",
+      logoSrc: "/images/logos/coursera_logo.png",
+      institutionUrl: "https://www.coursera.org/",
+      title: "Machine Learning",
+      startYear: 2018,
+      endYear: 2018,
+    },
+    {
+      type: "language",
+      category: "education",
+      institution: "Wuhan University of Technology (WHUT)",
+      logoSrc: "/images/logos/whut_logo.png",
+      institutionUrl: "https://www.whut.edu.cn/",
+      title: "Mandarin Chinese",
+      startYear: 2017,
+      endYear: 2018,
+    },
+    {
+      type: "master",
+      category: "education",
+      institution: "University of Science and Technology Houari Boumediene (USTHB)",
+      logoSrc: "/images/logos/usthb_logo.png",
+      institutionUrl: "https://www.usthb.dz/",
+      title: "Master in Artificial Intelligence",
+      startYear: 2015,
+      endYear: 2017,
+    },
+    {
+      type: "internship",
+      category: "work",
+      institution: "AlBaraka Bank",
+      logoSrc: "/images/logos/albaraka_logo.png",
+      institutionUrl: "https://www.albaraka-bank.dz/",
+      title: "Internship in IT",
+      startYear: 2014,
+      endYear: 2014,
+    },
+    {
+      type: "bachelor",
+      category: "education",
+      institution: "University of Science and Technology Houari Boumediene (USTHB)",
+      logoSrc: "/images/logos/usthb_logo.png",
+      institutionUrl: "https://www.usthb.dz/",
+      title: "Bachelor in Computer Science",
+      startYear: 2012,
+      endYear: 2015,
+    },
+  ],
 };

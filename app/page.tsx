@@ -8,6 +8,7 @@ import {
 import { faArrowUpRightFromSquare, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import SlidingTexts from "./components/sliding-texts";
 import BasicInfoSection from "./components/basic-info/basic-info-section";
+import TimelineSection from "./components/timeline/timeline-section";
 
 export default function Home() {
   return (
@@ -124,6 +125,7 @@ export default function Home() {
     </div>
 
     <BasicInfoSection />
+    <TimelineSection />
     </main>
   );
 }
