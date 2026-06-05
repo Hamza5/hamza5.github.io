@@ -588,7 +588,7 @@ body {
   gap: 0;
 }
 
-/* The vertical line running down the centre */
+/* The vertical line running down the left */
 .timeline-spine-wrapper {
   position: relative;
 }
@@ -598,8 +598,7 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0.9375rem;
   width: 2px;
   background: linear-gradient(
     to bottom,
@@ -610,17 +609,17 @@ body {
   z-index: 0;
 }
 
-/* Each row: card + connector + year label */
+/* Each row: node | card */
 .timeline-entry {
   display: grid;
-  grid-template-columns: 1fr 2.5rem 1fr;
+  grid-template-columns: 2rem 1fr;
   align-items: flex-start;
   gap: 0;
-  padding: 1.5rem 0;
+  padding: 1.25rem 0;
   position: relative;
   z-index: 1;
 
-  /* Scroll-entrance: slide from the side, fade in */
+  /* Scroll-entrance: fade + slide up */
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -631,21 +630,15 @@ body {
   transform: translateY(0);
 }
 
-/* Odd entries: card on the LEFT, year on the RIGHT */
-.timeline-entry:nth-child(odd) .timeline-card-col  { grid-column: 1; grid-row: 1; }
-.timeline-entry:nth-child(odd) .timeline-node-col  { grid-column: 2; grid-row: 1; }
-.timeline-entry:nth-child(odd) .timeline-year-col  { grid-column: 3; grid-row: 1; }
+/* Always: node left, card right */
+.timeline-entry .timeline-node-col  { grid-column: 1; grid-row: 1; }
+.timeline-entry .timeline-card-col  { grid-column: 2; grid-row: 1; }
 
-/* Even entries: year on the LEFT, card on the RIGHT */
-.timeline-entry:nth-child(even) .timeline-card-col { grid-column: 3; grid-row: 1; }
-.timeline-entry:nth-child(even) .timeline-node-col { grid-column: 2; grid-row: 1; }
-.timeline-entry:nth-child(even) .timeline-year-col { grid-column: 1; grid-row: 1; text-align: right; }
-
-/* The connector column: centred dot on the spine */
+/* The connector column: dot on the spine */
 .timeline-node-col {
   display: flex;
   justify-content: center;
-  padding-top: 1.25rem;
+  padding-top: 1rem;
 }
 
 .timeline-node {
@@ -656,25 +649,6 @@ body {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-cyan) 25%, transparent),
               0 0 10px var(--glow-cyan);
   flex-shrink: 0;
-}
-
-/* Year label column */
-.timeline-year-col {
-  padding-top: 1.25rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.timeline-year {
-  font-family: var(--font-display), sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: var(--accent-cyan);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
 }
 
 /* Card column */
@@ -774,55 +748,180 @@ body {
   color: var(--accent-cyan);
 }
 
-/* ─── Timeline — mobile (<640px): single column, spine on the left ──────── */
-@media (max-width: 639px) {
-  .timeline-spine-wrapper::before {
-    left: 0.9375rem;
-    transform: none;
-  }
-
-  .timeline-entry {
-    grid-template-columns: 2rem 1fr;
-    grid-template-rows: auto;
-    padding: 1rem 0;
-  }
-
-  /* Always: node on left, card on right, no year column */
-  .timeline-entry:nth-child(odd) .timeline-node-col,
-  .timeline-entry:nth-child(even) .timeline-node-col {
-    grid-column: 1;
-    grid-row: 1;
-    padding-top: 1rem;
-  }
-
-  .timeline-entry:nth-child(odd) .timeline-card-col,
-  .timeline-entry:nth-child(even) .timeline-card-col {
-    grid-column: 2;
-    grid-row: 1;
-    padding-left: 0.75rem;
-    padding-right: 0;
-  }
-
-  .timeline-entry:nth-child(odd) .timeline-year-col,
-  .timeline-entry:nth-child(even) .timeline-year-col {
-    display: none;
-  }
-
-  /* Show year inside the card on mobile */
-  .timeline-year-mobile {
-    display: block;
-    font-family: var(--font-display), sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--accent-cyan);
-    letter-spacing: 0.04em;
-  }
+/* Year label shown inside every card */
+.timeline-year-mobile {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  letter-spacing: 0.04em;
 }
 
-@media (min-width: 640px) {
-  .timeline-year-mobile {
-    display: none;
-  }
+/* ─── Project cards ─────────────────────────────────────────────────────── */
+
+/* Project card extends timeline-card with richer content */
+.project-card {
+  gap: 0.875rem;
+}
+
+.project-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.project-card-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-card-date {
+  margin-left: auto;
+}
+
+.project-card-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.35;
+}
+
+.project-card-desc {
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Tech-stack chip tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.project-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.175rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: color-mix(in srgb, var(--fg-muted) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 20%, transparent);
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+/* Link buttons row */
+.project-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 30%, transparent);
+  color: var(--fg-muted);
+  background: transparent;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.project-link-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.project-link-btn-live:hover {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+/* Category badge colour variants */
+.project-badge-personal {
+  background: color-mix(in srgb, var(--accent-cyan) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 35%, transparent);
+  color: var(--accent-cyan);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.2rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-badge-freelance {
+  background: color-mix(in srgb, #f59e0b 12%, transparent);
+  border: 1px solid color-mix(in srgb, #f59e0b 35%, transparent);
+  color: #f59e0b;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.2rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-badge-work {
+  background: color-mix(in srgb, #10b981 12%, transparent);
+  border: 1px solid color-mix(in srgb, #10b981 35%, transparent);
+  color: #10b981;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.2rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-badge-research {
+  background: color-mix(in srgb, var(--accent-purple) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-purple) 35%, transparent);
+  color: var(--accent-purple);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.2rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project-badge-writing {
+  background: color-mix(in srgb, #ec4899 12%, transparent);
+  border: 1px solid color-mix(in srgb, #ec4899 35%, transparent);
+  color: #ec4899;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.2rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 /* ─── Bottom nav — always-visible floating pill ─────────────────────────── */

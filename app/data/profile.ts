@@ -99,6 +99,35 @@ export interface SkillCategory {
   items: SkillItem[];
 }
 
+// ---------------------------------------------------------------------------
+// Projects — sorted descending by year, then by month.
+//
+// Design notes:
+//  - `category` drives badge colour accent.
+//  - `month` is 1-based (1 = January). Omit for year-only precision.
+//  - `tags` are short tech-stack labels shown as chips on the card.
+//  - `url` is the live/demo URL; `githubUrl` is the GitHub repo link.
+//    Both are optional — private/internal projects may have neither.
+// ---------------------------------------------------------------------------
+
+export type ProjectCategory =
+  | "personal"
+  | "freelance"
+  | "work"
+  | "research"
+  | "writing";
+
+export interface ProjectEntry {
+  title: string;
+  description: string;
+  category: ProjectCategory;
+  year: number;
+  month?: number;       // 1–12
+  tags: string[];
+  url?: string;
+  githubUrl?: string;
+}
+
 export interface Profile {
   fullName: string;
   shortDescription: string;
@@ -108,6 +137,7 @@ export interface Profile {
   location: Location;
   timeline: TimelineEntry[];
   skills: SkillCategory[];
+  projects: ProjectEntry[];
 }
 
 // ---------------------------------------------------------------------------
@@ -369,6 +399,134 @@ export const profile: Profile = {
         { name: "GIMP", slug: "gimp", description: "Raster image editing", proficiency: 0.60 },
         { name: "Blender", slug: "blender", description: "3D modeling and rendering", proficiency: 0.20 },
       ],
+    },
+  ],
+
+  // -------------------------------------------------------------------------
+  // Projects — sorted descending by year, then by month.
+  // -------------------------------------------------------------------------
+  projects: [
+    {
+      title: "File Brain",
+      description: "Smart local file search engine with typo tolerance, OCR, and semantic multilanguage matching.",
+      category: "personal",
+      year: 2026,
+      month: 1,
+      tags: ["Python", "FastAPI", "Typesense", "React", "PrimeReact", "SQLite"],
+      url: "https://file-brain.com/",
+      githubUrl: "https://github.com/Hamza5/file-brain",
+    },
+    {
+      title: "Scraping Brain",
+      description: "AI-powered service for performing web scraping tasks using natural language instructions.",
+      category: "personal",
+      year: 2025,
+      month: 9,
+      tags: ["Python", "FastAPI", "LangGraph", "Playwright", "Supabase", "Next.js"],
+      url: "https://scrapingbrain.com/",
+    },
+    {
+      title: "SMRIS Secretary",
+      description: "Desktop app for registering and tracking interns at CRTI-SMRIS, with automated document generation.",
+      category: "work",
+      year: 2025,
+      month: 5,
+      tags: ["React", "PrimeReact", "Electron", "PocketBase", "Refine.dev"],
+    },
+    {
+      title: "Instagram Automation",
+      description: "Desktop app that automates bulk-adding or removing Instagram followers from the Close Friends list.",
+      category: "freelance",
+      year: 2024,
+      month: 11,
+      tags: ["Next.js", "React", "PrimeReact", "TypeScript"],
+    },
+    {
+      title: "Upwork Job Notification Bot",
+      description: "CLI tool that periodically scrapes Upwork job listings with user-specified filters and sends desktop notifications for new matches.",
+      category: "freelance",
+      year: 2024,
+      month: 10,
+      tags: ["Next.js", "React", "Playwright", "Google OAuth", "Mantine"],
+    },
+    {
+      title: "Telegram / WhatsApp Info Extractor",
+      description: "Web app that scrapes basic channel info from Telegram and WhatsApp and exports it into a Google Sheet.",
+      category: "freelance",
+      year: 2024,
+      month: 10,
+      tags: ["Python", "Flask", "BeautifulSoup", "Google Sheets API"],
+    },
+    {
+      title: "Amazon Scraper / Telegram Poster",
+      description: "CLI app that scrapes discounted products from Amazon DE and posts them automatically to a Telegram group.",
+      category: "freelance",
+      year: 2024,
+      month: 9,
+      tags: ["TypeScript", "Crawlee", "Playwright", "Telegraf"],
+    },
+    {
+      title: "Store Scrap",
+      description: "Desktop GUI app that scrapes products of selected brands from four Saudi e-commerce retailers.",
+      category: "freelance",
+      year: 2024,
+      month: 8,
+      tags: ["Python", "Scrapy", "PySide6"],
+      githubUrl: "https://github.com/Hamza5/StoreScrap",
+    },
+    {
+      title: "Lisan1 Students Blog",
+      description: "Search engine over a corpus of Saudi student Arabic texts, with tools for n-gram extraction, frequency analysis, and linguistic feature discovery.",
+      category: "freelance",
+      year: 2024,
+      month: 7,
+      tags: ["Django", "MySQL", "Bootstrap", "jQuery", "NLP"],
+      url: "https://corpus.lisan1.com/",
+    },
+    {
+      title: "Multilevel Diacritizer",
+      description: "Flask/Flutter/TensorFlow web application serving as a GUI for a deep learning model for automatic Arabic diacritics restoration, developed during PhD research.",
+      category: "research",
+      year: 2019,
+      month: 10,
+      tags: ["Python", "Flask", "TensorFlow", "Flutter", "NLP", "Deep Learning"],
+      githubUrl: "https://github.com/Hamza5/multilevel-diacritizer",
+    },
+    {
+      title: "Periodical File Sender",
+      description: "Desktop GUI tool to send emails with attachments periodically via an SMTP server.",
+      category: "personal",
+      year: 2019,
+      month: 1,
+      tags: ["Python", "PyQt5", "SMTP"],
+      githubUrl: "https://github.com/Hamza5/Periodical-File-Sender",
+    },
+    {
+      title: "Learn to Program with C (Arabic)",
+      description: "Full Arabic translation of a 500-page French book teaching C programming, with high-quality layout and typesetting.",
+      category: "writing",
+      year: 2018,
+      month: 9,
+      tags: ["LaTeX", "Arabic", "Technical Writing"],
+      githubUrl: "https://github.com/Hamza5/Learn-to-program-with-C_AR",
+    },
+    {
+      title: "DNA Translator (Arabic)",
+      description: "Cross-platform app to translate between DNA, RNA, and amino acid sequences, with a fully Arabic interface.",
+      category: "personal",
+      year: 2018,
+      month: 9,
+      tags: ["AutoIt", "HTML", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/Hamza5/DNA-translator_AR",
+    },
+    {
+      title: "Basic Regular Expression Tester",
+      description: "Python desktop application for testing and visualising regular expression functions against arbitrary text input.",
+      category: "personal",
+      year: 2014,
+      month: 8,
+      tags: ["Python", "PyQt4"],
+      githubUrl: "https://github.com/Hamza5/Basic-Regular-Expressions-Tester",
     },
   ],
 };

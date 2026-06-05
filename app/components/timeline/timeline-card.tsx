@@ -57,7 +57,12 @@ export default function TimelineCard({ entry, index }: Props) {
 
   return (
     <div className="timeline-entry" ref={rowRef}>
-      {/* Card column — CSS grid positioning handles left/right via nth-child */}
+      {/* Spine dot */}
+      <div className="timeline-node-col">
+        <div className="timeline-node" />
+      </div>
+
+      {/* Card column */}
       <div className="timeline-card-col">
         <div className="timeline-card">
           <div className="timeline-card-header">
@@ -77,7 +82,6 @@ export default function TimelineCard({ entry, index }: Props) {
               />
             </a>
             <div className="timeline-card-meta">
-              {/* Year shown here on mobile only */}
               <span className="timeline-year-mobile">{yearLabel}</span>
               <span className="timeline-institution">{entry.institution}</span>
               <span className="timeline-title">{entry.title}</span>
@@ -85,16 +89,6 @@ export default function TimelineCard({ entry, index }: Props) {
           </div>
           <span className={badgeClass}>{BADGE_LABELS[entry.type]}</span>
         </div>
-      </div>
-
-      {/* Spine dot */}
-      <div className="timeline-node-col">
-        <div className="timeline-node" />
-      </div>
-
-      {/* Year label column (desktop only, hidden on mobile via CSS) */}
-      <div className="timeline-year-col">
-        <span className="timeline-year">{yearLabel}</span>
       </div>
     </div>
   );

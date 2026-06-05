@@ -7,15 +7,17 @@ import {
   faHouse,
   faUser,
   faBriefcase,
+  faFolderOpen,
   faCode,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavDirection } from "./nav-direction-context";
 
 const navItems = [
-  { href: "/",        label: "Home",    icon: faHouse },
-  { href: "/about",   label: "About",   icon: faUser },
-  { href: "/career",  label: "Career",  icon: faBriefcase },
-  { href: "/skills",  label: "Skills",  icon: faCode },
+  { href: "/",         label: "Home",     icon: faHouse },
+  { href: "/about",    label: "About",    icon: faUser },
+  { href: "/career",   label: "Career",   icon: faBriefcase },
+  { href: "/projects", label: "Projects", icon: faFolderOpen },
+  { href: "/skills",   label: "Skills",   icon: faCode },
 ] as const;
 
 const PAGE_ORDER = navItems.map((i) => i.href);
