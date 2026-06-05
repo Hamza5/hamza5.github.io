@@ -3,6 +3,9 @@ import { Orbitron, Space_Grotesk } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import ThemeToggle from "./components/theme-toggle";
+import Nav from "./components/nav";
+import ScrollNavigator from "./components/scroll-navigator";
+import { NavDirectionProvider } from "./components/nav-direction-context";
 import "./globals.css";
 
 config.autoAddCss = false;
@@ -48,8 +51,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        <ThemeToggle />
-        {children}
+        <NavDirectionProvider>
+          <ThemeToggle />
+          <Nav />
+          <ScrollNavigator />
+          {children}
+        </NavDirectionProvider>
       </body>
     </html>
   );

@@ -1,0 +1,61 @@
+// Server-only module — never imported by client components directly.
+// Import icon data from simple-icons and expose a lightweight registry.
+import {
+  siPython,
+  siTypescript,
+  siHtml5,
+  siFlutter,
+  siLatex,
+  siMarkdown,
+  siDjango,
+  siNumpy,
+  siTensorflow,
+  siFlask,
+  siNextdotjs,
+  siPrimereact,
+  siReact,
+  siTailwindcss,
+  siOpencv,
+  siSqlite,
+  siPostgresql,
+  siMongodb,
+  siGit,
+  siDocker,
+  siGithubactions,
+  siPoetry,
+  siInkscape,
+  siGimp,
+  siBlender,
+} from "simple-icons";
+import type { SimpleIcon } from "simple-icons";
+
+export type { SimpleIcon };
+
+/** Keyed by the slug stored in SkillItem.slug (lowercase, no "si" prefix). */
+export const iconRegistry: Record<string, SimpleIcon> = {
+  python: siPython,
+  typescript: siTypescript,
+  html5: siHtml5,
+  flutter: siFlutter,
+  latex: siLatex,
+  markdown: siMarkdown,
+  django: siDjango,
+  numpy: siNumpy,
+  tensorflow: siTensorflow,
+  flask: siFlask,
+  nextdotjs: siNextdotjs,
+  primereact: siPrimereact,
+  react: siReact,
+  tailwindcss: siTailwindcss,
+  opencv: siOpencv,
+  sqlite: siSqlite,
+  postgresql: siPostgresql,
+  mongodb: siMongodb,
+  git: siGit,
+  docker: siDocker,
+  githubactions: siGithubactions,
+  poetry: siPoetry,
+  inkscape: siInkscape,
+  gimp: siGimp,
+  blender: siBlender,
+};

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -7,8 +8,6 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import SlidingTexts from "./components/sliding-texts";
-import BasicInfoSection from "./components/basic-info/basic-info-section";
-import TimelineSection from "./components/timeline/timeline-section";
 
 export default function Home() {
   return (
@@ -46,7 +45,7 @@ export default function Home() {
           Hamza Abbad
         </h1>
 
-        {/* Role carousel — direct identity statement under the name */}
+        {/* Role carousel */}
         <div className="entrance-3">
           <SlidingTexts />
         </div>
@@ -118,14 +117,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <a href="#about" className="scroll-chevron" aria-label="Scroll to about section">
+      {/* Scroll indicator — links to About page */}
+      <Link href="/about" className="scroll-chevron" aria-label="Go to About page">
         <FontAwesomeIcon icon={faChevronDown} />
-      </a>
+      </Link>
     </div>
-
-    <BasicInfoSection />
-    <TimelineSection />
     </main>
   );
 }

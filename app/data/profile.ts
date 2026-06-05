@@ -80,6 +80,25 @@ export interface TimelineEntry {
   endYear: number;
 }
 
+// ---------------------------------------------------------------------------
+// Tech Stack
+// ---------------------------------------------------------------------------
+
+export interface SkillItem {
+  name: string;
+  /** Lowercase registry key (no "si" prefix). null = use fallbackImageSrc. */
+  slug: string | null;
+  description: string;
+  proficiency: number; // 0–1
+  fallbackImageSrc?: string; // path relative to /public
+}
+
+export interface SkillCategory {
+  id: string;
+  name: string;
+  items: SkillItem[];
+}
+
 export interface Profile {
   fullName: string;
   shortDescription: string;
@@ -88,6 +107,7 @@ export interface Profile {
   languages: Language[];
   location: Location;
   timeline: TimelineEntry[];
+  skills: SkillCategory[];
 }
 
 // ---------------------------------------------------------------------------
@@ -281,6 +301,74 @@ export const profile: Profile = {
       title: "Bachelor in Computer Science",
       startYear: 2012,
       endYear: 2015,
+    },
+  ],
+
+  // -------------------------------------------------------------------------
+  // Tech Stack
+  // -------------------------------------------------------------------------
+  skills: [
+    {
+      id: "languages",
+      name: "Programming Languages",
+      items: [
+        { name: "Python", slug: "python", description: "Backend scripting and AI development", proficiency: 0.95 },
+        { name: "Markdown", slug: "markdown", description: "Documentation and technical writing", proficiency: 0.95 },
+        { name: "JavaScript / TypeScript", slug: "typescript", description: "Full-stack web development", proficiency: 0.80 },
+        { name: "HTML / CSS", slug: "html5", description: "Web markup and styling", proficiency: 0.70 },
+        { name: "LaTeX", slug: "latex", description: "Scientific document publishing", proficiency: 0.60 },
+        { name: "Dart / Flutter", slug: "flutter", description: "Cross-platform mobile development", proficiency: 0.50 },
+        { name: "Java", slug: null, description: "Desktop application development", proficiency: 0.30, fallbackImageSrc: "/images/logos/Java_logo.png" },
+      ],
+    },
+    {
+      id: "frameworks",
+      name: "Frameworks & Libraries",
+      items: [
+        { name: "Django", slug: "django", description: "Full-featured Python web framework", proficiency: 0.80 },
+        { name: "Pillow", slug: null, description: "Python image processing", proficiency: 0.80, fallbackImageSrc: "/images/logos/Pillow_logo.png" },
+        { name: "PyQt", slug: null, description: "Desktop GUI development", proficiency: 0.80, fallbackImageSrc: "/images/logos/PyQt_logo.png" },
+        { name: "Next.js", slug: "nextdotjs", description: "React framework for production apps", proficiency: 0.80 },
+        { name: "Playwright", slug: null, description: "Cross-browser automation and testing", proficiency: 0.80, fallbackImageSrc: "/images/logos/Playwright_logo.svg" },
+        { name: "UserScripts", slug: null, description: "Browser automation and enhancement", proficiency: 0.80, fallbackImageSrc: "/images/logos/UserScript_logo.png" },
+        { name: "NumPy", slug: "numpy", description: "Vectorized numerical computing", proficiency: 0.70 },
+        { name: "TensorFlow", slug: "tensorflow", description: "Deep learning and neural networks", proficiency: 0.70 },
+        { name: "Crawlee", slug: null, description: "Modern web crawling framework", proficiency: 0.70, fallbackImageSrc: "/images/logos/Crawlee_logo.png" },
+        { name: "PrimeReact", slug: "primereact", description: "Rich UI component library for React", proficiency: 0.70 },
+        { name: "Matplotlib", slug: null, description: "Data visualization and charting", proficiency: 0.60, fallbackImageSrc: "/images/logos/Matplotlib_logo.png" },
+        { name: "Flask", slug: "flask", description: "Lightweight Python web framework", proficiency: 0.60 },
+        { name: "React", slug: "react", description: "Component-based web UI library", proficiency: 0.60 },
+        { name: "Tailwind CSS", slug: "tailwindcss", description: "Utility-first CSS framework", proficiency: 0.60 },
+        { name: "OpenCV", slug: "opencv", description: "Computer vision and image analysis", proficiency: 0.50 },
+      ],
+    },
+    {
+      id: "databases",
+      name: "Databases",
+      items: [
+        { name: "SQLite", slug: "sqlite", description: "Embedded file-based SQL database", proficiency: 0.90 },
+        { name: "PostgreSQL", slug: "postgresql", description: "Advanced relational database", proficiency: 0.50 },
+        { name: "MongoDB", slug: "mongodb", description: "Document-oriented NoSQL database", proficiency: 0.40 },
+      ],
+    },
+    {
+      id: "devops",
+      name: "DevOps",
+      items: [
+        { name: "Git", slug: "git", description: "Distributed version control", proficiency: 0.80 },
+        { name: "GitHub Actions", slug: "githubactions", description: "CI/CD workflow automation", proficiency: 0.80 },
+        { name: "Poetry", slug: "poetry", description: "Python dependency management", proficiency: 0.70 },
+        { name: "Docker", slug: "docker", description: "Containerization for deployment", proficiency: 0.60 },
+      ],
+    },
+    {
+      id: "graphic",
+      name: "Graphic Tools",
+      items: [
+        { name: "Inkscape", slug: "inkscape", description: "Vector graphics design", proficiency: 0.70 },
+        { name: "GIMP", slug: "gimp", description: "Raster image editing", proficiency: 0.60 },
+        { name: "Blender", slug: "blender", description: "3D modeling and rendering", proficiency: 0.20 },
+      ],
     },
   ],
 };

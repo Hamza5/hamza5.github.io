@@ -251,7 +251,7 @@ body {
 
 .scroll-chevron {
   position: absolute;
-  bottom: 1.75rem;
+  bottom: 5.5rem; /* sits above the fixed bottom-nav */
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -472,6 +472,8 @@ body {
   overflow: hidden;
   height: 340px;
   border: 1px solid color-mix(in srgb, var(--fg-muted) 20%, transparent);
+  /* Contain Leaflet's internal z-indices (400–1000) within this element */
+  isolation: isolate;
 }
 
 .location-map {
@@ -822,4 +824,202 @@ body {
     display: none;
   }
 }
+
+/* ─── Bottom nav — always-visible floating pill ─────────────────────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.3rem;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 30%, transparent);
+  border-radius: 9999px;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent-cyan) 8%, transparent),
+    0 4px 24px color-mix(in srgb, var(--accent-cyan) 12%, transparent),
+    0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.nav-item.active {
+  color: var(--accent-cyan);
+  background: color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent-cyan) 28%, transparent);
+}
+
+.nav-item:hover:not(.active) {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+}
+
+.nav-item-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* Hide label text on very small screens; show icon-only */
+@media (max-width: 400px) {
+  .nav-item-label {
+    display: none;
+  }
+  .nav-item {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* ─── Page bottom padding to clear the fixed nav ────────────────────────── */
+.basic-info-section,
+.timeline-section,
+.skills-section {
+  padding-bottom: 6rem;
+}
+
+/* ─── Skills section ────────────────────────────────────────────────────── */
+.skills-section {
+  background: var(--bg);
+  padding-top: 5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.skills-container {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.skill-category {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive grid: 1 col → 2 col → 3 col */
+.skill-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+}
+
+@media (min-width: 560px) {
+  .skill-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .skill-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ─── Skill item card ───────────────────────────────────────────────────── */
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 22%, transparent);
+  border-radius: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.skill-item:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 40%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent-cyan) 8%, transparent);
+}
+
+.skill-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* White pill background so every brand-colored icon is legible on any theme */
+.skill-icon-bg {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.skill-item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.skill-item-name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skill-item-desc {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skill-item-pct {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+/* Proficiency bar — width animated via JS IntersectionObserver */
+.skill-bar-track {
+  height: 4px;
+  background: color-mix(in srgb, var(--fg-muted) 22%, transparent);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 
