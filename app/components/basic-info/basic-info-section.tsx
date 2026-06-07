@@ -10,12 +10,15 @@ import {
   faCakeCandles,
   faPassport,
   faMosque,
+  faQrcode,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { profile } from "../../data/profile";
 import SectionHeading from "../section-heading";
 import ContactItem from "./contact-item";
 import LanguageItem from "./language-item";
+import ContactQrModal from "../contact-qr-modal";
 
 // Dynamically imported with no SSR — Leaflet depends on `window`
 const LocationMap = dynamic(() => import("./location-map"), { ssr: false });
@@ -47,11 +50,13 @@ export default function BasicInfoSection() {
   const { contact, personal, languages, location } = profile;
   // Compute age client-side to avoid hydration mismatch in static export
   const [age, setAge] = useState("");
+  const [qrOpen, setQrOpen] = useState(false);
   useEffect(() => {
     setAge(calculateAge(personal.dateOfBirth));
   }, [personal.dateOfBirth]);
 
   return (
+    <>
     <section className="basic-info-section" id="about">
       <div className="basic-info-container">
 
@@ -78,6 +83,19 @@ export default function BasicInfoSection() {
                 />
               ))}
             </div>
+            {/* Share Contact via QR */}
+            <button
+              onClick={() => setQrOpen(true)}
+              className="btn-secondary btn-qr"
+              style={{ alignSelf: "flex-start" }}
+              aria-label="Share contact as QR code"
+            >
+              <FontAwesomeIcon
+                icon={faQrcode}
+                style={{ width: "0.875rem", height: "0.875rem" }}
+              />
+              <span>Share Contact</span>
+            </button>
           </div>
 
           {/* Personal */}
@@ -109,5 +127,8 @@ export default function BasicInfoSection() {
 
       </div>
     </section>
+
+      <ContactQrModal isOpen={qrOpen} onClose={() => setQrOpen(false)} />
+    </>
   );
 }

@@ -1,13 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faLinkedin,
-  faStackOverflow,
-} from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import SlidingTexts from "./components/sliding-texts";
+import HeroActions from "./components/hero-actions";
 
 export default function Home() {
   return (
@@ -65,56 +61,7 @@ export default function Home() {
         </p>
 
         {/* CTA buttons */}
-        <div
-          className="entrance-5 flex flex-wrap items-center justify-center gap-3"
-          style={{ marginTop: "0.5rem" }}
-        >
-          {/* GitHub — primary CTA */}
-          <a
-            href="https://github.com/Hamza5"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            <FontAwesomeIcon
-              icon={faGithub}
-              style={{ width: "1.125rem", height: "1.125rem" }}
-            />
-            <span>Check out my code</span>
-            <FontAwesomeIcon
-              icon={faArrowUpRightFromSquare}
-              style={{ width: "0.75rem", height: "0.75rem", opacity: 0.7 }}
-            />
-          </a>
-
-          {/* Stack Overflow — secondary */}
-          <a
-            href="https://stackoverflow.com/users/5008968/hamza-abbad"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary btn-stackoverflow"
-          >
-            <FontAwesomeIcon
-              icon={faStackOverflow}
-              style={{ width: "1rem", height: "1rem" }}
-            />
-            <span>Stack Overflow</span>
-          </a>
-
-          {/* LinkedIn — secondary */}
-          <a
-            href="https://www.linkedin.com/in/hamza-abbad/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary btn-linkedin"
-          >
-            <FontAwesomeIcon
-              icon={faLinkedin}
-              style={{ width: "1rem", height: "1rem" }}
-            />
-            <span>LinkedIn</span>
-          </a>
-        </div>
+        <HeroActions />
       </div>
 
       {/* Scroll indicator — links to About page */}

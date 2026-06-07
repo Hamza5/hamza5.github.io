@@ -243,6 +243,12 @@ body {
   color: #0a66c2;
 }
 
+.btn-qr:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--glow-cyan);
+}
+
 /* ─── Scroll chevron ────────────────────────────────────────────────────── */
 @keyframes bounce-down {
   0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -1119,6 +1125,96 @@ body {
   height: 100%;
   border-radius: 9999px;
   transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── QR Contact Modal ──────────────────────────────────────────────────── */
+.qr-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.qr-modal-card {
+  position: fixed;
+  inset: 0;
+  z-index: 201;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: min(22rem, calc(100vw - 2.5rem));
+  height: fit-content;
+  padding: 2rem 1.75rem 1.75rem;
+  border-radius: 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent-cyan) 12%, transparent),
+    0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.qr-modal-close {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 30%, transparent);
+  color: var(--fg-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.qr-modal-close:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.qr-modal-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.qr-modal-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* White QR wrapper provides consistent contrast in both themes */
+.qr-code-wrapper {
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  line-height: 0;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+}
+
+.qr-modal-download {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.qr-modal-subtitle {
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  margin: 0;
+  text-align: center;
 }
 
 

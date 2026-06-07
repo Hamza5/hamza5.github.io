@@ -128,11 +128,17 @@ export interface ProjectEntry {
   githubUrl?: string;
 }
 
+export interface SocialLink {
+  label: string;
+  url: string;
+}
+
 export interface Profile {
   fullName: string;
   shortDescription: string;
   contact: ContactInfo;
   personal: PersonalDetails;
+  socialLinks: SocialLink[];
   languages: Language[];
   location: Location;
   timeline: TimelineEntry[];
@@ -148,6 +154,12 @@ export const profile: Profile = {
   fullName: "Hamza Abbad",
   shortDescription: "Engineer in Artificial Intelligence and Computer Science",
 
+  socialLinks: [
+    { label: "Portfolio",  url: "https://hamza5.github.io" },
+    { label: "GitHub",    url: "https://github.com/Hamza5" },
+    { label: "LinkedIn",  url: "https://www.linkedin.com/in/hamza-abbad/" },
+  ],
+
   contact: {
     emails: [
       "hamza.abbad@gmail.com",
@@ -156,8 +168,8 @@ export const profile: Profile = {
       {
         country: "DZ",
         flag: "🇩🇿",
-        number: "+213659418469",
-        label: "+213 6 59 41 84 69",
+        number: "+213542511063",
+        label: "+213 542 51 10 63",
       },
     ],
   },

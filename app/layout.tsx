@@ -25,6 +25,15 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Hamza Abbad",
   description: "Engineer in Artificial Intelligence and Computer Science",
+  icons: {
+    icon: "/avatar.svg",
+    apple: "/avatar.svg",
+  },
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
 
 // Inline script run before CSS loads — sets .dark class to avoid FOUC.
