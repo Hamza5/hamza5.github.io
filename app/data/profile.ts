@@ -133,6 +133,31 @@ export interface SocialLink {
   url: string;
 }
 
+// ---------------------------------------------------------------------------
+// Publications
+// ---------------------------------------------------------------------------
+
+export interface Publication {
+  title: string;
+  authors: string[];
+  venue: string;
+  year: number;
+  url: string;
+  doi: string;
+}
+
+// ---------------------------------------------------------------------------
+// Certifications
+// ---------------------------------------------------------------------------
+
+export interface Certification {
+  title: string;
+  issuer: string;
+  logoSrc: string;
+  year: number;
+  url?: string;
+}
+
 export interface Profile {
   fullName: string;
   shortDescription: string;
@@ -144,6 +169,8 @@ export interface Profile {
   timeline: TimelineEntry[];
   skills: SkillCategory[];
   projects: ProjectEntry[];
+  publications: Publication[];
+  certifications: Certification[];
 }
 
 // ---------------------------------------------------------------------------
@@ -230,7 +257,7 @@ export const profile: Profile = {
       institution: "SMRIS-CRTI",
       logoSrc: "/images/logos/SMRIS-CRTI_logo.png",
       institutionUrl: "https://www.smris-crti.dz/",
-      title: "State Engineer for Research Support",
+      title: "State Engineer in Research Support",
       startYear: 2025,
       endYear: 9999, // Ongoing
     },
@@ -539,6 +566,61 @@ export const profile: Profile = {
       month: 8,
       tags: ["Python", "PyQt4"],
       githubUrl: "https://github.com/Hamza5/Basic-Regular-Expressions-Tester",
+    },
+  ],
+
+  // -------------------------------------------------------------------------
+  // Publications — sorted descending by year.
+  // -------------------------------------------------------------------------
+  publications: [
+    {
+      title: "Simple Extensible Deep Learning Model for Automatic Arabic Diacritization",
+      authors: ["Hamza Abbad", "Shengwu Xiong"],
+      venue: "ACM Transactions on Asian and Low-Resource Language Information Processing (TALLIP)",
+      year: 2022,
+      url: "https://dl.acm.org/doi/abs/10.1145/3480938",
+      doi: "10.1145/3480938",
+    },
+    {
+      title: "Multi-components System for Automatic Arabic Diacritization",
+      authors: ["Hamza Abbad", "Shengwu Xiong"],
+      venue: "European Conference on Information Retrieval (ECIR 2020), Springer LNCS",
+      year: 2020,
+      url: "https://link.springer.com/chapter/10.1007/978-3-030-45439-5_23",
+      doi: "10.1007/978-3-030-45439-5_23",
+    },
+  ],
+
+  // -------------------------------------------------------------------------
+  // Certifications — sorted descending by year.
+  // -------------------------------------------------------------------------
+  certifications: [
+    {
+      title: "Reinforcement Learning Explained",
+      issuer: "EdX",
+      logoSrc: "/images/logos/edx_logo.png",
+      year: 2019,
+      url: "https://www.edx.org/",
+    },
+    {
+      title: "Machine Learning",
+      issuer: "Coursera",
+      logoSrc: "/images/logos/coursera_logo.png",
+      year: 2018,
+      url: "https://www.coursera.org/",
+    },
+    {
+      title: "International English Language Testing System (IELTS) — Band 6.5 (B2)",
+      issuer: "International Education Specialists (IDP)",
+      logoSrc: "/images/logos/idp_logo.png",
+      year: 2018,
+      url: "https://www.idp.com/",
+    },
+    {
+      title: "Mandarin Chinese Proficiency Test (HSK 4) — score 218/300",
+      issuer: "Wuhan University of Technology (WHUT)",
+      logoSrc: "/images/logos/whut_logo.png",
+      year: 2018,
     },
   ],
 };

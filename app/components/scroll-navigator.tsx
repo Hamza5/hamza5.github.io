@@ -4,7 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useNavDirection } from "./nav-direction-context";
 
-const PAGE_ORDER = ["/", "/about", "/career", "/projects", "/skills"] as const;
+const PAGE_ORDER = ["/", "/about", "/career", "/projects", "/skills", "/publications"] as const;
 
 /** How many pixels past the boundary (top or bottom) before we navigate. */
 const THRESHOLD = 80;

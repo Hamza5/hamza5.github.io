@@ -531,9 +531,9 @@ body {
   right: 0.875rem;
   z-index: 1000;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.125rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.875rem;
   padding: 0.5rem 0.875rem;
   background: rgba(240, 236, 226, 0.88);
   backdrop-filter: blur(8px);
@@ -546,6 +546,17 @@ body {
   box-shadow: 0 0 14px rgba(0, 212, 255, 0.12);
 }
 
+.map-clock-analog {
+  flex-shrink: 0;
+}
+
+.map-clock-dates {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
 .map-clock-time {
   font-family: var(--font-display), sans-serif;
   font-size: 1.1rem;
@@ -555,10 +566,34 @@ body {
   line-height: 1;
 }
 
+.map-clock-hijri {
+  font-size: 0.7rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  direction: ltr;
+}
+
 .map-clock-date {
   font-size: 0.75rem;
   color: var(--fg-muted);
   letter-spacing: 0.03em;
+}
+
+/* react-clock face theming */
+.map-clock-face .react-clock__face {
+  border-color: color-mix(in srgb, var(--accent-cyan) 55%, transparent) !important;
+  background: transparent !important;
+}
+.map-clock-face .react-clock__hour-hand__body,
+.map-clock-face .react-clock__minute-hand__body {
+  background-color: var(--accent-cyan) !important;
+}
+.map-clock-face .react-clock__second-hand__body {
+  background-color: var(--accent-purple) !important;
+}
+.map-clock-face .react-clock__mark__body {
+  background-color: color-mix(in srgb, var(--accent-cyan) 55%, transparent) !important;
 }
 
 /* City/country label at the bottom of the map */
@@ -1215,6 +1250,158 @@ body {
   color: var(--fg-muted);
   margin: 0;
   text-align: center;
+}
+
+/* ─── Map weather overlay ───────────────────────────────────────────────── */
+.map-weather {
+  position: absolute;
+  bottom: 0.875rem;
+  right: 0.875rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem 0.875rem;
+  background: rgba(240, 236, 226, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 35%, transparent);
+  border-radius: 0.625rem;
+  box-shadow: 0 0 14px rgba(0, 153, 187, 0.1);
+}
+.dark .map-weather {
+  background: rgba(5, 5, 16, 0.82);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.12);
+}
+
+.map-weather-main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.map-weather-icon {
+  color: var(--accent-cyan);
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  flex-shrink: 0;
+}
+
+.map-weather-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+.map-weather-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  color: var(--fg);
+}
+
+.map-weather-stat-icon {
+  width: 0.7rem !important;
+  height: 0.7rem !important;
+  color: var(--fg-muted);
+  margin-right: 0.2rem;
+}
+
+.map-weather-muted {
+  color: var(--fg-muted);
+}
+
+/* ─── Publications & Certifications page ───────────────────────────────── */
+.publications-section {
+  background: var(--bg);
+  padding: 5rem 1.5rem 6rem;
+}
+
+.publications-container {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.publications-block {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Publication card extras */
+.pub-card-inner {
+  gap: 0.5rem;
+}
+
+/* Title row: title on the left, year badge pinned to the right */
+.pub-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.pub-year-badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding-top: 0.1em;
+}
+
+.pub-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.4;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  transition: color 0.2s;
+}
+.pub-title:hover {
+  color: var(--accent-purple);
+}
+
+.pub-title-icon {
+  width: 0.65rem !important;
+  height: 0.65rem !important;
+  opacity: 0.7;
+  flex-shrink: 0;
+  position: relative;
+  top: -0.05em;
+}
+
+.pub-authors {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pub-venue {
+  font-size: 0.8125rem;
+  color: var(--accent-purple);
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.pub-footer {
+  margin-top: 0.25rem;
+}
+
+/* Certification card extras — cert-logo-wrapper aligns with timeline-logo-link */
+.cert-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background: var(--logo-bg);
+  flex-shrink: 0;
 }
 
 
