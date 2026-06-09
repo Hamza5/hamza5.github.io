@@ -1,39 +1,27 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faDownload } from "@fortawesome/free-solid-svg-icons";
+import {
+  faXmark,
+  faDownload,
+  faFilePdf,
+  faImage,
+  faPrint,
+  faQrcode,
+  faCreditCard,
+} from "@fortawesome/free-solid-svg-icons";
 import { QRCodeSVG } from "qrcode.react";
 import { profile } from "../data/profile";
+import { buildVCard } from "../utils/vcard";
+import { downloadCardAsPng, downloadCardAsPdf, printCard } from "../utils/card-download";
+import BusinessCard from "./business-card";
 
 // ---------------------------------------------------------------------------
-// vCard builder — version 3.0, widest scanner compatibility.
+// .vcf download
 // ---------------------------------------------------------------------------
-function buildVCard(): string {
-  const { fullName, shortDescription, contact, socialLinks } = profile;
-  const email = contact.emails[0] ?? "";
-  const phone = contact.phones[0]?.number ?? "";
-  // Name split: "Hamza Abbad" → N:Abbad;Hamza;;;
-  const parts = fullName.trim().split(/\s+/);
-  const givenName = parts[0] ?? "";
-  const familyName = parts.slice(1).join(" ");
-  const lines: string[] = [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    `FN:${fullName}`,
-    `N:${familyName};${givenName};;;`,
-    `TITLE:${shortDescription}`,
-  ];
-  if (email) lines.push(`EMAIL;TYPE=INTERNET:${email}`);
-  if (phone) lines.push(`TEL;TYPE=CELL:${phone}`);
-  for (const link of socialLinks) {
-    lines.push(`URL:${link.url}`);
-  }
-  lines.push("END:VCARD");
-  return lines.join("\r\n");
-}
-
 function downloadVcf() {
   const blob = new Blob([buildVCard()], { type: "text/vcard;charset=utf-8" });
   const url = URL.createObjectURL(blob);
@@ -52,7 +40,22 @@ interface ContactQrModalProps {
   onClose: () => void;
 }
 
+type Tab = "qr" | "card";
+
 export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps) {
+  const [activeTab, setActiveTab] = useState<Tab>("qr");
+  const [isCapturing, setIsCapturing] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Mount guard — createPortal requires document.body (client-only).
+  useEffect(() => { setMounted(true); }, []);
+
+  // Reset tab when modal reopens
+  useEffect(() => {
+    if (isOpen) setActiveTab("qr");
+  }, [isOpen]);
+
   // Close on Escape
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -74,7 +77,33 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
 
   const vCardString = buildVCard();
 
-  return (
+  async function handlePng() {
+    if (!cardRef.current) return;
+    setIsCapturing(true);
+    try { await downloadCardAsPng(cardRef.current, profile.fullName); }
+    catch (err) { console.error("PNG export failed:", err); }
+    finally { setIsCapturing(false); }
+  }
+
+  async function handlePdf() {
+    if (!cardRef.current) return;
+    setIsCapturing(true);
+    try { await downloadCardAsPdf(cardRef.current, profile.fullName); }
+    catch (err) { console.error("PDF export failed:", err); }
+    finally { setIsCapturing(false); }
+  }
+
+  async function handlePrint() {
+    if (!cardRef.current) return;
+    setIsCapturing(true);
+    try { await printCard(cardRef.current); }
+    catch (err) { console.error("Print failed:", err); }
+    finally { setIsCapturing(false); }
+  }
+
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -90,7 +119,7 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
             aria-hidden="true"
           />
 
-          {/* Card */}
+          {/* Modal */}
           <motion.div
             key="qr-card"
             role="dialog"
@@ -112,7 +141,7 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
             </button>
 
             {/* Heading */}
-            <p className="qr-modal-eyebrow">Scan to save contact</p>
+            <p className="qr-modal-eyebrow">Contact</p>
             <h2
               className="qr-modal-name"
               style={{ fontFamily: "var(--font-orbitron), sans-serif" }}
@@ -120,36 +149,104 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
               {profile.fullName}
             </h2>
 
-            {/* QR code — always white bg + black modules for reliable scanning */}
-            <div className="qr-code-wrapper">
-              <QRCodeSVG
-                value={vCardString}
-                size={220}
-                level="H"
-                bgColor="#ffffff"
-                fgColor="#111111"
-                imageSettings={{
-                  src: "/avatar.svg",
-                  width: 46,
-                  height: 46,
-                  excavate: true,
-                }}
-              />
+            {/* Tab switcher */}
+            <div className="qr-modal-tabs">
+              <button
+                className={`qr-modal-tab${activeTab === "qr" ? " qr-modal-tab--active" : ""}`}
+                onClick={() => setActiveTab("qr")}
+              >
+                <FontAwesomeIcon icon={faQrcode} style={{ width: "0.85rem", height: "0.85rem" }} />
+                <span>QR Code</span>
+              </button>
+              <button
+                className={`qr-modal-tab${activeTab === "card" ? " qr-modal-tab--active" : ""}`}
+                onClick={() => setActiveTab("card")}
+              >
+                <FontAwesomeIcon icon={faCreditCard} style={{ width: "0.85rem", height: "0.85rem" }} />
+                <span>Business Card</span>
+              </button>
             </div>
 
-            {/* Download .vcf */}
-            <button className="btn-primary qr-modal-download" onClick={downloadVcf}>
-              <FontAwesomeIcon icon={faDownload} style={{ width: "0.875rem", height: "0.875rem" }} />
-              <span>Download .vcf</span>
-            </button>
+            {/* ── QR tab ──────────────────────────────────────────────── */}
+            {activeTab === "qr" && (
+              <>
+                {/* QR code — always white bg + black modules for reliable scanning */}
+                <div className="qr-code-wrapper">
+                  <QRCodeSVG
+                    value={vCardString}
+                    size={220}
+                    level="H"
+                    bgColor="#ffffff"
+                    fgColor="#111111"
+                    imageSettings={{
+                      src: "/avatar.svg",
+                      width: 46,
+                      height: 46,
+                      excavate: true,
+                    }}
+                  />
+                </div>
 
-            {/* Subtitle */}
-            <p className="qr-modal-subtitle">
-              Opens in Contacts on iOS, Android &amp; macOS
-            </p>
+                {/* Download .vcf */}
+                <button className="btn-primary qr-modal-download" onClick={downloadVcf}>
+                  <FontAwesomeIcon icon={faDownload} style={{ width: "0.875rem", height: "0.875rem" }} />
+                  <span>Download .vcf</span>
+                </button>
+
+                <p className="qr-modal-subtitle">
+                  Opens in Contacts on iOS, Android &amp; macOS
+                </p>
+              </>
+            )}
+
+            {/* ── Business Card tab ────────────────────────────────────── */}
+            {activeTab === "card" && (
+              <div className="qr-modal-card-tab">
+                {/* Scrollable preview area so the card fits on small screens */}
+                <div className="qr-modal-card-preview">
+                  <BusinessCard ref={cardRef} />
+                </div>
+
+                {/* Action row: PNG · PDF · Print */}
+                <div className="qr-modal-card-actions">
+                  <button
+                    className="btn-secondary qr-modal-card-action-btn"
+                    onClick={handlePng}
+                    disabled={isCapturing}
+                    aria-label="Download as PNG image"
+                  >
+                    <FontAwesomeIcon icon={faImage} style={{ width: "0.85rem", height: "0.85rem" }} />
+                    <span>PNG</span>
+                  </button>
+                  <button
+                    className="btn-secondary qr-modal-card-action-btn"
+                    onClick={handlePdf}
+                    disabled={isCapturing}
+                    aria-label="Download as PDF"
+                  >
+                    <FontAwesomeIcon icon={faFilePdf} style={{ width: "0.85rem", height: "0.85rem" }} />
+                    <span>PDF</span>
+                  </button>
+                  <button
+                    className="btn-primary qr-modal-card-action-btn"
+                    onClick={handlePrint}
+                    disabled={isCapturing}
+                    aria-label="Print business card"
+                  >
+                    <FontAwesomeIcon icon={faPrint} style={{ width: "0.85rem", height: "0.85rem" }} />
+                    <span>Print</span>
+                  </button>
+                </div>
+
+                <p className="qr-modal-subtitle">
+                  Standard 3.5&Prime; &times; 2&Prime; business card
+                </p>
+              </div>
+            )}
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
