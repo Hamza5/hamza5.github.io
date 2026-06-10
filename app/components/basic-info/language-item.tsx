@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Language } from "../../data/profile";
+import type { LocalizedLanguage } from "@/app/hooks/use-localized-profile";
 
 interface LanguageItemProps {
-  language: Language;
+  language: LocalizedLanguage;
 }
 
 export default function LanguageItem({ language }: LanguageItemProps) {

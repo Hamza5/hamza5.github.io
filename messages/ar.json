@@ -1,0 +1,251 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "about": "حول",
+    "career": "المسيرة",
+    "projects": "المشاريع",
+    "skills": "المهارات",
+    "publications": "المنشورات"
+  },
+  "hero": {
+    "bio": "مهندس في الذكاء الاصطناعي وعلوم الحاسوب",
+    "checkOutMyCode": "استعرض الكود",
+    "shareContact": "مشاركة بطاقة التواصل",
+    "roles": {
+      "webDev": "مطور ويب",
+      "desktopDev": "مطور تطبيقات سطح المكتب",
+      "webScraper": "مستخرج بيانات الويب",
+      "automationSpecialist": "متخصص في الأتمتة",
+      "aiEngineer": "مهندس ذكاء اصطناعي",
+      "graphicsDesigner": "مصمم جرافيكس"
+    }
+  },
+  "about": {
+    "contact": "التواصل",
+    "personal": "شخصي",
+    "spokenLanguages": "اللغات المتحدثة",
+    "location": "الموقع",
+    "shareContact": "مشاركة بطاقة التواصل",
+    "ageYears_one": "سنة واحدة",
+    "ageYears_two": "سنتان",
+    "ageYears_few": "{{count}} سنوات",
+    "ageYears_many": "{{count}} سنة",
+    "ageYears_other": "{{count}} سنة",
+    "ageMonths_one": "شهر واحد",
+    "ageMonths_two": "شهرين",
+    "ageMonths_few": "{{count}} أشهر",
+    "ageMonths_many": "{{count}} شهراً",
+    "ageMonths_other": "{{count}} شهراً",
+    "ageDays_one": "و يوم واحد",
+    "ageDays_two": "و يومين",
+    "ageDays_few": "و {{count}} أيام",
+    "ageDays_many": "و {{count}} يوماً",
+    "ageDays_other": "و {{count}} يوماً",
+    "ageComma": "، "
+  },
+  "career": {
+    "timeline": "المسار الزمني",
+    "present": "حتى الآن",
+    "badges": {
+      "bachelor": "ليسانس",
+      "master": "ماستر",
+      "phd": "دكتوراه",
+      "language": "لغة",
+      "certificate": "شهادة",
+      "course": "دورة تدريبية",
+      "internship": "تدريب",
+      "job": "وظيفة",
+      "freelance": "عمل حر"
+    }
+  },
+  "projects": {
+    "title": "المشاريع",
+    "github": "GitHub",
+    "live": "مباشر",
+    "categories": {
+      "personal": "شخصي",
+      "freelance": "عمل حر",
+      "work": "وظيفة",
+      "research": "بحث",
+      "writing": "كتابة"
+    },
+    "months": {
+      "1": "يناير",
+      "2": "فبراير",
+      "3": "مارس",
+      "4": "أبريل",
+      "5": "مايو",
+      "6": "يونيو",
+      "7": "يوليو",
+      "8": "أغسطس",
+      "9": "سبتمبر",
+      "10": "أكتوبر",
+      "11": "نوفمبر",
+      "12": "ديسمبر"
+    }
+  },
+  "skills": {
+    "categories": {
+      "languages": "لغات البرمجة",
+      "frameworks": "الأطر والمكتبات",
+      "databases": "قواعد البيانات",
+      "devops": "DevOps",
+      "graphic": "أدوات الجرافيكس"
+    }
+  },
+  "publications": {
+    "researchPublications": "المنشورات العلمية"
+  },
+  "modal": {
+    "contact": "التواصل",
+    "qrCode": "رمز QR",
+    "businessCard": "بطاقة عمل",
+    "downloadVcf": "تنزيل ملف .vcf",
+    "vcfSubtitle": "يُفتح في جهات الاتصال على iOS وAndroid وmacOS",
+    "cardSubtitle": "بطاقة عمل قياسية 3.5\u2033 \u00d7 2\u2033",
+    "close": "إغلاق",
+    "png": "PNG",
+    "pdf": "PDF",
+    "print": "طباعة"
+  },
+  "theme": {
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن"
+  },
+  "page": {
+    "home": "حمزة عباد",
+    "about": "حول \u2014 حمزة عباد",
+    "career": "المسيرة \u2014 حمزة عباد",
+    "projects": "المشاريع \u2014 حمزة عباد",
+    "skills": "المهارات التقنية \u2014 حمزة عباد",
+    "publications": "المنشورات \u2014 حمزة عباد"
+  },
+  "profile": {
+    "fullName": "حمزة عباد",
+    "shortDescription": "مهندس في الذكاء الاصطناعي وعلوم الحاسوب",
+    "personal": {
+      "nationality": "جزائري",
+      "religion": "الإسلام"
+    },
+    "location": {
+      "district": "بئر الجير",
+      "city": "وهران",
+      "country": "الجزائر"
+    },
+    "timeline": {
+      "smrisCrtiJob": { "title": "مهندس دولة لدعم البحث" },
+      "upworkFreelance": { "title": "مشاريع كشط الويب وتطوير الويب" },
+      "hsoubAcademyFreelance": { "title": "مساعدة الطلاب في برمجة Python" },
+      "whutPhd": { "title": "دكتوراه في معالجة اللغة العربية الطبيعية باستخدام التعلم العميق" },
+      "dataImpactJob": { "title": "كشط الويب للرف الرقمي" },
+      "edxCourse": { "title": "شرح التعلم المعزز" },
+      "idpCertificate": { "title": "نظام اختبار اللغة الإنجليزية الدولي (IELTS)" },
+      "courseraCourse": { "title": "تعلم الآلة" },
+      "whutLanguage": { "title": "الصينية الماندارينية" },
+      "usthbMaster": { "title": "ماستر في الذكاء الاصطناعي" },
+      "albarakaInternship": { "title": "تدريب في تكنولوجيا المعلومات" },
+      "usthbBachelor": { "title": "ليسانس في علوم الحاسوب" }
+    },
+    "projects": {
+      "fileBrain": {
+        "title": "File Brain",
+        "description": "محرك بحث محلي ذكي يدعم تحمل الأخطاء الإملائية والتعرف الضوئي على الحروف والمطابقة الدلالية متعددة اللغات."
+      },
+      "scrapingBrain": {
+        "title": "Scraping Brain",
+        "description": "خدمة مدعومة بالذكاء الاصطناعي لتنفيذ مهام كشط الويب باستخدام تعليمات بلغة طبيعية."
+      },
+      "smrisSecretary": {
+        "title": "سكرتارية SMRIS",
+        "description": "تطبيق سطح مكتب لتسجيل وتتبع المتدربين في CRTI-SMRIS مع توليد المستندات آلياً."
+      },
+      "instagramAutomation": {
+        "title": "أتمتة Instagram",
+        "description": "تطبيق سطح مكتب يتيح إضافة أو إزالة متابعي Instagram من قائمة الأصدقاء المقربين بشكل جماعي."
+      },
+      "upworkJobNotificationBot": {
+        "title": "بوت إشعارات وظائف Upwork",
+        "description": "أداة سطر أوامر تكشط دورياً عروض عمل Upwork حسب فلاتر المستخدم وترسل إشعارات سطح المكتب للمطابقات الجديدة."
+      },
+      "telegramWhatsAppInfoExtractor": {
+        "title": "مستخرج معلومات Telegram / WhatsApp",
+        "description": "تطبيق ويب يستخرج المعلومات الأساسية لقنوات Telegram وWhatsApp ويصدرها إلى جداول بيانات Google."
+      },
+      "amazonScraperTelegramPoster": {
+        "title": "كاشط Amazon / ناشر Telegram",
+        "description": "أداة سطر أوامر تكشط المنتجات المخفضة من Amazon DE وتنشرها تلقائياً في مجموعة Telegram."
+      },
+      "storeScrap": {
+        "title": "Store Scrap",
+        "description": "تطبيق سطح مكتب يكشط منتجات علامات تجارية محددة من أربعة متاجر إلكترونية سعودية."
+      },
+      "lisan1StudentsBlog": {
+        "title": "مدونة طلاب Lisan1",
+        "description": "محرك بحث على مدونة نصوص عربية لطلاب سعوديين مع أدوات لاستخراج N-gram وتحليل التكرار واكتشاف الخصائص اللغوية."
+      },
+      "multilevelDiacritizer": {
+        "title": "نظام التشكيل متعدد المستويات",
+        "description": "تطبيق ويب Flask/Flutter/TensorFlow يوفر واجهة رسومية لنموذج تعلم عميق للتشكيل العربي التلقائي، طُوِّر أثناء الدكتوراه."
+      },
+      "periodicalFileSender": {
+        "title": "مرسل الملفات الدوري",
+        "description": "أداة سطح مكتب رسومية لإرسال رسائل بريد إلكتروني مع مرفقات بشكل دوري عبر خادم SMTP."
+      },
+      "learnToProgramWithC": {
+        "title": "تعلم البرمجة بلغة C (بالعربية)",
+        "description": "ترجمة عربية كاملة لكتاب فرنسي مكون من 500 صفحة لتعليم البرمجة بلغة C بتنسيق وتخطيط عالي الجودة."
+      },
+      "dnaTranslator": {
+        "title": "مترجم DNA (بالعربية)",
+        "description": "تطبيق متعدد المنصات لترجمة التسلسلات بين DNA وRNA والأحماض الأمينية بواجهة عربية كاملة."
+      },
+      "basicRegexTester": {
+        "title": "اختبار التعابير النمطية الأساسية",
+        "description": "تطبيق Python لسطح المكتب لاختبار وتصور وظائف التعابير النمطية على نصوص إدخال اختيارية."
+      }
+    },
+    "languages": {
+      "arabic": { "name": "العربية", "description": "الفصحى وأكثر اللهجات" },
+      "english": { "name": "الإنجليزية", "description": "اللكنة الأمريكية" },
+      "french": { "name": "الفرنسية", "description": "الفرنسية القياسية" },
+      "chinese": { "name": "الصينية", "description": "الماندارينية" },
+      "russian": { "name": "الروسية", "description": "كلمات وجمل أساسية" }
+    },
+    "skills": {
+      "items": {
+        "python": { "name": "Python", "description": "البرمجة النصية للخلفية وتطوير الذكاء الاصطناعي" },
+        "markdown": { "name": "Markdown", "description": "التوثيق والكتابة التقنية" },
+        "typescript": { "name": "JavaScript / TypeScript", "description": "تطوير الويب الشامل" },
+        "html5": { "name": "HTML / CSS", "description": "ترميز وتنسيق صفحات الويب" },
+        "latex": { "name": "LaTeX", "description": "نشر المستندات العلمية" },
+        "flutter": { "name": "Dart / Flutter", "description": "تطوير التطبيقات متعددة المنصات" },
+        "java": { "name": "Java", "description": "تطوير تطبيقات سطح المكتب" },
+        "django": { "name": "Django", "description": "إطار عمل ويب Python متكامل" },
+        "pillow": { "name": "Pillow", "description": "معالجة الصور بلغة Python" },
+        "pyQt": { "name": "PyQt", "description": "تطوير واجهات سطح المكتب الرسومية" },
+        "nextJs": { "name": "Next.js", "description": "إطار عمل React للتطبيقات الإنتاجية" },
+        "playwright": { "name": "Playwright", "description": "أتمتة واختبار عبر المتصفحات" },
+        "userScripts": { "name": "UserScripts", "description": "أتمتة المتصفح وتحسينه" },
+        "numpy": { "name": "NumPy", "description": "الحوسبة العددية المتجهية" },
+        "tensorflow": { "name": "TensorFlow", "description": "التعلم العميق والشبكات العصبية" },
+        "crawlee": { "name": "Crawlee", "description": "إطار زحف ويب حديث" },
+        "primeReact": { "name": "PrimeReact", "description": "مكتبة مكونات واجهة مستخدم غنية لـ React" },
+        "matplotlib": { "name": "Matplotlib", "description": "تصور البيانات ورسم المخططات" },
+        "flask": { "name": "Flask", "description": "إطار ويب Python خفيف الوزن" },
+        "react": { "name": "React", "description": "مكتبة واجهة مستخدم ويب قائمة على المكونات" },
+        "tailwindCss": { "name": "Tailwind CSS", "description": "إطار CSS قائم على الأدوات المساعدة" },
+        "openCv": { "name": "OpenCV", "description": "رؤية حاسوبية وتحليل الصور" },
+        "sqlite": { "name": "SQLite", "description": "قاعدة بيانات SQL مضمنة قائمة على الملفات" },
+        "postgresql": { "name": "PostgreSQL", "description": "قاعدة بيانات علائقية متقدمة" },
+        "mongodb": { "name": "MongoDB", "description": "قاعدة بيانات NoSQL موجهة بالمستندات" },
+        "git": { "name": "Git", "description": "التحكم في الإصدار الموزع" },
+        "githubActions": { "name": "GitHub Actions", "description": "أتمتة سير عمل CI/CD" },
+        "poetry": { "name": "Poetry", "description": "إدارة الاعتماديات في Python" },
+        "docker": { "name": "Docker", "description": "الحاويات للنشر" },
+        "inkscape": { "name": "Inkscape", "description": "تصميم الرسوميات المتجهية" },
+        "gimp": { "name": "GIMP", "description": "تحرير الصور النقطية" },
+        "blender": { "name": "Blender", "description": "النمذجة والتصيير ثلاثي الأبعاد" }
+      }
+    }
+  }
+}

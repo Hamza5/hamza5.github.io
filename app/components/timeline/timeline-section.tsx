@@ -1,17 +1,23 @@
+"use client";
+
 import { faTimeline } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 import SectionHeading from "@/app/components/section-heading";
 import TimelineCard from "@/app/components/timeline/timeline-card";
-import { profile } from "@/app/data/profile";
+import { useLocalizedProfile } from "@/app/hooks/use-localized-profile";
 
 export default function TimelineSection() {
+  const { t } = useTranslation();
+  const { timeline } = useLocalizedProfile();
+
   return (
     <section className="timeline-section">
       <div className="timeline-container">
-        <SectionHeading icon={faTimeline} title="Timeline" id="timeline" />
+        <SectionHeading icon={faTimeline} title={t("career.timeline")} id="timeline" />
 
         <div className="timeline-spine-wrapper" style={{ marginTop: "2.5rem" }}>
-          {profile.timeline.map((entry, index) => (
-            <TimelineCard key={`${entry.institution}-${entry.title}`} entry={entry} index={index} />
+          {timeline.map((entry, index) => (
+            <TimelineCard key={`${entry.institution}-${entry.id}`} entry={entry} index={index} />
           ))}
         </div>
       </div>

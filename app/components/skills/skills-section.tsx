@@ -1,3 +1,5 @@
+"use client";
+
 import {
   faCode,
   faCubesStacked,
@@ -6,7 +8,7 @@ import {
   faPalette,
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { profile } from "@/app/data/profile";
+import { useLocalizedProfile } from "@/app/hooks/use-localized-profile";
 import SkillCategory from "./skill-category";
 
 /** Maps category id → FontAwesome icon */
@@ -19,10 +21,12 @@ const categoryIcons: Record<string, IconDefinition> = {
 };
 
 export default function SkillsSection() {
+  const { skills } = useLocalizedProfile();
+
   return (
     <section className="skills-section">
       <div className="skills-container">
-        {profile.skills.map((category) => (
+        {skills.map((category) => (
           <SkillCategory
             key={category.id}
             category={category}

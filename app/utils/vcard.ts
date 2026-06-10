@@ -4,8 +4,8 @@ import { profile } from "../data/profile";
  * Builds a vCard 3.0 string from the global profile.
  * Version 3.0 is used for widest scanner compatibility.
  */
-export function buildVCard(): string {
-  const { fullName, shortDescription, contact, socialLinks } = profile;
+export function buildVCard(shortDescription: string): string {
+  const { fullName, contact, socialLinks } = profile;
   const email = contact.emails[0] ?? "";
   const phone = contact.phones[0]?.number ?? "";
   const parts = fullName.trim().split(/\s+/);

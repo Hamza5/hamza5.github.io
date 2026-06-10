@@ -2,33 +2,24 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import type { TimelineEntry, TimelineEntryType } from "@/app/data/profile";
+import { useTranslation } from "react-i18next";
+import type { TimelineEntryType } from "@/app/data/profile";
+import type { LocalizedTimelineEntry } from "@/app/hooks/use-localized-profile";
 
-const BADGE_LABELS: Record<TimelineEntryType, string> = {
-  bachelor:    "Bachelor",
-  master:      "Master",
-  phd:         "PhD",
-  language:    "Language",
-  certificate: "Certificate",
-  course:      "Course",
-  internship:  "Internship",
-  job:         "Job",
-  freelance:   "Freelance"
-};
-
-function formatYears(startYear: number, endYear: number): string {
+function formatYears(startYear: number, endYear: number, present: string): string {
   if (startYear === endYear) return String(startYear);
-  if (endYear > new Date().getFullYear()) return `${startYear} – Present`;
+  if (endYear > new Date().getFullYear()) return `${startYear} – ${present}`;
   return `${startYear} – ${endYear}`;
 }
 
 interface Props {
-  entry: TimelineEntry;
+  entry: LocalizedTimelineEntry;
   index: number;
 }
 
 export default function TimelineCard({ entry, index }: Props) {
   const rowRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const el = rowRef.current;
@@ -53,16 +44,14 @@ export default function TimelineCard({ entry, index }: Props) {
       ? "timeline-badge timeline-badge-education"
       : "timeline-badge timeline-badge-work";
 
-  const yearLabel = formatYears(entry.startYear, entry.endYear);
+  const yearLabel = formatYears(entry.startYear, entry.endYear, t("career.present"));
 
   return (
     <div className="timeline-entry" ref={rowRef}>
-      {/* Spine dot */}
       <div className="timeline-node-col">
         <div className="timeline-node" />
       </div>
 
-      {/* Card column */}
       <div className="timeline-card-col">
         <div className="timeline-card">
           <div className="timeline-card-header">
@@ -87,9 +76,10 @@ export default function TimelineCard({ entry, index }: Props) {
               <span className="timeline-title">{entry.title}</span>
             </div>
           </div>
-          <span className={badgeClass}>{BADGE_LABELS[entry.type]}</span>
+          <span className={badgeClass}>{t(`career.badges.${entry.type as TimelineEntryType}`)}</span>
         </div>
       </div>
     </div>
   );
 }
+

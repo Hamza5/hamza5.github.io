@@ -4,33 +4,18 @@ import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import type { ProjectEntry, ProjectCategory } from "@/app/data/profile";
-
-const MONTH_NAMES = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-];
-
-const CATEGORY_LABELS: Record<ProjectCategory, string> = {
-  personal:  "Personal",
-  freelance: "Freelance",
-  work:      "Work",
-  research:  "Research",
-  writing:   "Writing",
-};
-
-function formatDate(year: number, month?: number): string {
-  if (month) return `${MONTH_NAMES[month - 1]} ${year}`;
-  return String(year);
-}
+import { useTranslation } from "react-i18next";
+import type { ProjectCategory } from "@/app/data/profile";
+import type { LocalizedProjectEntry } from "@/app/hooks/use-localized-profile";
 
 interface Props {
-  entry: ProjectEntry;
+  entry: LocalizedProjectEntry;
   index: number;
 }
 
 export default function ProjectCard({ entry, index }: Props) {
   const rowRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const el = rowRef.current;
@@ -50,7 +35,10 @@ export default function ProjectCard({ entry, index }: Props) {
     return () => observer.disconnect();
   }, []);
 
-  const dateLabel = formatDate(entry.year, entry.month);
+  const dateLabel = entry.month
+    ? `${t(`projects.months.${entry.month}`)} ${entry.year}`
+    : String(entry.year);
+
   const badgeClass = `timeline-badge project-badge-${entry.category}`;
 
   return (
@@ -59,18 +47,16 @@ export default function ProjectCard({ entry, index }: Props) {
       ref={rowRef}
       style={{ transitionDelay: `${Math.min(index, 5) * 60}ms` }}
     >
-      {/* Spine dot */}
       <div className="timeline-node-col">
         <div className="timeline-node" />
       </div>
 
-      {/* Card */}
       <div className="timeline-card-col">
         <div className="timeline-card project-card">
           <div className="project-card-top">
             <div className="project-card-title-row">
               <span className="project-card-title">{entry.title}</span>
-              <span className={badgeClass}>{CATEGORY_LABELS[entry.category]}</span>
+              <span className={badgeClass}>{t(`projects.categories.${entry.category as ProjectCategory}`)}</span>
               <span className="timeline-year-mobile project-card-date">{dateLabel}</span>
             </div>
             <p className="project-card-desc">{entry.description}</p>
@@ -95,7 +81,7 @@ export default function ProjectCard({ entry, index }: Props) {
                   aria-label="GitHub repository"
                 >
                   <FontAwesomeIcon icon={faGithub} />
-                  <span>GitHub</span>
+                  <span>{t("projects.github")}</span>
                 </a>
               )}
               {entry.url && (
@@ -107,7 +93,7 @@ export default function ProjectCard({ entry, index }: Props) {
                   aria-label="Live site"
                 >
                   <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                  <span>Live</span>
+                  <span>{t("projects.live")}</span>
                 </a>
               )}
             </div>
@@ -117,3 +103,4 @@ export default function ProjectCard({ entry, index }: Props) {
     </div>
   );
 }
+

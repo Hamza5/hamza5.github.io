@@ -11,26 +11,29 @@ import {
   faCode,
   faAward,
 } from "@fortawesome/free-solid-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { useTranslation } from "react-i18next";
 import { useNavDirection } from "./nav-direction-context";
 
-const navItems = [
-  { href: "/",             label: "Home",         icon: faHouse },
-  { href: "/about",        label: "About",        icon: faUser },
-  { href: "/career",       label: "Career",       icon: faBriefcase },
-  { href: "/projects",     label: "Projects",     icon: faFolderOpen },
-  { href: "/skills",       label: "Skills",       icon: faCode },
-  { href: "/publications", label: "Publications", icon: faAward },
-] as const;
+const NAV_CONFIG: { href: string; key: string; icon: IconDefinition }[] = [
+  { href: "/",             key: "nav.home",         icon: faHouse },
+  { href: "/about",        key: "nav.about",        icon: faUser },
+  { href: "/career",       key: "nav.career",       icon: faBriefcase },
+  { href: "/projects",     key: "nav.projects",     icon: faFolderOpen },
+  { href: "/skills",       key: "nav.skills",       icon: faCode },
+  { href: "/publications", key: "nav.publications", icon: faAward },
+];
 
-const PAGE_ORDER = navItems.map((i) => i.href);
+const PAGE_ORDER = NAV_CONFIG.map((i) => i.href);
 
 export default function Nav() {
   const pathname = usePathname();
   const { setDirection } = useNavDirection();
+  const { t } = useTranslation();
 
   return (
     <nav className="bottom-nav" aria-label="Main navigation">
-      {navItems.map(({ href, label, icon }) => {
+      {NAV_CONFIG.map(({ href, key, icon }) => {
         const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
         return (
           <Link
@@ -40,12 +43,12 @@ export default function Nav() {
             aria-current={isActive ? "page" : undefined}
             onClick={() => {
               const currentIdx = PAGE_ORDER.indexOf(pathname as typeof PAGE_ORDER[number]);
-              const targetIdx  = PAGE_ORDER.indexOf(href);
+              const targetIdx  = PAGE_ORDER.indexOf(href as typeof PAGE_ORDER[number]);
               setDirection(targetIdx >= currentIdx ? 1 : -1);
             }}
           >
             <FontAwesomeIcon icon={icon} className="nav-item-icon" />
-            <span className="nav-item-label">{label}</span>
+            <span className="nav-item-label">{t(key)}</span>
           </Link>
         );
       })}

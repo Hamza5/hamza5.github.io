@@ -14,23 +14,12 @@ import {
   faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
 import { QRCodeSVG } from "qrcode.react";
+import { useTranslation } from "react-i18next";
 import { profile } from "../data/profile";
 import { buildVCard } from "../utils/vcard";
 import { downloadCardAsPng, downloadCardAsPdf, printCard } from "../utils/card-download";
+import { useLocalizedProfile } from "../hooks/use-localized-profile";
 import BusinessCard from "./business-card";
-
-// ---------------------------------------------------------------------------
-// .vcf download
-// ---------------------------------------------------------------------------
-function downloadVcf() {
-  const blob = new Blob([buildVCard()], { type: "text/vcard;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${profile.fullName.replace(/\s+/g, "_")}.vcf`;
-  a.click();
-  URL.revokeObjectURL(url);
-}
 
 // ---------------------------------------------------------------------------
 // Modal
@@ -47,6 +36,8 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
   const [isCapturing, setIsCapturing] = useState(false);
   const [mounted, setMounted] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+  const { fullName, shortDescription } = useLocalizedProfile();
 
   // Mount guard — createPortal requires document.body (client-only).
   useEffect(() => { setMounted(true); }, []);
@@ -75,7 +66,17 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
     };
   }, [isOpen, handleKeyDown]);
 
-  const vCardString = buildVCard();
+  const vCardString = buildVCard(shortDescription);
+
+  function downloadVcf() {
+    const blob = new Blob([vCardString], { type: "text/vcard;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${profile.fullName.replace(/\s+/g, "_")}.vcf`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 
   async function handlePng() {
     if (!cardRef.current) return;
@@ -124,7 +125,7 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
             key="qr-card"
             role="dialog"
             aria-modal="true"
-            aria-label="Share contact card"
+            aria-label={t("modal.contact")}
             className="qr-modal-card"
             initial={{ opacity: 0, scale: 0.92, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -141,12 +142,12 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
             </button>
 
             {/* Heading */}
-            <p className="qr-modal-eyebrow">Contact</p>
+            <p className="qr-modal-eyebrow">{t("modal.contact")}</p>
             <h2
               className="qr-modal-name"
               style={{ fontFamily: "var(--font-orbitron), sans-serif" }}
             >
-              {profile.fullName}
+              {fullName}
             </h2>
 
             {/* Tab switcher */}
@@ -156,14 +157,14 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
                 onClick={() => setActiveTab("qr")}
               >
                 <FontAwesomeIcon icon={faQrcode} style={{ width: "0.85rem", height: "0.85rem" }} />
-                <span>QR Code</span>
+                <span>{t("modal.qrCode")}</span>
               </button>
               <button
                 className={`qr-modal-tab${activeTab === "card" ? " qr-modal-tab--active" : ""}`}
                 onClick={() => setActiveTab("card")}
               >
                 <FontAwesomeIcon icon={faCreditCard} style={{ width: "0.85rem", height: "0.85rem" }} />
-                <span>Business Card</span>
+                <span>{t("modal.businessCard")}</span>
               </button>
             </div>
 
@@ -190,11 +191,11 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
                 {/* Download .vcf */}
                 <button className="btn-primary qr-modal-download" onClick={downloadVcf}>
                   <FontAwesomeIcon icon={faDownload} style={{ width: "0.875rem", height: "0.875rem" }} />
-                  <span>Download .vcf</span>
+                  <span>{t("modal.downloadVcf")}</span>
                 </button>
 
                 <p className="qr-modal-subtitle">
-                  Opens in Contacts on iOS, Android &amp; macOS
+                  {t("modal.vcfSubtitle")}
                 </p>
               </>
             )}
@@ -216,7 +217,7 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
                     aria-label="Download as PNG image"
                   >
                     <FontAwesomeIcon icon={faImage} style={{ width: "0.85rem", height: "0.85rem" }} />
-                    <span>PNG</span>
+                    <span>{t("modal.png")}</span>
                   </button>
                   <button
                     className="btn-secondary qr-modal-card-action-btn"
@@ -225,7 +226,7 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
                     aria-label="Download as PDF"
                   >
                     <FontAwesomeIcon icon={faFilePdf} style={{ width: "0.85rem", height: "0.85rem" }} />
-                    <span>PDF</span>
+                    <span>{t("modal.pdf")}</span>
                   </button>
                   <button
                     className="btn-primary qr-modal-card-action-btn"
@@ -234,12 +235,12 @@ export default function ContactQrModal({ isOpen, onClose }: ContactQrModalProps)
                     aria-label="Print business card"
                   >
                     <FontAwesomeIcon icon={faPrint} style={{ width: "0.85rem", height: "0.85rem" }} />
-                    <span>Print</span>
+                    <span>{t("modal.print")}</span>
                   </button>
                 </div>
 
                 <p className="qr-modal-subtitle">
-                  Standard 3.5&Prime; &times; 2&Prime; business card
+                  {t("modal.cardSubtitle")}
                 </p>
               </div>
             )}

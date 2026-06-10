@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -24,7 +25,7 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { Location } from "../../data/profile";
 
 interface LocationMapProps {
-  location: Location;
+  location: Location & { district?: string; city: string; country: string };
 }
 
 // ---------------------------------------------------------------------------
@@ -59,14 +60,25 @@ function getLocalDate(timezone: string): Date {
   );
 }
 
-function getHijriDate(date: Date): string {
+function getHijriDate(date: Date, locale: string): string {
   try {
-    return new Intl.DateTimeFormat("en", {
+    // ar-u-nu-latn: Western (Maghreb) digits; we reconstruct day-first order
+    // manually via formatToParts because the locale's default pattern is month-first.
+    const intlLocale = locale === "ar" ? "ar-u-nu-latn" : "en";
+    const parts = new Intl.DateTimeFormat(intlLocale, {
       calendar: "islamic-umalqura",
       day: "numeric",
       month: "long",
       year: "numeric",
-    }).format(date);
+    }).formatToParts(date);
+    const p = Object.fromEntries(
+      parts.filter(x => x.type !== "literal").map(x => [x.type, x.value])
+    );
+    if (locale === "ar") {
+      // Canonical Arabic Hijri order: day month year هـ
+      return `${p.day} ${p.month} ${p.year} هـ`;
+    }
+    return parts.map(x => x.value).join("");
   } catch {
     return "";
   }
@@ -179,34 +191,37 @@ function WeatherWidget({ latitude, longitude }: { latitude: number; longitude: n
 // ---------------------------------------------------------------------------
 
 function LocalClock({ timezone }: { timezone: string }) {
+  const { i18n } = useTranslation();
+  const locale = i18n.language || "en";
   const [clockDate, setClockDate] = useState<Date | null>(null);
   const [timeStr, setTimeStr]     = useState("");
   const [gregStr, setGregStr]     = useState("");
   const [hijriStr, setHijriStr]   = useState("");
 
   useEffect(() => {
+    const intlLocale = locale === "ar" ? "ar-DZ" : locale === "fr" ? "fr-FR" : "en-GB";
     const update = () => {
       const now = new Date();
       setClockDate(getLocalDate(timezone));
       setTimeStr(
-        new Intl.DateTimeFormat("en-GB", {
+        new Intl.DateTimeFormat(intlLocale, {
           timeZone: timezone, hour: "2-digit", minute: "2-digit",
           second: "2-digit", hour12: false,
         }).format(now),
       );
       setGregStr(
-        new Intl.DateTimeFormat("en-GB", {
+        new Intl.DateTimeFormat(intlLocale, {
           timeZone: timezone, weekday: "short", day: "2-digit",
           month: "short", year: "numeric",
         }).format(now),
       );
-      setHijriStr(getHijriDate(now));
+      setHijriStr(getHijriDate(now, locale));
     };
 
     update();
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
-  }, [timezone]);
+  }, [timezone, locale]);
 
   if (!clockDate) return null;
 

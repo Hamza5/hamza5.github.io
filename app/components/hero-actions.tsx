@@ -8,15 +8,16 @@ import {
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare, faQrcode } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 import ContactQrModal from "./contact-qr-modal";
 
 export default function HeroActions() {
   const [qrOpen, setQrOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <>
       <div className="entrance-5 flex flex-wrap items-center justify-center gap-3">
-        {/* GitHub — primary CTA */}
         <a
           href="https://github.com/Hamza5"
           target="_blank"
@@ -27,14 +28,13 @@ export default function HeroActions() {
             icon={faGithub}
             style={{ width: "1.125rem", height: "1.125rem" }}
           />
-          <span>Check out my code</span>
+          <span>{t("hero.checkOutMyCode")}</span>
           <FontAwesomeIcon
             icon={faArrowUpRightFromSquare}
             style={{ width: "0.75rem", height: "0.75rem", opacity: 0.7 }}
           />
         </a>
 
-        {/* Stack Overflow — secondary */}
         <a
           href="https://stackoverflow.com/users/5008968/hamza-abbad"
           target="_blank"
@@ -48,7 +48,6 @@ export default function HeroActions() {
           <span>Stack Overflow</span>
         </a>
 
-        {/* LinkedIn — secondary */}
         <a
           href="https://www.linkedin.com/in/hamza-abbad/"
           target="_blank"
@@ -62,17 +61,16 @@ export default function HeroActions() {
           <span>LinkedIn</span>
         </a>
 
-        {/* Share Contact — opens QR modal */}
         <button
           onClick={() => setQrOpen(true)}
           className="btn-secondary btn-qr"
-          aria-label="Share contact as QR code"
+          aria-label={t("hero.shareContact")}
         >
           <FontAwesomeIcon
             icon={faQrcode}
             style={{ width: "1rem", height: "1rem" }}
           />
-          <span>Share Contact</span>
+          <span>{t("hero.shareContact")}</span>
         </button>
       </div>
 

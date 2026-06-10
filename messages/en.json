@@ -1,0 +1,242 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "career": "Career",
+    "projects": "Projects",
+    "skills": "Skills",
+    "publications": "Publications"
+  },
+  "hero": {
+    "bio": "Engineer in Artificial Intelligence and Computer Science",
+    "checkOutMyCode": "Check out my code",
+    "shareContact": "Share Contact",
+    "roles": {
+      "webDev": "Web Developer",
+      "desktopDev": "Desktop Developer",
+      "webScraper": "Web Scraper",
+      "automationSpecialist": "Automation Specialist",
+      "aiEngineer": "AI Engineer",
+      "graphicsDesigner": "Graphics Designer"
+    }
+  },
+  "about": {
+    "contact": "Contact",
+    "personal": "Personal",
+    "spokenLanguages": "Spoken Languages",
+    "location": "Location",
+    "shareContact": "Share Contact",
+    "ageYears_one": "{{count}} year",
+    "ageYears_other": "{{count}} years",
+    "ageMonths_one": "{{count}} month",
+    "ageMonths_other": "{{count}} months",
+    "ageDays_one": "and {{count}} day",
+    "ageDays_other": "and {{count}} days",
+    "ageComma": ", "
+  },
+  "career": {
+    "timeline": "Timeline",
+    "present": "Present",
+    "badges": {
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "phd": "PhD",
+      "language": "Language",
+      "certificate": "Certificate",
+      "course": "Course",
+      "internship": "Internship",
+      "job": "Job",
+      "freelance": "Freelance"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "github": "GitHub",
+    "live": "Live",
+    "categories": {
+      "personal": "Personal",
+      "freelance": "Freelance",
+      "work": "Work",
+      "research": "Research",
+      "writing": "Writing"
+    },
+    "months": {
+      "1": "Jan",
+      "2": "Feb",
+      "3": "Mar",
+      "4": "Apr",
+      "5": "May",
+      "6": "Jun",
+      "7": "Jul",
+      "8": "Aug",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Dec"
+    }
+  },
+  "skills": {
+    "categories": {
+      "languages": "Programming Languages",
+      "frameworks": "Frameworks & Libraries",
+      "databases": "Databases",
+      "devops": "DevOps",
+      "graphic": "Graphic Tools"
+    }
+  },
+  "publications": {
+    "researchPublications": "Research Publications"
+  },
+  "modal": {
+    "contact": "Contact",
+    "qrCode": "QR Code",
+    "businessCard": "Business Card",
+    "downloadVcf": "Download .vcf",
+    "vcfSubtitle": "Opens in Contacts on iOS, Android & macOS",
+    "cardSubtitle": "Standard 3.5\u2033 \u00d7 2\u2033 business card",
+    "close": "Close",
+    "png": "PNG",
+    "pdf": "PDF",
+    "print": "Print"
+  },
+  "theme": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "page": {
+    "home": "Hamza Abbad",
+    "about": "About \u2014 Hamza Abbad",
+    "career": "Career \u2014 Hamza Abbad",
+    "projects": "Projects \u2014 Hamza Abbad",
+    "skills": "Tech Stack \u2014 Hamza Abbad",
+    "publications": "Publications \u2014 Hamza Abbad"
+  },
+  "profile": {
+    "fullName": "Hamza Abbad",
+    "shortDescription": "Engineer in Artificial Intelligence and Computer Science",
+    "personal": {
+      "nationality": "Algerian",
+      "religion": "Islam"
+    },
+    "location": {
+      "district": "Bir El Djir",
+      "city": "Oran",
+      "country": "Algeria"
+    },
+    "timeline": {
+      "smrisCrtiJob": { "title": "State Engineer in Research Support" },
+      "upworkFreelance": { "title": "Web Scraping and Web Development projects" },
+      "hsoubAcademyFreelance": { "title": "Helping students in Python programming" },
+      "whutPhd": { "title": "PhD in Arabic Natural Language Processing using Deep Learning" },
+      "dataImpactJob": { "title": "Web scraping for digital shelf" },
+      "edxCourse": { "title": "Reinforcement Learning Explained" },
+      "idpCertificate": { "title": "International English Language Testing System (IELTS)" },
+      "courseraCourse": { "title": "Machine Learning" },
+      "whutLanguage": { "title": "Mandarin Chinese" },
+      "usthbMaster": { "title": "Master in Artificial Intelligence" },
+      "albarakaInternship": { "title": "Internship in IT" },
+      "usthbBachelor": { "title": "Bachelor in Computer Science" }
+    },
+    "projects": {
+      "fileBrain": {
+        "title": "File Brain",
+        "description": "Smart local file search engine with typo tolerance, OCR, and semantic multilanguage matching."
+      },
+      "scrapingBrain": {
+        "title": "Scraping Brain",
+        "description": "AI-powered service for performing web scraping tasks using natural language instructions."
+      },
+      "smrisSecretary": {
+        "title": "SMRIS Secretary",
+        "description": "Desktop app for registering and tracking interns at CRTI-SMRIS, with automated document generation."
+      },
+      "instagramAutomation": {
+        "title": "Instagram Automation",
+        "description": "Desktop app that automates bulk-adding or removing Instagram followers from the Close Friends list."
+      },
+      "upworkJobNotificationBot": {
+        "title": "Upwork Job Notification Bot",
+        "description": "CLI tool that periodically scrapes Upwork job listings with user-specified filters and sends desktop notifications for new matches."
+      },
+      "telegramWhatsAppInfoExtractor": {
+        "title": "Telegram / WhatsApp Info Extractor",
+        "description": "Web app that scrapes basic channel info from Telegram and WhatsApp and exports it into a Google Sheet."
+      },
+      "amazonScraperTelegramPoster": {
+        "title": "Amazon Scraper / Telegram Poster",
+        "description": "CLI app that scrapes discounted products from Amazon DE and posts them automatically to a Telegram group."
+      },
+      "storeScrap": {
+        "title": "Store Scrap",
+        "description": "Desktop GUI app that scrapes products of selected brands from four Saudi e-commerce retailers."
+      },
+      "lisan1StudentsBlog": {
+        "title": "Lisan1 Students Blog",
+        "description": "Search engine over a corpus of Saudi student Arabic texts, with tools for n-gram extraction, frequency analysis, and linguistic feature discovery."
+      },
+      "multilevelDiacritizer": {
+        "title": "Multilevel Diacritizer",
+        "description": "Flask/Flutter/TensorFlow web application serving as a GUI for a deep learning model for automatic Arabic diacritics restoration, developed during PhD research."
+      },
+      "periodicalFileSender": {
+        "title": "Periodical File Sender",
+        "description": "Desktop GUI tool to send emails with attachments periodically via an SMTP server."
+      },
+      "learnToProgramWithC": {
+        "title": "Learn to Program with C (Arabic)",
+        "description": "Full Arabic translation of a 500-page French book teaching C programming, with high-quality layout and typesetting."
+      },
+      "dnaTranslator": {
+        "title": "DNA Translator (Arabic)",
+        "description": "Cross-platform app to translate between DNA, RNA, and amino acid sequences, with a fully Arabic interface."
+      },
+      "basicRegexTester": {
+        "title": "Basic Regular Expression Tester",
+        "description": "Python desktop application for testing and visualising regular expression functions against arbitrary text input."
+      }
+    },
+    "languages": {
+      "arabic": { "name": "Arabic", "description": "Standard Arabic and most dialects" },
+      "english": { "name": "English", "description": "American accent" },
+      "french": { "name": "French", "description": "Metropolitan French" },
+      "chinese": { "name": "Chinese", "description": "Mandarin Chinese" },
+      "russian": { "name": "Russian", "description": "Basic words and sentences" }
+    },
+    "skills": {
+      "items": {
+        "python": { "name": "Python", "description": "Backend scripting and AI development" },
+        "markdown": { "name": "Markdown", "description": "Documentation and technical writing" },
+        "typescript": { "name": "JavaScript / TypeScript", "description": "Full-stack web development" },
+        "html5": { "name": "HTML / CSS", "description": "Web markup and styling" },
+        "latex": { "name": "LaTeX", "description": "Scientific document publishing" },
+        "flutter": { "name": "Dart / Flutter", "description": "Cross-platform mobile development" },
+        "java": { "name": "Java", "description": "Desktop application development" },
+        "django": { "name": "Django", "description": "Full-featured Python web framework" },
+        "pillow": { "name": "Pillow", "description": "Python image processing" },
+        "pyQt": { "name": "PyQt", "description": "Desktop GUI development" },
+        "nextJs": { "name": "Next.js", "description": "React framework for production apps" },
+        "playwright": { "name": "Playwright", "description": "Cross-browser automation and testing" },
+        "userScripts": { "name": "UserScripts", "description": "Browser automation and enhancement" },
+        "numpy": { "name": "NumPy", "description": "Vectorized numerical computing" },
+        "tensorflow": { "name": "TensorFlow", "description": "Deep learning and neural networks" },
+        "crawlee": { "name": "Crawlee", "description": "Modern web crawling framework" },
+        "primeReact": { "name": "PrimeReact", "description": "Rich UI component library for React" },
+        "matplotlib": { "name": "Matplotlib", "description": "Data visualization and charting" },
+        "flask": { "name": "Flask", "description": "Lightweight Python web framework" },
+        "react": { "name": "React", "description": "Component-based web UI library" },
+        "tailwindCss": { "name": "Tailwind CSS", "description": "Utility-first CSS framework" },
+        "openCv": { "name": "OpenCV", "description": "Computer vision and image analysis" },
+        "sqlite": { "name": "SQLite", "description": "Embedded file-based SQL database" },
+        "postgresql": { "name": "PostgreSQL", "description": "Advanced relational database" },
+        "mongodb": { "name": "MongoDB", "description": "Document-oriented NoSQL database" },
+        "git": { "name": "Git", "description": "Distributed version control" },
+        "githubActions": { "name": "GitHub Actions", "description": "CI/CD workflow automation" },
+        "poetry": { "name": "Poetry", "description": "Python dependency management" },
+        "docker": { "name": "Docker", "description": "Containerization for deployment" },
+        "inkscape": { "name": "Inkscape", "description": "Vector graphics design" },
+        "gimp": { "name": "GIMP", "description": "Raster image editing" },
+        "blender": { "name": "Blender", "description": "3D modeling and rendering" }
+      }
+    }
+  }
+}

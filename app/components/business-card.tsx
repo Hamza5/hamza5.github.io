@@ -6,6 +6,7 @@ import { faEnvelope, faPhone, faGlobe } from "@fortawesome/free-solid-svg-icons"
 import { QRCodeSVG } from "qrcode.react";
 import { profile } from "../data/profile";
 import { buildVCard } from "../utils/vcard";
+import { useLocalizedProfile } from "../hooks/use-localized-profile";
 
 // ---------------------------------------------------------------------------
 // Business card — 525 × 300 CSS px display size, captured at 2× for print.
@@ -22,13 +23,14 @@ const ACCENT_CYAN  = "#0099bb";
 const TEXT_NAVY    = "#0d1b3e";
 const TEXT_MUTED   = "#4a6080";
 
-const vCard = buildVCard();
 const email          = profile.contact.emails[0] ?? "";
 const phone          = profile.contact.phones[0]?.label ?? "";
 const portfolioUrl   = profile.socialLinks.find((l) => l.label === "Portfolio")?.url ?? "";
 const portfolioDisplay = portfolioUrl.replace(/^https?:\/\//, "");
 
 const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, ref) {
+  const { fullName, shortDescription } = useLocalizedProfile();
+  const vCard = buildVCard(shortDescription);
   return (
     <div
       ref={ref}
@@ -204,7 +206,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
               marginBottom: 6,
               wordBreak: "break-word",
             }}>
-              {profile.fullName}
+              {fullName}
             </div>
 
             {/* Title / role */}
@@ -215,7 +217,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
               fontWeight: 600,
               wordBreak: "break-word",
             }}>
-              {profile.shortDescription}
+              {shortDescription}
             </div>
           </div>
 

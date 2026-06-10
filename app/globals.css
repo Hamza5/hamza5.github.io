@@ -1493,4 +1493,102 @@ body {
   flex-shrink: 0;
 }
 
+/* ─── Language toggle ───────────────────────────────────────────────────── */
+.lang-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 4rem;   /* sits to the left of .theme-toggle (which is at right: 1rem, w: 2.5rem) */
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 35%, transparent);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.lang-toggle-btn {
+  padding: 0.125rem 0.375rem;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.lang-toggle-btn:hover {
+  color: var(--accent-cyan);
+}
+
+.lang-toggle-btn.active {
+  background: var(--accent-cyan);
+  color: var(--bg);
+}
+
+/* ─── Arabic font ───────────────────────────────────────────────────────── */
+[lang="ar"] body,
+[lang="ar"] .hero-bio,
+[lang="ar"] .section-heading-title,
+[lang="ar"] .timeline-title,
+[lang="ar"] .timeline-institution,
+[lang="ar"] .project-card-title,
+[lang="ar"] .project-card-desc,
+[lang="ar"] .skill-item-name,
+[lang="ar"] .skill-item-desc,
+[lang="ar"] .language-name,
+[lang="ar"] .language-desc,
+[lang="ar"] .about-label,
+[lang="ar"] .about-value,
+[lang="ar"] .qr-modal-name,
+[lang="ar"] .qr-modal-eyebrow {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* ─── Arabic typography fixes ────────────────────────────────────────────── */
+/* Arabic has no uppercase; letter-spacing breaks cursive connections */
+[lang="ar"] .section-heading-title,
+[lang="ar"] .nav-item,
+[lang="ar"] .timeline-badge {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Extend Cairo to UI chrome elements rendered in Arabic */
+[lang="ar"] .nav-item,
+[lang="ar"] .timeline-badge,
+[lang="ar"] .timeline-year-mobile,
+[lang="ar"] .project-card-date,
+[lang="ar"] .map-clock-hijri,
+[lang="ar"] .map-clock-date,
+[lang="ar"] .map-clock-time {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* ─── RTL layout adjustments ────────────────────────────────────────────── */
+/* NOTE: With dir="rtl" on <html>, flex-direction:row already flows right→left.
+   Only fix physical CSS properties that don't auto-flip. */
+
+/* Timeline spine: the ::before pseudo-element uses physical `left` — flip it */
+[dir="rtl"] .timeline-spine-wrapper::before {
+  left: auto;
+  right: 0.9375rem;
+}
+
+/* Lang/theme toggles: fixed-position, mirror to left side */
+[dir="rtl"] .lang-toggle {
+  right: auto;
+  left: 4rem;
+}
+
+[dir="rtl"] .theme-toggle {
+  right: auto;
+  left: 1rem;
+}
+
 
