@@ -138,6 +138,14 @@
       "usthbBachelor": { "title": "Bachelor in Computer Science" }
     },
     "projects": {
+      "pftSmrisWebsite": {
+        "title": "PFT-SMRIS",
+        "description": "Institutional website for PFT-SMRIS presenting missions, services, equipment, and contact information for mechanical fabrication, prototyping, and service robotics."
+      },
+      "upTribe": {
+        "title": "UpTribe",
+        "description": "Credit-based Reddit engagement platform where verified users exchange upvotes, downvotes, and guided replies through a companion browser extension."
+      },
       "fileBrain": {
         "title": "File Brain",
         "description": "Smart local file search engine with typo tolerance, OCR, and semantic multilanguage matching."

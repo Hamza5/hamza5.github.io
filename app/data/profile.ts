@@ -250,6 +250,8 @@ export const profile: Profile = {
   ],
 
   projects: [
+    { id: "pftSmrisWebsite",             category: "work",      year: 2026, month: 5,  tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],                               url: "https://smris-crti.dz" },
+    { id: "upTribe",                     category: "personal",  year: 2026, month: 3,  tags: ["Next.js", "React", "Convex", "PrimeReact", "Tailwind CSS"],                   url: "https://uptribe.cc",          githubUrl: "https://github.com/Hamza5/uptribe" },
     { id: "fileBrain",                     category: "personal",  year: 2026, month: 1,  tags: ["Python", "FastAPI", "Typesense", "React", "PrimeReact", "SQLite"],                 url: "https://file-brain.com/",      githubUrl: "https://github.com/Hamza5/file-brain" },
     { id: "scrapingBrain",                 category: "personal",  year: 2025, month: 9,  tags: ["Python", "FastAPI", "LangGraph", "Playwright", "Supabase", "Next.js"],             url: "https://scrapingbrain.com/" },
     { id: "smrisSecretary",                category: "work",      year: 2025, month: 5,  tags: ["React", "PrimeReact", "Electron", "PocketBase", "Refine.dev"] },

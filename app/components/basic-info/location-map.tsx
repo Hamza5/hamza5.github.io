@@ -17,7 +17,6 @@ import {
   faSnowflake,
   faSmog,
   faBolt,
-  faWind,
   faTemperatureHalf,
   faLocationArrow,
 } from "@fortawesome/free-solid-svg-icons";

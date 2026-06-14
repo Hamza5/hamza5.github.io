@@ -138,6 +138,14 @@
       "usthbBachelor": { "title": "Licence en Informatique" }
     },
     "projects": {
+      "pftSmrisWebsite": {
+        "title": "PFT-SMRIS",
+        "description": "Site institutionnel de la PFT-SMRIS présentant les missions, les services, les équipements et les coordonnées autour de la fabrication mécanique, du prototypage et de la robotique de service."
+      },
+      "upTribe": {
+        "title": "UpTribe",
+        "description": "Plateforme d'engagement Reddit basée sur un système de crédits, où des utilisateurs vérifiés échangent des upvotes, downvotes et réponses guidées via une extension de navigateur compagnon."
+      },
       "fileBrain": {
         "title": "File Brain",
         "description": "Moteur de recherche de fichiers local et intelligent avec tolérance aux fautes, OCR et correspondance sémantique multilingue."

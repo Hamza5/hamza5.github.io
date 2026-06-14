@@ -1,9 +1,17 @@
 "use client";
 
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const LOCALES = ["en", "ar", "fr"] as const;
 type Locale = (typeof LOCALES)[number];
+
+function normalizeLocale(locale: string): Locale {
+  const normalized = locale.toLowerCase();
+  if (normalized.startsWith("ar")) return "ar";
+  if (normalized.startsWith("fr")) return "fr";
+  return "en";
+}
 
 function getSystemLocale(): Locale {
   if (typeof navigator === "undefined") return "en";
@@ -15,7 +23,12 @@ function getSystemLocale(): Locale {
 
 export default function LangToggle() {
   const { i18n } = useTranslation();
-  const current = i18n.language as Locale;
+  const current = normalizeLocale(i18n.language);
+
+  useEffect(() => {
+    document.documentElement.lang = current;
+    document.documentElement.dir = current === "ar" ? "rtl" : "ltr";
+  }, [current]);
 
   const switchTo = (locale: Locale) => {
     const system = getSystemLocale();
@@ -25,8 +38,6 @@ export default function LangToggle() {
       localStorage.setItem("lang", locale);
     }
     i18n.changeLanguage(locale);
-    document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
   };
 
   return (

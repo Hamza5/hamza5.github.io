@@ -16,8 +16,8 @@ export default function TimelineSection() {
         <SectionHeading icon={faTimeline} title={t("career.timeline")} id="timeline" />
 
         <div className="timeline-spine-wrapper" style={{ marginTop: "2.5rem" }}>
-          {timeline.map((entry, index) => (
-            <TimelineCard key={`${entry.institution}-${entry.id}`} entry={entry} index={index} />
+          {timeline.map((entry) => (
+            <TimelineCard key={`${entry.institution}-${entry.id}`} entry={entry} />
           ))}
         </div>
       </div>

@@ -14,10 +14,9 @@ function formatYears(startYear: number, endYear: number, present: string): strin
 
 interface Props {
   entry: LocalizedTimelineEntry;
-  index: number;
 }
 
-export default function TimelineCard({ entry, index }: Props) {
+export default function TimelineCard({ entry }: Props) {
   const rowRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
 

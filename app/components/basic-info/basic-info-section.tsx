@@ -13,9 +13,8 @@ import {
   faQrcode,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { profile } from "../../data/profile";
 import { useLocalizedProfile } from "@/app/hooks/use-localized-profile";
 import SectionHeading from "../section-heading";
 import ContactItem from "./contact-item";
@@ -46,15 +45,10 @@ function calculateAge(dateOfBirth: string): { years: number; months: number; day
 export default function BasicInfoSection() {
   const { t } = useTranslation();
   const { contact, personal, languages, location } = useLocalizedProfile();
-  const [age, setAge] = useState<{ years: number; months: number; days: number } | null>(null);
   const [qrOpen, setQrOpen] = useState(false);
-
-  useEffect(() => {
-    setAge(calculateAge(profile.personal.dateOfBirth));
-  }, []);
+  const age = calculateAge(personal.dateOfBirth);
 
   const ageString = (() => {
-    if (!age) return "";
     const parts: string[] = [];
     if (age.years > 0) parts.push(t("about.ageYears", { count: age.years }));
     if (age.months > 0) parts.push(t("about.ageMonths", { count: age.months }));

@@ -5,8 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
+function readPreferredTheme(): boolean | null {
+  if (typeof window === "undefined") return null;
+
+  const stored = localStorage.getItem("theme");
+  if (stored) return stored === "dark";
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState<boolean | null>(null);
+  const [isDark, setIsDark] = useState<boolean | null>(() => readPreferredTheme());
   const { t } = useTranslation();
 
   // useLayoutEffect runs synchronously before the browser paints.
@@ -15,15 +24,12 @@ export default function ThemeToggle() {
   // on <html> for non-English locales) overwrote the class set by the
   // inline themeScript.
   useLayoutEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const dark = stored
-      ? stored === "dark"
-      : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    document.documentElement.classList.toggle("dark", dark);
-    setIsDark(dark);
-  }, []);
+    if (isDark === null) return;
+    document.documentElement.classList.toggle("dark", isDark);
+  }, [isDark]);
 
   const toggle = () => {
+    if (isDark === null) return;
     const newDark = !isDark;
     // Always persist the explicit choice so it survives every refresh.
     localStorage.setItem("theme", newDark ? "dark" : "light");

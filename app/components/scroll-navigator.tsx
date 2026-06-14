@@ -73,7 +73,7 @@ export default function ScrollNavigator() {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [pathname, router]);
+  }, [pathname, router, setDirection]);
 
   return null;
 }
