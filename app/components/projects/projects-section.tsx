@@ -6,7 +6,11 @@ import SectionHeading from "@/app/components/section-heading";
 import ProjectCard from "@/app/components/projects/project-card";
 import { useLocalizedProfile } from "@/app/hooks/use-localized-profile";
 
-export default function ProjectsSection() {
+interface Props {
+  screenshotsById: Record<string, string[]>;
+}
+
+export default function ProjectsSection({ screenshotsById }: Props) {
   const { t } = useTranslation();
   const { projects } = useLocalizedProfile();
 
@@ -17,7 +21,12 @@ export default function ProjectsSection() {
 
         <div className="timeline-spine-wrapper" style={{ marginTop: "2.5rem" }}>
           {projects.map((entry, index) => (
-            <ProjectCard key={`${entry.id}-${entry.year}`} entry={entry} index={index} />
+            <ProjectCard
+              key={`${entry.id}-${entry.year}`}
+              entry={entry}
+              index={index}
+              screenshots={screenshotsById[entry.id] ?? []}
+            />
           ))}
         </div>
       </div>

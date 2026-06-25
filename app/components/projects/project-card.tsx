@@ -7,13 +7,15 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import type { ProjectCategory } from "@/app/data/profile";
 import type { LocalizedProjectEntry } from "@/app/hooks/use-localized-profile";
+import ProjectScreenshotGallery from "./project-screenshot-gallery";
 
 interface Props {
   entry: LocalizedProjectEntry;
   index: number;
+  screenshots?: string[];
 }
 
-export default function ProjectCard({ entry, index }: Props) {
+export default function ProjectCard({ entry, index, screenshots }: Props) {
   const rowRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
 
@@ -61,6 +63,10 @@ export default function ProjectCard({ entry, index }: Props) {
             </div>
             <p className="project-card-desc">{entry.description}</p>
           </div>
+
+          {screenshots && screenshots.length > 0 && (
+            <ProjectScreenshotGallery screenshots={screenshots} projectTitle={entry.title} />
+          )}
 
           {entry.tags.length > 0 && (
             <div className="project-tags">

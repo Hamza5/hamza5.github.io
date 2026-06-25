@@ -73,7 +73,11 @@
       "10": "Oct",
       "11": "Nov",
       "12": "Déc"
-    }
+    },
+    "screenshotAlt": "Capture d'écran de {{projectTitle}}",
+    "close": "Fermer",
+    "previous": "Précédent",
+    "next": "Suivant"
   },
   "skills": {
     "categories": {
@@ -201,6 +205,18 @@
       "basicRegexTester": {
         "title": "Testeur d'expressions régulières",
         "description": "Application de bureau Python pour tester et visualiser les fonctions d'expressions régulières sur des textes d'entrée arbitraires."
+      },
+      "phishingUrlDetection": {
+        "title": "Détection d'URLs de phishing",
+        "description": "Application web Flask qui classe les URLs comme phishing ou légitimes à l'aide de modèles de régression logistique et de naïve Bayes entraînés sur des caractéristiques d'URL artisanales."
+      },
+      "patientsTimetable": {
+        "title": "Emploi du temps des patients",
+        "description": "Application Flask qui extrait les données de visite des patients à partir de rapports PDF téléchargés et génère un emploi du temps formaté par médecin."
+      },
+      "idealoSellerampScraping": {
+        "title": "Scraping Idealo / SellerAmp",
+        "description": "Robot Node.js basé sur Crawlee qui extrait les données produit des pages promotionnelles Idealo et SellerAmp et exporte les résultats vers Excel."
       }
     },
     "languages": {

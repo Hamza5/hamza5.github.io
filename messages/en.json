@@ -73,7 +73,11 @@
       "10": "Oct",
       "11": "Nov",
       "12": "Dec"
-    }
+    },
+    "screenshotAlt": "Screenshot of {{projectTitle}}",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
   },
   "skills": {
     "categories": {
@@ -201,6 +205,18 @@
       "basicRegexTester": {
         "title": "Basic Regular Expression Tester",
         "description": "Python desktop application for testing and visualising regular expression functions against arbitrary text input."
+      },
+      "phishingUrlDetection": {
+        "title": "Phishing URL Detection",
+        "description": "Flask web app that classifies URLs as phishing or legitimate using logistic regression and naive Bayes models trained on handcrafted URL features."
+      },
+      "patientsTimetable": {
+        "title": "Patients Timetable",
+        "description": "Flask app that extracts patient visit data from uploaded PDF reports and generates a formatted timetable per doctor."
+      },
+      "idealoSellerampScraping": {
+        "title": "Idealo / SellerAmp Scraping",
+        "description": "Crawlee-based Node.js crawler that scrapes product data from Idealo and SellerAmp promotion pages and exports results to Excel."
       }
     },
     "languages": {

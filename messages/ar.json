@@ -82,7 +82,11 @@
       "10": "أكتوبر",
       "11": "نوفمبر",
       "12": "ديسمبر"
-    }
+    },
+    "screenshotAlt": "لقطة شاشة من {{projectTitle}}",
+    "close": "إغلاق",
+    "previous": "السابق",
+    "next": "التالي"
   },
   "skills": {
     "categories": {
@@ -210,6 +214,18 @@
       "basicRegexTester": {
         "title": "اختبار التعابير النمطية الأساسية",
         "description": "تطبيق Python لسطح المكتب لاختبار وتصور وظائف التعابير النمطية على نصوص إدخال اختيارية."
+      },
+      "phishingUrlDetection": {
+        "title": "كشف روابط التصيد",
+        "description": "تطبيق ويب بإطار Flask يصنّف الروابط على أنها تصيد أو شرعية باستخدام نماذج الانحدار اللوجستي ونييف بايز المدرّبة على ميزات يدوية للروابط."
+      },
+      "patientsTimetable": {
+        "title": "جدول مواعيد المرضى",
+        "description": "تطبيق Flask يستخرج بيانات زيارات المرضى من تقارير PDF المرفوعة ويُنشئ جدول مواعيد منسّق لكل طبيب."
+      },
+      "idealoSellerampScraping": {
+        "title": "استخراج بيانات Idealo / SellerAmp",
+        "description": "زاحف Node.js مبني على Crawlee يستخرج بيانات المنتجات من صفحات العروض الترويجية في Idealo وSellerAmp ويُصدّر النتائج إلى Excel."
       }
     },
     "languages": {
