@@ -7,8 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faXmark,
   faDownload,
-  faFilePdf,
-  faClone,
+  faImage,
   faPrint,
   faQrcode,
   faCreditCard,
@@ -17,7 +16,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { useTranslation } from "react-i18next";
 import { profile } from "../data/profile";
 import { buildVCard } from "../utils/vcard";
-import { downloadCardAsA4Pdf, downloadCardAsPdf, printCard } from "../utils/card-download";
+import { downloadCardAsImage, printCard } from "../utils/card-download";
 import { useLocalizedProfile } from "../hooks/use-localized-profile";
 import BusinessCard from "./business-card";
 
@@ -68,19 +67,11 @@ function ContactQrModalContent({ onClose }: Pick<ContactQrModalProps, "onClose">
     URL.revokeObjectURL(url);
   }
 
-  async function handleA4Pdf() {
+  async function handleImage() {
     if (!cardRef.current) return;
     setIsCapturing(true);
-    try { await downloadCardAsA4Pdf(cardRef.current, profile.fullName); }
-    catch (err) { console.error("A4 PDF export failed:", err); }
-    finally { setIsCapturing(false); }
-  }
-
-  async function handlePdf() {
-    if (!cardRef.current) return;
-    setIsCapturing(true);
-    try { await downloadCardAsPdf(cardRef.current, profile.fullName); }
-    catch (err) { console.error("PDF export failed:", err); }
+    try { await downloadCardAsImage(cardRef.current, profile.fullName); }
+    catch (err) { console.error("Image export failed:", err); }
     finally { setIsCapturing(false); }
   }
 
@@ -194,25 +185,16 @@ function ContactQrModalContent({ onClose }: Pick<ContactQrModalProps, "onClose">
               <BusinessCard ref={cardRef} />
             </div>
 
-            {/* Action row: A4 · PDF · Print */}
+            {/* Action row: Image · Print */}
             <div className="qr-modal-card-actions">
               <button
                 className="btn-secondary qr-modal-card-action-btn"
-                onClick={handleA4Pdf}
+                onClick={handleImage}
                 disabled={isCapturing}
-                aria-label="Download as A4 PDF sheet"
+                aria-label="Download as image"
               >
-                <FontAwesomeIcon icon={faClone} style={{ width: "0.85rem", height: "0.85rem" }} />
-                <span>{t("modal.a4Sheet")}</span>
-              </button>
-              <button
-                className="btn-secondary qr-modal-card-action-btn"
-                onClick={handlePdf}
-                disabled={isCapturing}
-                aria-label="Download as PDF"
-              >
-                <FontAwesomeIcon icon={faFilePdf} style={{ width: "0.85rem", height: "0.85rem" }} />
-                <span>{t("modal.pdf")}</span>
+                <FontAwesomeIcon icon={faImage} style={{ width: "0.85rem", height: "0.85rem" }} />
+                <span>{t("modal.image")}</span>
               </button>
               <button
                 className="btn-primary qr-modal-card-action-btn"

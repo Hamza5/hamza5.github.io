@@ -15,7 +15,7 @@ import { useLocalizedProfile } from "../hooks/use-localized-profile";
 
 const CARD_W = 525;
 const CARD_H = 300;
-const LEFT_W = 188; // ~36% — QR panel
+const LEFT_W = 175; // ~33% — QR + avatar panel
 
 const NAV_BG_START = "#0d1b3e";
 const NAV_BG_END   = "#0a4d6e";
@@ -37,7 +37,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
       style={{
         width: CARD_W,
         height: CARD_H,
-        borderRadius: 16,
+        borderRadius: 0,
         overflow: "hidden",
         display: "flex",
         flexShrink: 0,
@@ -58,15 +58,15 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          gap: 9,
-          padding: "14px 12px",
+          gap: 10,
+          padding: "8px 8px",
         }}
       >
         {/* Right-edge diagonal slice */}
         <div style={{
           position: "absolute",
           top: 0, right: 0,
-          width: 52, height: "100%",
+          width: 42, height: "100%",
           background: "rgba(0,212,255,0.10)",
           clipPath: "polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%)",
           pointerEvents: "none",
@@ -75,7 +75,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
         <div style={{
           position: "absolute",
           top: 0, left: 0,
-          width: LEFT_W, height: 52,
+          width: LEFT_W, height: 42,
           background: "rgba(255,255,255,0.05)",
           clipPath: "polygon(0% 0%, 100% 0%, 55% 100%, 0% 100%)",
           pointerEvents: "none",
@@ -90,11 +90,27 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
           pointerEvents: "none",
         }} />
 
-        {/* QR code — no embedded logo (logo shown separately on the card) */}
+        {/* Avatar */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/avatar.svg"
+          alt=""
+          width={96}
+          height={96}
+          style={{
+            borderRadius: "50%",
+            border: `2.5px solid rgba(255,255,255,0.4)`,
+            position: "relative",
+            zIndex: 1,
+            boxShadow: "0 3px 12px rgba(0,0,0,0.25)",
+          }}
+        />
+
+        {/* QR code */}
         <div style={{
           background: "#ffffff",
           borderRadius: 8,
-          padding: 5,
+          padding: 4,
           position: "relative",
           zIndex: 1,
           boxShadow: "0 3px 12px rgba(0,0,0,0.18)",
@@ -110,7 +126,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
 
         <p style={{
           color: "rgba(255,255,255,0.58)",
-          fontSize: 7.5,
+          fontSize: 9,
           textAlign: "center",
           margin: 0,
           letterSpacing: "0.045em",
@@ -130,7 +146,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
-          padding: "18px 20px 18px 18px",
+          padding: "36px 14px 36px 12px",
         }}
       >
         {/* Decorative: subtle dot grid across entire panel */}
@@ -138,7 +154,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
           position: "absolute",
           inset: 0,
           backgroundImage: "radial-gradient(circle, rgba(0,153,187,0.12) 1px, transparent 1px)",
-          backgroundSize: "13px 13px",
+          backgroundSize: "11px 11px",
           pointerEvents: "none",
         }} />
         {/* Decorative: soft cyan glow in top-right corner */}
@@ -154,7 +170,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
         <div style={{
           position: "absolute",
           top: 0, left: 0,
-          width: 32, height: "100%",
+          width: 24, height: "100%",
           background: "linear-gradient(to right, rgba(0,153,187,0.06), transparent)",
           pointerEvents: "none",
         }} />
@@ -177,33 +193,17 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
           justifyContent: "space-between",
           flex: 1,
         }}>
-          {/* Zone 1: Avatar + name + title */}
+          {/* Zone 1: Name + title */}
           <div>
-            {/* Avatar */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/avatar.svg"
-              alt=""
-              width={62}
-              height={62}
-              style={{
-                borderRadius: "50%",
-                border: `3px solid ${ACCENT_CYAN}`,
-                marginBottom: 10,
-                boxShadow: "0 3px 12px rgba(0,153,187,0.30)",
-                display: "block",
-              }}
-            />
-
             {/* Full name */}
             <div style={{
               fontFamily: "var(--font-orbitron), 'Orbitron', system-ui, sans-serif",
               fontWeight: 900,
-              fontSize: 19,
+              fontSize: 25,
               color: TEXT_NAVY,
               lineHeight: 1.12,
               letterSpacing: "-0.015em",
-              marginBottom: 6,
+              marginBottom: 3,
               wordBreak: "break-word",
             }}>
               {fullName}
@@ -211,7 +211,7 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
 
             {/* Title / role */}
             <div style={{
-              fontSize: 10.5,
+              fontSize: 15,
               color: ACCENT_CYAN,
               lineHeight: 1.35,
               fontWeight: 600,
@@ -222,9 +222,9 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
           </div>
 
           {/* Zone 2: Divider with cyan dot */}
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <div style={{
-              width: 6, height: 6,
+              width: 5, height: 5,
               borderRadius: "50%",
               background: ACCENT_CYAN,
               flexShrink: 0,
@@ -233,17 +233,17 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
           </div>
 
           {/* Zone 3: Contact rows */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
             <ContactRow
-              icon={<FontAwesomeIcon icon={faEnvelope} style={{ width: 11, height: 11, color: ACCENT_CYAN }} />}
+              icon={<FontAwesomeIcon icon={faEnvelope} style={{ width: 13, height: 13, color: ACCENT_CYAN }} />}
               text={email}
             />
             <ContactRow
-              icon={<FontAwesomeIcon icon={faPhone} style={{ width: 11, height: 11, color: ACCENT_CYAN }} />}
+              icon={<FontAwesomeIcon icon={faPhone} style={{ width: 13, height: 13, color: ACCENT_CYAN }} />}
               text={phone}
             />
             <ContactRow
-              icon={<FontAwesomeIcon icon={faGlobe} style={{ width: 11, height: 11, color: ACCENT_CYAN }} />}
+              icon={<FontAwesomeIcon icon={faGlobe} style={{ width: 13, height: 13, color: ACCENT_CYAN }} />}
               text={portfolioDisplay}
             />
           </div>
@@ -255,9 +255,9 @@ const BusinessCard = forwardRef<HTMLDivElement>(function BusinessCard(_props, re
 
 function ContactRow({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
       <div style={{
-        width: 23, height: 23,
+        width: 22, height: 22,
         borderRadius: 6,
         background: "rgba(0,153,187,0.10)",
         display: "flex",
@@ -268,7 +268,7 @@ function ContactRow({ icon, text }: { icon: React.ReactNode; text: string }) {
         {icon}
       </div>
       <span style={{
-        fontSize: 10.5,
+        fontSize: 14,
         color: TEXT_MUTED,
         fontWeight: 500,
         lineHeight: 1,
