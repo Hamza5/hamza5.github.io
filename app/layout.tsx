@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Orbitron, Space_Grotesk, Cairo } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import ThemeToggle from "./components/theme-toggle";
 import LangToggle from "./components/lang-toggle";
@@ -95,6 +96,7 @@ export default function RootLayout({
             <Nav />
             <ScrollNavigator />
             {children}
+        <GoogleTagManager gtmId="G-WP1TDQXLS6" />
           </NavDirectionProvider>
         </I18nProvider>
       </body>
