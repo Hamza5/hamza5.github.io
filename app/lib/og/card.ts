@@ -1,4 +1,4 @@
-import { fontFaceCss, fontsFor, svgDataUri } from "./fonts";
+import { svgDataUri } from "./fonts";
 import { measureOne, textElement, wrapText, type TextStyle } from "./text";
 import { localeMeta, type Locale } from "@/app/lib/locales";
 import { getMessage, getOgCopy } from "@/app/lib/messages";
@@ -40,37 +40,35 @@ export async function buildCardSvg({
 }): Promise<string> {
   const rtl = localeMeta[locale].dir === "rtl";
   const arabic = locale === "ar";
-  const faces = fontsFor(arabic);
 
   const { title, description } = getOgCopy(locale, route.seoKey);
   const tagline = getMessage(locale, TAGLINE_KEY);
   const tag = route.ogTag ? getMessage(locale, route.ogTag) : null;
 
   const bodyFamily = arabic ? "Cairo" : "Space Grotesk";
-  const base = { faces, rtl };
-  const titleStyle: TextStyle = { ...base, family: bodyFamily, weight: 700, size: 46 };
-  const descStyle: TextStyle = { ...base, family: bodyFamily, weight: 400, size: 23 };
+  const titleStyle: TextStyle = { rtl, family: bodyFamily, weight: 700, size: 46 };
+  const descStyle: TextStyle = { rtl, family: bodyFamily, weight: 400, size: 23 };
   const nameStyle: TextStyle = {
-    ...base,
+    rtl,
     family: arabic ? "Cairo" : "Orbitron",
     weight: 900,
     size: 27,
     letterSpacing: arabic ? undefined : 2,
   };
   const taglineStyle: TextStyle = {
-    ...base,
+    rtl,
     family: bodyFamily,
     weight: arabic ? 600 : 500,
     size: 18,
   };
   const tagStyle: TextStyle = {
-    ...base,
+    rtl,
     family: bodyFamily,
     weight: 700,
     size: 15,
     letterSpacing: arabic ? undefined : 1.6,
   };
-  const footStyle: TextStyle = { ...base, family: bodyFamily, weight: 500, size: 19 };
+  const footStyle: TextStyle = { rtl, family: bodyFamily, weight: 500, size: 19 };
 
   const titleLines = await wrapText(title, COLUMN, titleStyle, 2);
   const descLines = await wrapText(description, COLUMN, descStyle, 3);
@@ -122,7 +120,6 @@ export async function buildCardSvg({
 
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${OG_SIZE.width}" height="${OG_SIZE.height}" viewBox="0 0 ${OG_SIZE.width} ${OG_SIZE.height}">
 <defs>
-${fontFaceCss(faces)}
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
 <stop offset="0" stop-color="#05050f"/><stop offset="0.52" stop-color="#141136"/><stop offset="1" stop-color="#1c1046"/>
 </linearGradient>

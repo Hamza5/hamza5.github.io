@@ -1,5 +1,8 @@
 import sharp from "sharp";
-import { fontFaceCss, type FontFace } from "./fonts";
+// Installs the card faces with fontconfig. Measurement has to read back the ink
+// of the real typefaces, not a host fallback, or the wrapping it decides is
+// whatever sans-serif the build machine ships.
+import "./fonts";
 
 /**
  * Text measurement for the SVG cards.
@@ -14,7 +17,6 @@ import { fontFaceCss, type FontFace } from "./fonts";
  */
 
 export interface TextStyle {
-  faces: FontFace[];
   family: string;
   weight: 400 | 500 | 600 | 700 | 900;
   size: number;
@@ -71,7 +73,6 @@ async function measureBatch(
 
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="${canvas}" height="${height}">` +
-    `<defs>${fontFaceCss(style.faces)}</defs>` +
     unique
       .map((text, i) =>
         textElement(measureX, rowH * i + style.size * 1.6, text, plain, "#ffffff"),
