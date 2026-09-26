@@ -1,14 +1,22 @@
 {
   "nav": {
+    "label": "Navigation principale",
+    "groups": {
+      "personal": "Personnel",
+      "services": "Services"
+    },
     "home": "Accueil",
     "about": "À propos",
     "career": "Parcours",
     "projects": "Projets",
     "skills": "Compétences",
-    "publications": "Publications"
+    "publications": "Publications",
+    "services": "Services",
+    "caseStudies": "Études de cas",
+    "contact": "Contact"
   },
   "hero": {
-    "bio": "Ingénieur en Intelligence Artificielle et Informatique",
+    "bio": "Développeur de solutions informatiques",
     "checkOutMyCode": "Voir mon code",
     "shareContact": "Partager le contact",
     "roles": {
@@ -80,6 +88,7 @@
     "next": "Suivant"
   },
   "skills": {
+    "heading": "Compétences techniques",
     "categories": {
       "languages": "Langages de programmation",
       "frameworks": "Frameworks et bibliothèques",
@@ -97,7 +106,7 @@
     "businessCard": "Carte de visite",
     "downloadVcf": "Télécharger .vcf",
     "vcfSubtitle": "S'ouvre dans Contacts sur iOS, Android et macOS",
-    "cardSubtitle": "Carte de visite standard 3,5\u2033 \u00d7 2\u2033",
+    "cardSubtitle": "Carte de visite standard 3,5 x 2 pouces",
     "close": "Fermer",
     "image": "Image",
     "print": "Imprimer"
@@ -107,16 +116,355 @@
     "switchToDark": "Passer en mode sombre"
   },
   "page": {
-    "home": "Hamza Abbad",
-    "about": "À propos \u2014 Hamza Abbad",
-    "career": "Parcours \u2014 Hamza Abbad",
-    "projects": "Projets \u2014 Hamza Abbad",
-    "skills": "Compétences techniques \u2014 Hamza Abbad",
-    "publications": "Publications \u2014 Hamza Abbad"
+    "notFoundTitle": "Page introuvable",
+    "notFoundBody": "Cette page n'existe pas ou a été déplacée. Essayez l'un des liens ci-dessous."
+  },
+  "common": {
+    "backHome": "Retour à l'accueil",
+    "allServices": "Tous les services",
+    "readMore": "En savoir plus",
+    "ctaTitle": "Dites-moi ce que vous cherchez à faire",
+    "ctaBody": "Une conversation courte suffit généralement à cerner le problème réel et ce qu'il faut pour le résoudre. Sans engagement, et je vous dirai franchement si je ne suis pas la bonne personne pour vous.",
+    "ctaWhatsapp": "Écrire sur WhatsApp",
+    "ctaCall": "M'appeler",
+    "ctaEmail": "Envoyer un e-mail",
+    "callToActionLabel": "Me contacter"
+  },
+  "services": {
+    "title": "Ce que je peux construire pour votre entreprise",
+    "intro": "Vous n'avez pas besoin de comprendre la technologie, juste que votre problème soit résolu. Voici ce que je fais, en termes simples.",
+    "note": "L'hébergement et le certificat de sécurité font partie de chaque formule, et le périmètre comme le prix sont convenus avant de commencer. Vous saurez toujours ce que vous payez.",
+    "offersTitle": "Services",
+    "sectorsTitle": "Découvrez par secteur",
+    "sectorsIntro": "Chaque secteur a ses propres problèmes récurrents, et solvables. Choisissez le vôtre pour voir exactement ce que je construirais pour vous.",
+    "proofLabel": "Une avance que vous avez déjà",
+    "proofLinkLabel": "Voir les projets qui sont derrière",
+    "offers": {
+      "website": {
+        "title": "Un site web qui vous apporte des clients",
+        "description": "Pas juste une page avec votre logo. Un site conçu pour transformer les visiteurs en appels et en messages. Rapide, adapté au mobile, et disponible dans les langues que parlent réellement vos clients."
+      },
+      "dataCollection": {
+        "title": "Trouver et organiser les informations dont vous avez besoin",
+        "description": "Qu'il s'agisse d'une liste de clients potentiels, des prix de vos concurrents ou de coordonnées éparpillées sur des dizaines de sites, je peux les rassembler automatiquement et vous les remettre sous forme de liste claire et exploitable, mise à jour aussi souvent que nécessaire."
+      },
+      "automation": {
+        "title": "Mettre les tâches répétitives en pilote automatique",
+        "description": "Si votre équipe passe des heures chaque semaine à recopier les mêmes informations, envoyer les mêmes messages, ou vérifier les mêmes sites manuellement, ce travail peut désormais se faire tout seul."
+      },
+      "digitization": {
+        "title": "Transformer la paperasse en quelque chose d'utilisable",
+        "description": "PDF, documents scannés, tableurs remplis d'erreurs, dossiers conservés dans trois formats différents. Je peux transformer ce désordre en quelque chose d'organisé, de cherchable et de facile à utiliser."
+      }
+    },
+    "sectors": {
+      "realEstate": {
+        "name": "Promoteurs immobiliers",
+        "tagline": "Plus de demandes, moins de travail manuel",
+        "headline": "Plus de demandes, moins de travail manuel",
+        "audience": "pour les promoteurs immobiliers",
+        "intro": "Vos projets méritent d'être vus par les bons acheteurs, et chaque demande mérite de vous parvenir sans se perdre.",
+        "serviceType": "Sites web et outils de génération de prospects pour promoteurs immobiliers",
+        "offers": {
+          "projectSite": {
+            "title": "Un site de projet qui fait appeler les gens",
+            "description": "Une vitrine de vos projets en cours, avec les unités disponibles, les prix et les plans, conçue pour qu'un simple geste envoie un message WhatsApp. Pensé pour mobile, et dans les langues que vos acheteurs utilisent réellement."
+          },
+          "landWatch": {
+            "title": "Trouver des opportunités de terrain et suivre le marché",
+            "description": "Je peux suivre les nouvelles annonces, les opportunités de terrain, et ce que construisent ou pratiquent comme prix les promoteurs concurrents, pour que vous ne soyez jamais le dernier informé."
+          },
+          "autoPosting": {
+            "title": "Nouvelles unités publiées partout à la fois",
+            "description": "Dès qu'une unité devient disponible, elle peut être publiée automatiquement sur Facebook et Instagram, et les demandes WhatsApp entrantes peuvent être triées par projet et par unité au lieu de s'accumuler dans une seule conversation."
+          },
+          "floorPlans": {
+            "title": "Les plans de votre architecte, en ligne instantanément",
+            "description": "Plans PDF et brochures transformés en un catalogue consultable et filtrable que vos clients peuvent explorer eux-mêmes avant même de vous appeler."
+          }
+        },
+        "proof": "J'ai déjà développé un modèle de site web conçu spécifiquement pour les promoteurs immobiliers. Il est trilingue, pensé pour mobile, avec chaque annonce à un geste d'une conversation WhatsApp."
+      },
+      "ecommerce": {
+        "name": "Commerçants en ligne",
+        "tagline": "Vendez plus, surveillez moins",
+        "headline": "Vendez plus, surveillez moins",
+        "audience": "pour les commerçants en ligne",
+        "intro": "Entre gérer le stock, surveiller la concurrence et publier des promotions, il reste rarement du temps pour vraiment vendre.",
+        "serviceType": "Boutiques en ligne et surveillance des prix de la concurrence",
+        "offers": {
+          "onlineStore": {
+            "title": "Une boutique en ligne qui vend même pendant que vous dormez",
+            "description": "Une véritable vitrine en ligne : catalogue produits, commande facile ou via WhatsApp, pensée pour mobile comme vos clients achètent réellement."
+          },
+          "priceWatch": {
+            "title": "Surveiller les prix de vos concurrents, automatiquement",
+            "description": "Une vue en temps réel de ce que facturent vos concurrents sur les plateformes où ils vendent, avec des alertes instantanées dès qu'un prix change. Fini de vérifier des dizaines d'annonces à la main."
+          },
+          "promoRestock": {
+            "title": "Promotions et alertes de réapprovisionnement qui se font toutes seules",
+            "description": "Publications programmées sur vos pages sociales, et alertes dès que le stock est bas, pour que rien ne vous échappe pendant que vous vous concentrez sur votre activité."
+          },
+          "supplierCatalog": {
+            "title": "Transformer les listes de vos fournisseurs en catalogue propre",
+            "description": "Tableurs désordonnés provenant des fournisseurs, noms incohérents, images manquantes, transformés en un catalogue propre et organisé, prêt à publier."
+          }
+        },
+        "proof": "J'ai développé des outils de suivi de prix qui surveillent des milliers d'annonces produits et envoient des alertes instantanées dès qu'un concurrent baisse son prix. C'est le même type de travail que j'ai réalisé professionnellement pour des entreprises spécialisées dans l'intelligence commerciale."
+      },
+      "socialMedia": {
+        "name": "Créateurs et petites marques",
+        "tagline": "Développez sans vivre sur votre téléphone",
+        "headline": "Développez votre audience sans vivre sur votre téléphone",
+        "audience": "pour les créateurs et petites marques",
+        "intro": "Entre publier, répondre, et trouver de nouvelles personnes à atteindre, la création de contenu peut occuper toute la journée.",
+        "serviceType": "Sites simples et automatisation de contenu pour créateurs et petites marques",
+        "offers": {
+          "simpleSite": {
+            "title": "Un site simple qui transforme les abonnés en clients",
+            "description": "Plus qu'un simple lien en bio. Un petit site qui présente ce que vous proposez et facilite l'achat ou la réservation, où que votre audience vous trouve."
+          },
+          "audienceDiscovery": {
+            "title": "Trouver les personnes déjà intéressées par ce que vous vendez",
+            "description": "Je peux suivre les conversations et communautés pertinentes où vos futurs clients se trouvent déjà, pour que votre démarche commence auprès de personnes déjà intéressées."
+          },
+          "autoPosting": {
+            "title": "Publier et répondre sans être collé à votre téléphone toute la journée",
+            "description": "Publications programmées sur plusieurs plateformes, et réponses automatiques aux questions fréquentes, pour ne pas être enchaîné à votre téléphone afin de garder le rythme."
+          },
+          "weeklyReport": {
+            "title": "Transformer vos statistiques d'engagement en rapport hebdomadaire simple",
+            "description": "Fini de fouiller dans cinq applications différentes, juste un résumé hebdomadaire clair de ce qui fonctionne."
+          }
+        },
+        "proof": "J'ai développé des outils qui publient automatiquement du contenu et interagissent dans des communautés en ligne pertinentes. C'est exactement le type de travail manuel qui dévore la journée d'un créateur de contenu."
+      },
+      "healthcare": {
+        "name": "Cliniques et professionnels de santé",
+        "tagline": "Moins de paperasse, plus de temps patients",
+        "headline": "Moins de temps sur la paperasse, plus de temps avec les patients",
+        "audience": "pour les cliniques",
+        "intro": "Entre les dossiers papier, les appels téléphoniques et les rendez-vous manqués, la gestion administrative peut prendre le pas sur les soins eux-mêmes.",
+        "serviceType": "Sites de prise de rendez-vous et dossiers patients numérisés pour cliniques",
+        "offers": {
+          "bookingSite": {
+            "title": "Un site que vos patients peuvent vraiment utiliser pour prendre rendez-vous",
+            "description": "Horaires, services expliqués en termes simples et un moyen direct de prendre rendez-vous ou de poser une question par WhatsApp, sans formulaires compliqués."
+          },
+          "instantRecords": {
+            "title": "Retrouver instantanément le dossier de n'importe quel patient",
+            "description": "Une fois les dossiers numérisés, retrouver l'historique d'un patient prend quelques secondes au lieu de fouiller les dossiers papier entre deux rendez-vous."
+          },
+          "reminders": {
+            "title": "Rappels et confirmations de rendez-vous qui s'envoient tout seuls",
+            "description": "Rappels automatiques par SMS ou WhatsApp avant chaque rendez-vous, pour réduire les absences sans que personne n'ait à passer d'appels."
+          },
+          "digitizeFiles": {
+            "title": "Transformer des piles de dossiers papier en système numérique et cherchable",
+            "description": "Des années de dossiers papier transformées en un système numérique organisé et cherchable que votre équipe peut réellement utiliser."
+          }
+        },
+        "proof": "J'ai déjà développé un système qui transforme des dossiers patients scannés en un emploi du temps numérique cherchable qu'un médecin peut utiliser en quelques secondes. Fini de fouiller dans les dossiers papier entre deux rendez-vous."
+      },
+      "manufacturing": {
+        "name": "Industriels et institutions",
+        "tagline": "Paraître établi, fonctionner plus efficacement",
+        "headline": "Paraître établi, fonctionner plus efficacement",
+        "audience": "pour les industriels et les institutions",
+        "intro": "Lorsque d'autres entreprises et institutions décident de travailler avec vous, votre site web et votre organisation interne envoient tous deux un signal.",
+        "serviceType": "Sites web professionnels et outils de coordination interne pour industriels et institutions",
+        "offers": {
+          "corporateSite": {
+            "title": "Un site qui montre que vous êtes une entreprise sérieuse et établie",
+            "description": "Une présence professionnelle conçue pour les personnes qui vous évaluent en tant que fournisseur ou partenaire, avec vos capacités, vos réalisations passées et vos certifications présentées clairement."
+          },
+          "supplierTracking": {
+            "title": "Suivre les fournisseurs, les pièces et la réglementation",
+            "description": "Des informations éparpillées entre sites fournisseurs, fiches techniques et pages réglementaires, rassemblées et organisées pour que rien ne soit manqué."
+          },
+          "internalWorkflow": {
+            "title": "Paperasse interne et validations qui n'ont plus besoin d'une personne à chaque étape",
+            "description": "Des outils internes sur mesure qui remplacent la coordination manuelle entre services, pour passer moins de temps à courir après des signatures et des mises à jour de statut."
+          },
+          "technicalArchive": {
+            "title": "Transformer plans techniques et rapports en archive numérique organisée",
+            "description": "Fiches techniques, plans et rapports éparpillés entre formats et dossiers, transformés en une archive organisée et cherchable où votre équipe retrouve réellement ce qu'elle cherche."
+          }
+        },
+        "proof": "J'ai développé à la fois le site web public et le logiciel de coordination interne d'une entreprise de fabrication mécanique et de robotique, du site qui les présente à de nouveaux clients jusqu'à l'outil que leur équipe utilise chaque jour."
+      }
+    }
+  },
+  "caseStudies": {
+    "title": "Études de cas",
+    "intro": "Le travail derrière les services. Il s'agit de projets réels, décrits en termes du problème résolu plutôt que de la technologie utilisée.",
+    "supportsLabel": "Concerne",
+    "items": {
+      "priceWatch": {
+        "title": "Surveillance automatique des prix et alertes de bonnes affaires",
+        "description": "Développement d'un outil qui surveille des milliers d'annonces produits sur des places de marché en ligne et publie des alertes instantanées dès qu'un prix baisse. La vérification manuelle qui prenait des heures se fait désormais automatiquement, toutes les quelques minutes, sans que personne ne surveille un écran."
+      },
+      "digitalShelf": {
+        "title": "Expérience professionnelle en intelligence commerciale",
+        "description": "Travail professionnel sur la surveillance du \"digital shelf\", c'est-à-dire le suivi de la façon dont les produits sont tarifés, positionnés et évalués chez les distributeurs en ligne. C'est le même type de travail désormais proposé directement aux plus petits commerçants qui en ont aussi besoin."
+      },
+      "patientsTimetable": {
+        "title": "Des dossiers papier à un emploi du temps numérique",
+        "description": "Numérisation des dossiers patients scannés d'une clinique en un emploi du temps quotidien cherchable, transformant une pile de papier que le médecin devait fouiller entre deux rendez-vous en quelque chose de cherchable en quelques secondes."
+      },
+      "smrisTools": {
+        "title": "Un site web et un outil de coordination interne, développés ensemble",
+        "description": "Développement du site web public d'une entreprise de fabrication mécanique et de robotique, et d'un outil de bureau que son équipe utilise en interne pour coordonner le travail. Deux outils différents résolvant deux problèmes différents pour le même client."
+      },
+      "contentAutomation": {
+        "title": "Publication de contenu et engagement communautaire, automatisés",
+        "description": "Développement d'outils qui publient du contenu selon un calendrier et interagissent automatiquement dans des communautés et discussions en ligne pertinentes, libérant des heures qu'un créateur passerait sinon à le faire manuellement chaque jour."
+      },
+      "realEstateTemplate": {
+        "title": "En cours",
+        "description": "Un modèle de site web générateur de prospects, trilingue, conçu spécifiquement pour les promoteurs immobiliers, pensé pour mobile, avec chaque annonce à un geste d'une demande WhatsApp. Il est encore en finalisation, et les résultats seront ajoutés ici une fois lancé chez un client."
+      }
+    },
+    "viewProject": "Voir le projet"
+  },
+  "contact": {
+    "title": "Parlons de ce dont vous avez besoin",
+    "intro": "Basé à Oran, je travaille avec des entreprises partout en Algérie et au-delà. Quel que soit le moyen que vous préférez, vous obtiendrez une réponse franche sur ce qui est possible et sur le coût.",
+    "methodsLabel": "Comment me joindre",
+    "whatsappLabel": "WhatsApp",
+    "whatsappHint": "Le plus rapide, généralement répondu le jour même",
+    "phoneLabel": "Téléphone",
+    "emailLabel": "E-mail",
+    "locationLabel": "Où je me trouve",
+    "socialLabel": "Ailleurs en ligne",
+    "languagesLabel": "Langues de travail",
+    "ctaTitle": "Une demi-heure suffit généralement",
+    "ctaBody": "Vous n'avez pas besoin d'arriver avec un cahier des charges. Décrivez le problème, et nous verrons ensemble s'il faut un site, un outil, ou tout autre chose."
+  },
+  "og": {
+    "home": {
+      "title": "Sites web, automatisation et données",
+      "description": "Des sites qui vous apportent des clients, et les outils derrière."
+    },
+    "about": {
+      "title": "À propos de Hamza Abbad",
+      "description": "Ingénieur en IA et informatique, basé à Oran, Algérie."
+    },
+    "career": {
+      "title": "Parcours et formation",
+      "description": "Doctorat en TAL arabe, scraping pour l'intelligence commerciale, web en freelance."
+    },
+    "projects": {
+      "title": "Projets sélectionnés",
+      "description": "Sites, scrapers, outils d'automatisation et applications de bureau."
+    },
+    "skills": {
+      "title": "Compétences techniques",
+      "description": "Langages, frameworks, bases de données et outils DevOps du quotidien."
+    },
+    "publications": {
+      "title": "Publications de recherche",
+      "description": "Travaux évalués par les pairs sur la vocalisation automatique de l'arabe."
+    },
+    "services": {
+      "title": "Ce que je peux construire pour votre entreprise",
+      "description": "Quatre offres, en termes simples, sans jargon."
+    },
+    "servicesRealEstate": {
+      "title": "Pour les promoteurs immobiliers",
+      "description": "Sites de projet, publication des annonces, et des demandes qui vous parviennent."
+    },
+    "servicesEcommerce": {
+      "title": "Pour les commerçants en ligne",
+      "description": "Boutiques, suivi des prix concurrents, promotions automatisées."
+    },
+    "servicesSocialMedia": {
+      "title": "Pour les créateurs et petites marques",
+      "description": "Sites simples, publication planifiée, découverte d'audience."
+    },
+    "servicesHealthcare": {
+      "title": "Pour les cliniques et la santé",
+      "description": "Sites de réservation, dossiers numérisés, rappels de rendez-vous."
+    },
+    "servicesManufacturing": {
+      "title": "Pour les industriels et les institutions",
+      "description": "Sites professionnels et outils de coordination interne."
+    },
+    "caseStudies": {
+      "title": "Études de cas",
+      "description": "Suivi de prix, dossiers patients numérisés, outils internes."
+    },
+    "contact": {
+      "title": "Contactez-moi",
+      "description": "WhatsApp, téléphone ou e-mail. Oran, Algérie, et au-delà."
+    },
+    "tagline": "Sites web / Automatisation / Données"
+  },
+  "seo": {
+    "home": {
+      "title": "Hamza Abbad | Sites web, automatisation et données à Oran",
+      "description": "Ingénieur en intelligence artificielle et informatique. Je crée des sites web, j'automatise les tâches répétitives et je transforme des données éparses en informations exploitables pour les entreprises à Oran et en Algérie."
+    },
+    "about": {
+      "title": "À propos | Hamza Abbad",
+      "description": "Ingénieur logiciel basé à Oran, en Algérie, travaillant sur des plateformes web, la collecte de données et l'automatisation. Doctorat en TAL arabe, expérience professionnelle en intelligence commerciale et en robotique de service."
+    },
+    "career": {
+      "title": "Parcours | Hamza Abbad",
+      "description": "Parcours académique et professionnel : doctorat en traitement automatique des langues arabes, ingénierie en IA, scraping pour l'intelligence commerciale, et développement web en freelance."
+    },
+    "projects": {
+      "title": "Projets | Hamza Abbad",
+      "description": "Une sélection de projets : sites web, scrapers, outils d'automatisation, applications de bureau et logiciels de recherche, avec captures d'écran et liens."
+    },
+    "skills": {
+      "title": "Compétences techniques | Hamza Abbad",
+      "description": "Les langages, frameworks, bases de données, outils DevOps et logiciels de design avec lesquels je travaille, et mon niveau de maîtrise sur chacun."
+    },
+    "publications": {
+      "title": "Publications | Hamza Abbad",
+      "description": "Travaux de recherche évalués par les pairs sur la vocalisation automatique de l'arabe et le traitement automatique des langues arabes, avec DOI et liens vers les éditeurs."
+    },
+    "services": {
+      "title": "Sites web, automatisation et données | Hamza Abbad",
+      "description": "Je crée des sites web, j'automatise les tâches répétitives et je transforme des données éparses en informations exploitables pour les entreprises à Oran et en Algérie."
+    },
+    "servicesRealEstate": {
+      "title": "Sites web et outils pour promoteurs immobiliers | Hamza Abbad",
+      "description": "Sites web générateurs de prospects, publication automatique des annonces, et demandes organisées pour les promoteurs immobiliers en Algérie."
+    },
+    "servicesEcommerce": {
+      "title": "Sites web et automatisation pour commerçants en ligne | Hamza Abbad",
+      "description": "Boutiques en ligne, suivi des prix concurrents, et promotions automatisées pour les commerçants et vendeurs en ligne en Algérie."
+    },
+    "servicesSocialMedia": {
+      "title": "Sites web et automatisation pour créateurs et petites marques | Hamza Abbad",
+      "description": "Sites simples, publication automatisée, et découverte d'audience pour les créateurs de contenu et petites marques en ligne en Algérie."
+    },
+    "servicesHealthcare": {
+      "title": "Sites web et dossiers numériques pour cliniques | Hamza Abbad",
+      "description": "Sites facilitant la prise de rendez-vous, dossiers patients numérisés, et rappels de rendez-vous pour cliniques et professionnels de santé en Algérie."
+    },
+    "servicesManufacturing": {
+      "title": "Sites web et outils internes pour industriels et institutions | Hamza Abbad",
+      "description": "Sites web professionnels et logiciels de coordination interne pour les entreprises industrielles, manufacturières et institutionnelles en Algérie."
+    },
+    "caseStudies": {
+      "title": "Études de cas | Hamza Abbad",
+      "description": "De vrais projets derrière les services : surveillance des prix pour des commerçants, dossiers patients numérisés pour une clinique, et outils internes pour une entreprise de robotique."
+    },
+    "contact": {
+      "title": "Contact | Hamza Abbad, services web et automatisation à Oran",
+      "description": "Contactez-moi pour un projet de site web, d'automatisation ou de données. WhatsApp, téléphone ou e-mail. Basé à Oran, au service d'entreprises partout en Algérie."
+    },
+    "notFound": {
+      "title": "Page introuvable | Hamza Abbad",
+      "description": "Cette page n'existe pas. Parcourez les services, les études de cas, ou contactez-moi directement."
+    }
   },
   "profile": {
     "fullName": "Hamza Abbad",
-    "shortDescription": "Ingénieur en Intelligence Artificielle et Informatique",
+    "shortDescription": "Développeur de solutions informatiques",
     "personal": {
       "nationality": "Algérien",
       "religion": "Islam"
@@ -261,5 +609,9 @@
         "blender": { "name": "Blender", "description": "Modélisation et rendu 3D" }
       }
     }
+  },
+  "social": {
+    "title": "Ailleurs",
+    "more": "D'autres façons de me joindre"
   }
 }

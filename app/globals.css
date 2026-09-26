@@ -298,13 +298,13 @@ body {
 /* 2-column grid for Contact + Personal side-by-side */
 .basic-info-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
 }
 
 @media (min-width: 640px) {
   .basic-info-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
@@ -393,19 +393,19 @@ body {
 /* ─── Language items ────────────────────────────────────────────────────── */
 .languages-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
 }
 
 @media (min-width: 480px) {
   .languages-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 900px) {
   .languages-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -661,7 +661,7 @@ body {
 /* Each row: node | card */
 .timeline-entry {
   display: grid;
-  grid-template-columns: 2rem 1fr;
+  grid-template-columns: 2rem minmax(0, 1fr);
   align-items: flex-start;
   gap: 0;
   padding: 1.25rem 0;
@@ -702,12 +702,14 @@ body {
 
 /* Card column */
 .timeline-card-col {
+  min-width: 0;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 /* Card itself — reuses the basic-info-card visual language */
 .timeline-card {
+  min-width: 0;
   border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
   border-radius: 1rem;
   padding: 1rem 1.25rem;
@@ -984,7 +986,7 @@ body {
   align-items: center;
   gap: 0;
   padding: 0.3rem;
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 30%, transparent);
@@ -1037,6 +1039,17 @@ body {
   .nav-item {
     padding: 0.5rem 0.75rem;
   }
+  .bottom-nav-items .nav-item {
+    padding: 0.5rem 0.9rem;
+  }
+  .nav-item-icon {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+  .nav-group-tab {
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+  }
 }
 
 /* ─── Page bottom padding to clear the fixed nav ────────────────────────── */
@@ -1070,19 +1083,19 @@ body {
 /* Responsive grid: 1 col → 2 col → 3 col */
 .skill-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.875rem;
 }
 
 @media (min-width: 560px) {
   .skill-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 900px) {
   .skill-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -1090,6 +1103,7 @@ body {
 .skill-item {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   gap: 0.625rem;
   padding: 0.875rem 1rem;
   background: var(--card-bg);
@@ -1770,3 +1784,1683 @@ body {
 }
 
 
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Business pages — services, sectors, case studies, contact
+   Written with logical properties (inline-start/end) so the Arabic RTL pages
+   mirror without a single [dir="rtl"] override.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Illustration art board ────────────────────────────────────────────── */
+/* unDraw art is drawn with dark ink, so it always sits on its own light
+   surface rather than on the themed page background. One constant colour
+   keeps every illustration legible in both light and dark mode. */
+.illustration-frame {
+  background: #eef1fb;
+  border-radius: 0.875rem;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 18%, transparent);
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.illustration-frame img {
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+/* ─── Shared page scaffolding ───────────────────────────────────────────── */
+.services-section,
+.cases-section,
+.contact-section,
+.sector-offers,
+.sector-related {
+  background: var(--bg);
+  padding: 5rem 1.5rem 6rem;
+}
+
+.services-section--alt,
+.contact-section--alt {
+  background: color-mix(in srgb, var(--fg) 4%, var(--bg));
+}
+
+.services-container,
+.cases-container,
+.contact-container,
+.sector-offers-inner,
+.sector-related-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.services-intro,
+.cases-intro,
+.contact-intro {
+  max-width: 46rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--fg-muted);
+}
+
+.services-note {
+  max-width: 46rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+  border-inline-start: 2px solid color-mix(in srgb, var(--accent-purple) 50%, transparent);
+  padding-inline-start: 1rem;
+}
+
+.inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.inline-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ─── Offer and sector card grids (services hub) ────────────────────────────
+   Both hold art cards: a 4/3 illustration board over a short block of text. The
+   columns stay few enough that the board keeps a usable size at every width. */
+.offers-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 760px) {
+  .offers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.sectors-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 620px) {
+  .sectors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1120px) {
+  .sectors-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.services-crosslink {
+  font-size: 0.9375rem;
+}
+
+/* ─── Sector page hero ─────────────────────────────────────────────────── */
+.sector-hero {
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      color-mix(in srgb, var(--accent-purple) 18%, transparent),
+      transparent 70%
+    ),
+    var(--bg);
+  padding: 4.5rem 1.5rem 3.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+}
+
+.sector-hero-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .sector-hero-inner {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.sector-hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sector-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 40%, transparent);
+  border-radius: 9999px;
+  padding: 0.3rem 0.8rem;
+}
+[lang="ar"] .sector-hero-eyebrow {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+.sector-hero-eyebrow svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.sector-hero-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.sector-hero-audience {
+  display: block;
+  font-size: 0.55em;
+  font-weight: 600;
+  color: var(--fg-muted);
+  margin-top: 0.5rem;
+}
+
+.sector-hero-intro {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--fg-muted);
+  max-width: 38rem;
+}
+
+.sector-hero-media {
+  display: flex;
+  justify-content: center;
+  max-width: 26rem;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* ─── Sector page offers + proof ───────────────────────────────────────── */
+.sector-offers-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .sector-offers-inner {
+    grid-template-columns: 1.4fr 0.9fr;
+    align-items: start;
+  }
+}
+
+.sector-offer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sector-offer {
+  border-inline-start: 2px solid color-mix(in srgb, var(--accent-cyan) 40%, transparent);
+  padding-inline-start: 1.25rem;
+}
+
+.sector-offer-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--fg);
+  margin-bottom: 0.4rem;
+}
+
+.sector-offer-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.sector-proof {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--accent-purple) 35%, transparent);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+@media (max-width: 899px) {
+  .sector-proof {
+    position: static;
+  }
+}
+
+.sector-proof-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, var(--accent-purple) 16%, transparent);
+  color: var(--accent-purple);
+  font-size: 1rem;
+}
+
+.sector-proof-label {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+}
+[lang="ar"] .sector-proof-label {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+.sector-proof-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.sector-proof-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  margin-top: 0.25rem;
+}
+.sector-proof-link:hover {
+  text-decoration: underline;
+}
+.sector-proof-link svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+/* ─── Sector page related case studies ─────────────────────────────────── */
+.sector-related-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sector-related-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.35rem 0.9rem;
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 0.875rem;
+  padding: 1.1rem 1.25rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.sector-related-link:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+.sector-related-link svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--accent-cyan);
+  margin-top: 0.15rem;
+  grid-row: span 2;
+}
+
+.sector-related-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.sector-related-desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+/* ─── Case studies ─────────────────────────────────────────────────────── */
+.cases-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .cases-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  scroll-margin-top: 6rem;
+  transition: border-color 0.2s;
+}
+.case-card:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 40%, transparent);
+}
+.case-card:target {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+}
+
+.case-card[data-status="inProgress"] {
+  border-style: dashed;
+}
+
+.case-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.case-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  color: var(--accent-cyan);
+  font-size: 1rem;
+}
+
+.case-card-badge {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+  border: 1px solid color-mix(in srgb, var(--accent-purple) 40%, transparent);
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+}
+[lang="ar"] .case-card-badge {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+.case-card-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--fg);
+}
+
+.case-card-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.case-card-sector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-size: 0.8125rem;
+  margin-top: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--fg-muted) 20%, transparent);
+}
+.case-card-sector:hover .case-card-sector-name {
+  text-decoration: underline;
+}
+.case-card-sector svg {
+  width: 0.7rem;
+  height: 0.7rem;
+  color: var(--accent-cyan);
+}
+.case-card-sector-label {
+  color: var(--fg-muted);
+}
+.case-card-sector-name {
+  font-weight: 600;
+  color: var(--accent-cyan);
+}
+
+/* ─── Contact page ─────────────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+a.contact-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--glow-cyan) 15%, transparent);
+}
+
+.contact-card--primary {
+  border-color: color-mix(in srgb, #25d366 45%, transparent);
+  background: color-mix(in srgb, #25d366 7%, var(--card-bg));
+}
+a.contact-card--primary:hover {
+  border-color: #25d366;
+}
+
+.contact-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  color: var(--accent-cyan);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.contact-card--primary .contact-card-icon {
+  background: color-mix(in srgb, #25d366 18%, transparent);
+  color: #25d366;
+}
+
+.contact-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+[lang="ar"] .contact-card-label {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+.contact-card-value {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--fg);
+  word-break: break-word;
+}
+[lang="ar"] .contact-card-value {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+.contact-card-hint {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+}
+
+.contact-subtitle {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+[lang="ar"] .contact-subtitle {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: -1.5rem;
+}
+
+.contact-languages,
+.contact-social {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: -1.75rem;
+}
+
+.contact-language {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  color: var(--fg);
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 9999px;
+  padding: 0.35rem 0.85rem;
+}
+
+.contact-language-flag {
+  width: 1.25rem;
+  height: 0.85rem;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #04240f;
+  border-color: #25d366;
+}
+.btn-whatsapp:hover {
+  background: #1eb355;
+  border-color: #1eb355;
+  color: #04240f;
+}
+
+/* ─── Shared call to action band ───────────────────────────────────────── */
+.service-cta {
+  background:
+    radial-gradient(
+      ellipse 70% 100% at 50% 100%,
+      color-mix(in srgb, var(--accent-cyan) 16%, transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--fg) 5%, var(--bg));
+  border-top: 1px solid color-mix(in srgb, var(--accent-cyan) 20%, transparent);
+  padding: 4.5rem 1.5rem 4.5rem;
+}
+
+.service-cta-inner {
+  max-width: 46rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.service-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent-cyan) 16%, transparent);
+  color: var(--accent-cyan);
+  font-size: 1.35rem;
+}
+
+.service-cta-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.375rem, 3.5vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--fg);
+}
+
+.service-cta-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--fg-muted);
+}
+
+.service-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+/* ─── Bottom nav ────────────────────────────────────────────────────────────
+   The original was one pill of items. The group switcher sits above it as a
+   quiet label rather than a second control competing for attention. */
+.bottom-nav {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0.3rem 0.5rem 0.35rem;
+}
+
+.bottom-nav-groups {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0 0.15rem 0.35rem;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--fg-muted) 16%, transparent);
+}
+
+.bottom-nav-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bottom-nav-group-sep {
+  width: 1px;
+  height: 0.7rem;
+  background: color-mix(in srgb, var(--fg-muted) 28%, transparent);
+}
+
+.nav-group-tab {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  text-decoration: none;
+  padding: 0.15rem 0.4rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-group-tab.active {
+  color: var(--accent-cyan);
+}
+
+.nav-group-tab:not(.active):hover {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+}
+
+[lang="ar"] .nav-group-tab {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+  font-size: 0.7rem;
+}
+
+.bottom-nav-items {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* The glow on the active pill must stay inside the bar, so the horizontal
+   padding above is larger than the original single row needed. */
+.nav-item.active {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent-cyan) 24%, transparent);
+}
+
+/* ─── Arabic type for the new business pages ───────────────────────────── */
+[lang="ar"] .art-card-title,
+[lang="ar"] .sector-hero-title,
+[lang="ar"] .sector-offer-title,
+[lang="ar"] .sector-related-title,
+[lang="ar"] .case-card-title,
+[lang="ar"] .service-cta-title,
+[lang="ar"] .art-card-text,
+[lang="ar"] .sector-hero-intro,
+[lang="ar"] .sector-offer-desc,
+[lang="ar"] .sector-related-desc,
+[lang="ar"] .case-card-desc,
+[lang="ar"] .service-cta-body,
+[lang="ar"] .services-intro,
+[lang="ar"] .cases-intro,
+[lang="ar"] .contact-intro,
+[lang="ar"] .services-note,
+[lang="ar"] .sector-proof-text,
+[lang="ar"] .contact-language,
+[lang="ar"] .nav-item-label {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* ─── Reduced motion ───────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .icon-card,
+  .art-card,
+  .art-card-art img,
+  .case-card,
+  .sector-related-link,
+  .home-band-offer,
+  .home-band-sector {
+    transition: none;
+  }
+  a.icon-card:hover,
+  a.art-card:hover,
+  a.art-card:hover .art-card-art img,
+  .sector-related-link:hover,
+  .home-band-offer:hover {
+    transform: none;
+  }
+}
+
+/* ─── 404 ───────────────────────────────────────────────────────────────── */
+.notfound {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 50% 0%,
+      color-mix(in srgb, var(--accent-purple) 16%, transparent),
+      transparent 70%
+    ),
+    var(--bg);
+}
+
+.notfound-inner {
+  max-width: 34rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.notfound-code {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(3.5rem, 14vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.notfound-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--fg);
+}
+
+.notfound-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.notfound-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.notfound-langs {
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  margin-top: 0.5rem;
+}
+
+.notfound-langs a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+.notfound-langs a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Home page services band ──────────────────────────────────────────── */
+/* Gives the root domain real content and a crawl path to every sector page. */
+.home-band {
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 50% 100%,
+      color-mix(in srgb, var(--accent-cyan) 14%, transparent),
+      transparent 70%
+    ),
+    var(--bg);
+  border-top: 1px solid color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+  padding: 4.5rem 1.5rem 8rem;
+}
+
+.home-band-inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.home-band-intro {
+  max-width: 44rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--fg-muted);
+}
+
+.home-band-offers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .home-band-offers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .home-band-offers {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.home-band-offer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 0.875rem;
+  padding: 1rem 1.1rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.home-band-offer:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+.home-band-offer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  color: var(--accent-cyan);
+  font-size: 0.9rem;
+}
+
+.home-band-offer-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fg);
+}
+
+.home-band-sectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.home-band-sector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--accent-purple) 35%, transparent);
+  border-radius: 9999px;
+  padding: 0.45rem 1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.home-band-sector:hover {
+  background: color-mix(in srgb, var(--accent-purple) 12%, transparent);
+  border-color: var(--accent-purple);
+}
+.home-band-sector svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  color: var(--accent-purple);
+}
+
+[lang="ar"] .home-band-offer-title,
+[lang="ar"] .home-band-intro,
+[lang="ar"] .home-band-sector {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* ─── Root language gate ──────────────────────────────────────────────────
+   Served at "/" as a real page. It redirects to the visitor's language on its
+   own, so the name and these links are a quiet fallback for the cases where
+   detection cannot decide or scripting never runs — not a chooser to answer. */
+.locale-gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in srgb, var(--accent-purple) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, color-mix(in srgb, var(--accent-cyan) 12%, transparent), transparent 70%),
+    var(--bg);
+}
+
+.locale-gate-inner {
+  max-width: 34rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.locale-gate-name {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--fg);
+}
+
+.locale-gate-subtitle {
+  font-size: 1rem;
+  color: var(--fg-muted);
+}
+
+.locale-gate-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.locale-gate-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 0.75rem;
+  padding: 0.7rem 1.4rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.locale-gate-link:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+.locale-gate-services {
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+.locale-gate-services:hover {
+  color: var(--accent-cyan);
+  text-decoration: underline;
+}
+
+/* ─── Icon card: one rule for every card whose mark is an icon ───────────────
+   A card icon is never a small badge in the corner. With room it gets a real
+   column beside the text; without room it centres above the title, and the
+   title centres with it. Screenshots are treated separately: a card showing a
+   screenshot shows no icon at all. */
+.icon-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 1rem;
+  padding: 1.5rem 1.25rem;
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+@media (min-width: 620px) {
+  .icon-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    align-items: center;
+    text-align: start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+.icon-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  color: var(--accent-cyan);
+  font-size: 1.5rem;
+}
+
+.icon-card--primary {
+  border-color: color-mix(in srgb, #25d366 45%, transparent);
+  background: color-mix(in srgb, #25d366 7%, var(--card-bg));
+}
+.icon-card--primary .icon-card-icon {
+  background: color-mix(in srgb, #25d366 18%, transparent);
+  color: #25d366;
+}
+
+a.icon-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--glow-cyan) 15%, transparent);
+}
+a.icon-card--primary:hover {
+  border-color: #25d366;
+}
+
+.icon-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.icon-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.icon-card-value {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+
+.icon-card-hint {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+}
+
+[lang="ar"] .icon-card-label {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+[lang="ar"] .icon-card-value {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* ─── Case study cards ───────────────────────────────────────────────────── */
+.cases-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 760px) {
+  .cases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  scroll-margin-top: 6rem;
+  transition: border-color 0.2s;
+}
+.case-card:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 40%, transparent);
+}
+.case-card:target {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+}
+
+.case-card[data-status="inProgress"] {
+  border-style: dashed;
+}
+
+/* Screenshot replaces the icon, so it gets the width rather than a corner slot. */
+.case-card-shot {
+  margin: -0.25rem 0 0.25rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 22%, transparent);
+  background: var(--bg);
+  aspect-ratio: 16 / 10;
+}
+.case-card-shot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Icon card head: a real side column when there is room, centred above a
+   centred title when there is not. Same rule as .icon-card. */
+.case-card-head {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 620px) {
+  .case-card-head {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    gap: 1.25rem;
+    text-align: start;
+  }
+}
+
+.case-card-head .case-card-title,
+.case-card-head .case-card-badge {
+  text-align: inherit;
+  justify-self: inherit;
+}
+
+.case-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  color: var(--accent-cyan);
+  font-size: 1.5rem;
+}
+
+.case-card-badge {
+  align-self: flex-start;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+  border: 1px solid color-mix(in srgb, var(--accent-purple) 40%, transparent);
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+}
+[lang="ar"] .case-card-badge {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+.case-card-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--fg);
+}
+
+.case-card-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+.case-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.25rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid color-mix(in srgb, var(--fg-muted) 20%, transparent);
+}
+
+.case-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+.case-card-link:hover .case-card-sector-name {
+  text-decoration: underline;
+}
+.case-card-link svg {
+  width: 0.7rem;
+  height: 0.7rem;
+  color: var(--accent-cyan);
+}
+.case-card-sector-label {
+  color: var(--fg-muted);
+}
+.case-card-sector-name {
+  font-weight: 600;
+  color: var(--accent-cyan);
+}
+
+/* ─── Sector page: related case studies ─────────────────────────────────── */
+.sector-related-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sector-related-link {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 0.875rem;
+  padding: 1.1rem 1.25rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.sector-related-link:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 620px) {
+  .sector-related-link {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+.sector-related-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.875rem;
+  background: color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  color: var(--accent-cyan);
+  font-size: 1.25rem;
+}
+
+.sector-related-shot {
+  display: block;
+  width: 8rem;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 22%, transparent);
+  aspect-ratio: 16 / 10;
+}
+.sector-related-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.sector-related-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.sector-related-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.sector-related-desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+/* ─── Home services band: text only ─────────────────────────────────────── */
+/* The illustrations belong to the /services cards; repeating them here would
+   make the home page a smaller copy of that page. */
+.home-band-offers {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .home-band-offers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .home-band-offers {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.home-band-offer {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 0.875rem;
+  padding: 1.1rem 1.25rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.home-band-offer:hover {
+  border-color: color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+.home-band-offer-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--fg);
+}
+
+.home-band-sectors {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+.home-band-sector {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--accent-purple) 35%, transparent);
+  border-radius: 9999px;
+  padding: 0.5rem 1.1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.home-band-sector:hover {
+  background: color-mix(in srgb, var(--accent-purple) 12%, transparent);
+  border-color: var(--accent-purple);
+}
+
+[lang="ar"] .home-band-offer-title,
+[lang="ar"] .home-band-intro,
+[lang="ar"] .home-band-sector {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* ─── Home social row ───────────────────────────────────────────────────────
+   Home for the GitHub / LinkedIn / Stack Overflow links that used to be
+   buttons in the hero. */
+.social-row {
+  background: color-mix(in srgb, var(--fg) 4%, var(--bg));
+  border-top: 1px solid color-mix(in srgb, var(--fg-muted) 18%, transparent);
+  padding: 3rem 1.5rem 8rem;
+}
+
+.social-row-inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.social-row-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+[lang="ar"] .social-row-title {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+.social-row-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.social-row-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 9999px;
+  padding: 0.6rem 1.25rem;
+  transition: border-color 0.2s, transform 0.2s, color 0.2s;
+}
+.social-row-link:hover {
+  color: var(--accent-cyan);
+  border-color: color-mix(in srgb, var(--accent-cyan) 50%, transparent);
+  transform: translateY(-2px);
+}
+
+.social-row-more {
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+.social-row-more:hover {
+  color: var(--accent-cyan);
+  text-decoration: underline;
+}
+
+[lang="ar"] .social-row-link,
+[lang="ar"] .social-row-more {
+  font-family: var(--font-cairo), 'Cairo', system-ui, sans-serif;
+}
+
+/* Deep links from the case studies land on a project card; keep it clear of the
+   fixed bottom nav and give it the same highlight as a :target case study. */
+.project-card {
+  scroll-margin-top: 6rem;
+  scroll-margin-bottom: 7rem;
+}
+
+.project-card:target {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-cyan) 18%, transparent);
+}
+
+/* ─── Art card: offer and sector cards ──────────────────────────────────────
+   The offer and sector cards show the illustration as their mark. The card is a
+   column: art on a fixed 4/3 board so rows line up despite the source files
+   having different proportions, then the text beneath it. */
+.art-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  background: var(--card-bg);
+  border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
+  border-radius: 1rem;
+  padding: 1.15rem 1.15rem 1.35rem;
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.art-card-art {
+  /* The frame already draws the board; this only tunes its weight. */
+  border-radius: 0.875rem;
+}
+
+.art-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+a.art-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 45%, transparent);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--glow-cyan) 14%, transparent);
+}
+
+a.art-card:hover .art-card-art img {
+  transform: scale(1.03);
+}
+
+.art-card-art img {
+  transition: transform 0.25s ease;
+}
+
+@media (min-width: 620px) {
+  .art-card {
+    padding: 1.35rem 1.4rem 1.5rem;
+  }
+}
+
+.art-card-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--fg);
+}
+
+.art-card-text {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--fg-muted);
+}
+
+.art-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+}
+.art-card-cta svg {
+  width: 0.7rem;
+  height: 0.7rem;
+  transition: transform 0.2s;
+}
+a.art-card:hover .art-card-cta svg {
+  transform: translateX(3px);
+}
+[dir="rtl"] a.art-card:hover .art-card-cta svg {
+  transform: translateX(-3px);
+}
+
+/* ─── Clearance for the fixed bottom nav ──────────────────────────────────
+   The bar is two rows tall, so the last block on every page needs to clear it
+   plus its own shadow. Measured from the bar's own height so it cannot drift
+   out of sync with the design. */
+:root {
+  --nav-clearance: 9.5rem;
+}
+
+.service-cta,
+.contact-section--alt,
+.social-row,
+.basic-info-section {
+  padding-bottom: var(--nav-clearance);
+}

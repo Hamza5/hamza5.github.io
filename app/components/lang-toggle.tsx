@@ -1,56 +1,40 @@
 "use client";
 
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { localeMeta, locales, type Locale } from "@/app/lib/locales";
 
-const LOCALES = ["en", "ar", "fr"] as const;
-type Locale = (typeof LOCALES)[number];
-
-function normalizeLocale(locale: string): Locale {
-  const normalized = locale.toLowerCase();
-  if (normalized.startsWith("ar")) return "ar";
-  if (normalized.startsWith("fr")) return "fr";
-  return "en";
-}
-
-function getSystemLocale(): Locale {
-  if (typeof navigator === "undefined") return "en";
-  const nav = navigator.language.toLowerCase();
-  if (nav.startsWith("ar")) return "ar";
-  if (nav.startsWith("fr")) return "fr";
-  return "en";
-}
-
-export default function LangToggle() {
-  const { i18n } = useTranslation();
-  const current = normalizeLocale(i18n.language);
-
-  useEffect(() => {
-    document.documentElement.lang = current;
-    document.documentElement.dir = current === "ar" ? "rtl" : "ltr";
-  }, [current]);
-
-  const switchTo = (locale: Locale) => {
-    const system = getSystemLocale();
-    if (locale === system) {
-      localStorage.removeItem("lang");
-    } else {
-      localStorage.setItem("lang", locale);
-    }
-    i18n.changeLanguage(locale);
-  };
+/**
+ * The three languages are three different URLs, not a client-side text swap, so
+ * switching is a real navigation. That is what lets each language be indexed
+ * separately, and it is also why the toggle cannot call i18n.changeLanguage.
+ */
+export default function LangToggle({ locale }: { locale: Locale }) {
+  const pathname = usePathname();
+  const currentPath = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "");
 
   return (
-    <div className="lang-toggle" aria-label="Language switcher">
-      {LOCALES.map((locale) => (
-        <button
-          key={locale}
-          className={`lang-toggle-btn${current === locale ? " active" : ""}`}
-          onClick={() => switchTo(locale)}
-          aria-pressed={current === locale}
+    <div className="lang-toggle" aria-label="Language">
+      {locales.map((code) => (
+        <Link
+          key={code}
+          href={currentPath === "" ? `/${code}` : `/${code}${currentPath}`}
+          className={`lang-toggle-btn${code === locale ? " active" : ""}`}
+          hrefLang={localeMeta[code].htmlLang}
+          lang={localeMeta[code].htmlLang}
+          aria-current={code === locale ? "true" : undefined}
+          // Remembered so the bare "/" redirect can send returning visitors
+          // straight back to the language they chose.
+          onClick={() => {
+            try {
+              localStorage.setItem("lang", code);
+            } catch {
+              // Private mode — the URL is authoritative anyway.
+            }
+          }}
         >
-          {locale.toUpperCase()}
-        </button>
+          {code.toUpperCase()}
+        </Link>
       ))}
     </div>
   );

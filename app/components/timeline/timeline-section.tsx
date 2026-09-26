@@ -13,7 +13,7 @@ export default function TimelineSection() {
   return (
     <section className="timeline-section">
       <div className="timeline-container">
-        <SectionHeading icon={faTimeline} title={t("career.timeline")} id="timeline" />
+        <SectionHeading level={1} icon={faTimeline} title={t("career.timeline")} id="timeline" />
 
         <div className="timeline-spine-wrapper" style={{ marginTop: "2.5rem" }}>
           {timeline.map((entry) => (

@@ -139,9 +139,10 @@ export const profile: Profile = {
   fullName: "Hamza Abbad",
 
   socialLinks: [
-    { label: "Portfolio", url: "https://hamza5.github.io" },
-    { label: "GitHub",    url: "https://github.com/Hamza5" },
-    { label: "LinkedIn",  url: "https://www.linkedin.com/in/hamza-abbad/" },
+    { label: "Portfolio",     url: "https://hamza5.github.io" },
+    { label: "GitHub",        url: "https://github.com/Hamza5" },
+    { label: "LinkedIn",      url: "https://www.linkedin.com/in/hamza-abbad/" },
+    { label: "Stack Overflow", url: "https://stackoverflow.com/users/5008968/hamza-abbad" },
   ],
 
   contact: {

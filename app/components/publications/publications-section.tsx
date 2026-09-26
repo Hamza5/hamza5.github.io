@@ -16,7 +16,7 @@ export default function PublicationsSection() {
 
         {/* ── Research Publications ─────────────────────────────────────── */}
         <div className="publications-block">
-          <SectionHeading icon={faBookOpen} title={t("publications.researchPublications")} />
+          <SectionHeading level={1} icon={faBookOpen} title={t("publications.researchPublications")} />
           <div className="timeline-spine-wrapper" style={{ marginTop: "2rem" }}>
             {publications.map((pub, i) => (
               <PublicationCard key={pub.doi} entry={pub} index={i} />

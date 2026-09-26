@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import SectionHeading from "@/app/components/section-heading";
 import ProjectCard from "@/app/components/projects/project-card";
 import { useLocalizedProfile } from "@/app/hooks/use-localized-profile";
+import { useHashScroll } from "@/app/hooks/use-hash-scroll";
 
 interface Props {
   screenshotsById: Record<string, string[]>;
@@ -13,11 +14,13 @@ interface Props {
 export default function ProjectsSection({ screenshotsById }: Props) {
   const { t } = useTranslation();
   const { projects } = useLocalizedProfile();
+  // Cards are deep linked from /case-studies.
+  useHashScroll();
 
   return (
     <section className="timeline-section">
       <div className="timeline-container">
-        <SectionHeading icon={faFolderOpen} title={t("projects.title")} id="projects" />
+        <SectionHeading level={1} icon={faFolderOpen} title={t("projects.title")} id="projects" />
 
         <div className="timeline-spine-wrapper" style={{ marginTop: "2.5rem" }}>
           {projects.map((entry, index) => (

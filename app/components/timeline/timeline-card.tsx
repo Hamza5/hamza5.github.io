@@ -8,8 +8,8 @@ import type { LocalizedTimelineEntry } from "@/app/hooks/use-localized-profile";
 
 function formatYears(startYear: number, endYear: number, present: string): string {
   if (startYear === endYear) return String(startYear);
-  if (endYear > new Date().getFullYear()) return `${startYear} – ${present}`;
-  return `${startYear} – ${endYear}`;
+  if (endYear > new Date().getFullYear()) return `${startYear} - ${present}`;
+  return `${startYear} - ${endYear}`;
 }
 
 interface Props {

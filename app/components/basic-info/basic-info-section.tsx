@@ -65,7 +65,7 @@ export default function BasicInfoSection() {
         <div className="basic-info-grid">
           {/* Contact */}
           <div className="basic-info-card">
-            <SectionHeading icon={faEnvelope} title={t("about.contact")} />
+            <SectionHeading level={1} icon={faEnvelope} title={t("about.contact")} />
             <div className="basic-info-card-body">
               {contact.emails.map((email) => (
                 <ContactItem

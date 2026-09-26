@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     ".agents/**",
+    // Gitignored Agent Manager worktrees, not project source.
+    ".kilo/**",
   ]),
 ]);
 

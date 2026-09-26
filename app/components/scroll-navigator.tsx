@@ -1,35 +1,44 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useParams } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { exactMatchRoute, routes, type RouteEntry } from "@/app/lib/site";
 import { useNavDirection } from "./nav-direction-context";
-
-const PAGE_ORDER = ["/", "/about", "/career", "/projects", "/skills", "/publications"] as const;
 
 /** How many pixels past the boundary (top or bottom) before we navigate. */
 const THRESHOLD = 80;
 /** Minimum ms between two navigations to prevent double-fires. */
 const COOLDOWN = 900;
 
+/**
+ * Wheel/touch navigation between pages.
+ *
+ * The order is the whole site's reading order, not one menu at a time, so
+ * scrolling off the end of the personal pages carries on into the services
+ * pages instead of stopping at the boundary between them.
+ */
 export default function ScrollNavigator() {
   const router = useRouter();
   const pathname = usePathname();
+  const { lang = "en" } = useParams<{ lang: string }>();
   const lastNav = useRef(0);
   const accumulated = useRef(0);
   const { setDirection } = useNavDirection();
 
   useEffect(() => {
-    const currentIdx = PAGE_ORDER.indexOf(pathname as (typeof PAGE_ORDER)[number]);
+    const order = [...routes].sort((a, b) => a.scrollRank - b.scrollRank);
+    const currentIdx = order.indexOf(exactMatchRoute(pathname)!);
 
     const navigate = (direction: 1 | -1) => {
       const now = Date.now();
       if (now - lastNav.current < COOLDOWN) return;
       const nextIdx = currentIdx + direction;
-      if (nextIdx < 0 || nextIdx >= PAGE_ORDER.length) return;
+      if (nextIdx < 0 || nextIdx >= order.length) return;
+      const target: RouteEntry = order[nextIdx];
       lastNav.current = now;
       accumulated.current = 0;
       setDirection(direction);
-      router.push(PAGE_ORDER[nextIdx]);
+      router.push(target.path === "" ? `/${lang}` : `/${lang}${target.path}`);
     };
 
     const onWheel = (e: WheelEvent) => {
@@ -44,12 +53,11 @@ export default function ScrollNavigator() {
         accumulated.current += e.deltaY; // negative
         if (accumulated.current <= -THRESHOLD) navigate(-1);
       } else {
-        // Not at boundary — reset accumulation
+        // Not at boundary, so any partial gesture is stale.
         accumulated.current = 0;
       }
     };
 
-    // Touch support
     let touchStartY = 0;
     const onTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY;
@@ -73,7 +81,7 @@ export default function ScrollNavigator() {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [pathname, router, setDirection]);
+  }, [pathname, router, lang, setDirection]);
 
   return null;
 }

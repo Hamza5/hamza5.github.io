@@ -1,75 +1,46 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faLinkedin,
-  faStackOverflow,
-} from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare, faQrcode } from "@fortawesome/free-solid-svg-icons";
+import { faQrcode } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import ContactQrModal from "./contact-qr-modal";
+import Icon from "./fa-icon";
+import { localePath, whatsappUrl } from "@/app/lib/site";
 
+/**
+ * Two calls to action, both commercial. GitHub, LinkedIn and Stack Overflow
+ * used to sit here too, which made the hero a wall of buttons; they now live
+ * with the rest of the social links at the bottom of the home page, and on the
+ * contact page.
+ */
 export default function HeroActions() {
   const [qrOpen, setQrOpen] = useState(false);
   const { t } = useTranslation();
+  const { lang = "en" } = useParams<{ lang: string }>();
 
   return (
     <>
       <div className="entrance-5 flex flex-wrap items-center justify-center gap-3">
-        <a
-          href="https://github.com/Hamza5"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary"
-        >
-          <FontAwesomeIcon
-            icon={faGithub}
-            style={{ width: "1.125rem", height: "1.125rem" }}
-          />
-          <span>{t("hero.checkOutMyCode")}</span>
-          <FontAwesomeIcon
-            icon={faArrowUpRightFromSquare}
-            style={{ width: "0.75rem", height: "0.75rem", opacity: 0.7 }}
-          />
-        </a>
+        <Link href={localePath(lang, "/services")} className="btn-primary">
+          <Icon name="briefcase" style={{ width: "1.05rem", height: "1.05rem" }} />
+          <span>{t("nav.services")}</span>
+        </Link>
 
         <a
-          href="https://stackoverflow.com/users/5008968/hamza-abbad"
+          href={whatsappUrl(t("common.ctaWhatsapp"))}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-secondary btn-stackoverflow"
+          className="btn-primary btn-whatsapp"
         >
-          <FontAwesomeIcon
-            icon={faStackOverflow}
-            style={{ width: "1rem", height: "1rem" }}
-          />
-          <span>Stack Overflow</span>
+          <Icon name="whatsapp" style={{ width: "1.125rem", height: "1.125rem" }} />
+          <span>{t("common.ctaWhatsapp")}</span>
         </a>
 
-        <a
-          href="https://www.linkedin.com/in/hamza-abbad/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-secondary btn-linkedin"
-        >
-          <FontAwesomeIcon
-            icon={faLinkedin}
-            style={{ width: "1rem", height: "1rem" }}
-          />
-          <span>LinkedIn</span>
-        </a>
-
-        <button
-          onClick={() => setQrOpen(true)}
-          className="btn-secondary btn-qr"
-          aria-label={t("hero.shareContact")}
-        >
-          <FontAwesomeIcon
-            icon={faQrcode}
-            style={{ width: "1rem", height: "1rem" }}
-          />
+        <button onClick={() => setQrOpen(true)} className="btn-secondary btn-qr">
+          <FontAwesomeIcon icon={faQrcode} style={{ width: "1rem", height: "1rem" }} />
           <span>{t("hero.shareContact")}</span>
         </button>
       </div>

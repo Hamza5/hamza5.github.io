@@ -54,7 +54,7 @@ export default function ProjectCard({ entry, index, screenshots }: Props) {
       </div>
 
       <div className="timeline-card-col">
-        <div className="timeline-card project-card">
+        <div id={entry.id} className="timeline-card project-card">
           <div className="project-card-top">
             <div className="project-card-title-row">
               <span className="project-card-title">{entry.title}</span>

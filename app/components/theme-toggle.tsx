@@ -1,44 +1,65 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useSyncExternalStore } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
-function readPreferredTheme(): boolean | null {
-  if (typeof window === "undefined") return null;
+/** Bumped on every toggle so useSyncExternalStore knows to re-read. */
+const THEME_EVENT = "themechange";
 
-  const stored = localStorage.getItem("theme");
-  if (stored) return stored === "dark";
+const DARK_QUERY = "(prefers-color-scheme: dark)";
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+function subscribe(onChange: () => void) {
+  window.addEventListener(THEME_EVENT, onChange);
+  return () => window.removeEventListener(THEME_EVENT, onChange);
+}
+
+function getSnapshot() {
+  return document.documentElement.classList.contains("dark");
+}
+
+/** The server cannot know the preference, so it renders neither class. */
+function getServerSnapshot() {
+  return false;
+}
+
+function preferredDark(): boolean {
+  try {
+    const stored = window.localStorage.getItem("theme");
+    if (stored) return stored === "dark";
+  } catch {
+    // Private mode; fall through to the OS preference.
+  }
+  return window.matchMedia(DARK_QUERY).matches;
 }
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState<boolean | null>(() => readPreferredTheme());
+  const isDark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const { t } = useTranslation();
 
-  // useLayoutEffect runs synchronously before the browser paints.
-  // This re-derives and re-applies the correct theme from storage/system
-  // preference in case React's hydration (triggered by lang/dir mismatches
-  // on <html> for non-English locales) overwrote the class set by the
-  // inline themeScript.
+  // React 19 owns the attributes of the <html> element it renders, and
+  // re-renders the layout whenever the [lang] segment changes. That wipes the
+  // `dark` class, which is why changing language used to reset the theme.
+  // There is nowhere to move the class to that React does not also own, and a
+  // static export cannot read the stored preference on the server, so the
+  // theme is re-asserted from storage after every commit. A layout effect runs
+  // before paint, so this is not visible as a flash.
   useLayoutEffect(() => {
-    if (isDark === null) return;
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
+    document.documentElement.classList.toggle("dark", preferredDark());
+  });
 
-  const toggle = () => {
-    if (isDark === null) return;
-    const newDark = !isDark;
-    // Always persist the explicit choice so it survives every refresh.
-    localStorage.setItem("theme", newDark ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", newDark);
-    setIsDark(newDark);
-  };
-
-  // Don't render until the client knows the active mode — prevents icon flash.
-  if (isDark === null) return null;
+  const toggle = useCallback(() => {
+    const next = !document.documentElement.classList.contains("dark");
+    document.documentElement.classList.toggle("dark", next);
+    // Always persist the explicit choice so it survives every reload.
+    try {
+      window.localStorage.setItem("theme", next ? "dark" : "light");
+    } catch {
+      // Private mode: the class still applies for this page view.
+    }
+    window.dispatchEvent(new Event(THEME_EVENT));
+  }, []);
 
   return (
     <button
