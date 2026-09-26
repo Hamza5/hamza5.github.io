@@ -22,6 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { Location } from "../../data/profile";
+import region from "../../data/map-region.json";
 
 interface LocationMapProps {
   location: Location & { district?: string; city: string; country: string };
@@ -270,15 +271,27 @@ export default function LocationMap({ location }: LocationMapProps) {
     return () => observer.disconnect();
   }, []);
 
-  const tileUrl = isDark
-    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-    : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+  const tileUrl = `/maptiles/${isDark ? region.styles.dark : region.styles.light}/{z}/{x}/{y}${region.retina ? "{r}" : ""}.png`;
 
+  // Tiles are pre-rendered at build time by scripts/generate-map-tiles.mjs and
+  // served from our own origin — CARTO's CDN needs an API key, and a key the
+  // browser has to send would have to live in the public bundle.
+  //
+  // Only a window of tiles exists per zoom level, so the view is pinned to the
+  // location rather than allowed to roam: dragging is off and every zoom
+  // gesture is in "center" mode, which zooms about the middle of the card and
+  // leaves the centre where it is. That keeps the requested tiles inside the
+  // generated window at every zoom, which is what makes the small window safe.
   return (
     <div className="location-map-wrapper">
       <MapContainer
         center={center}
-        zoom={11}
+        zoom={region.minZoom}
+        minZoom={region.minZoom}
+        maxZoom={region.maxZoom}
+        dragging={false}
+        doubleClickZoom="center"
+        touchZoom="center"
         scrollWheelZoom={false}
         zoomControl={false}
         className="location-map"

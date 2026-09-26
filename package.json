@@ -3,7 +3,9 @@
   "version": "0.2.5",
   "private": true,
   "scripts": {
+    "predev": "node scripts/generate-map-tiles.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/generate-map-tiles.mjs",
     "build": "next build",
     "postbuild": "node scripts/finalize-og-images.mjs",
     "start": "npx serve out",

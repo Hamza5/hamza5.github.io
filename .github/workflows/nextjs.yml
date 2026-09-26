@@ -73,8 +73,13 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        # `npm run build` so the postbuild hook can name the social cards .png
+        # `npm run build` so the prebuild hook can pre-render the location map's
+        # tiles, and the postbuild hook can name the social cards .png.
+        # CARTO basemaps need a key; it stays in the runner's env, never in the
+        # bundle, because the tiles are baked into the export.
         run: npm run build
+        env:
+          BASEMAPS_API_KEY: ${{ secrets.BASEMAPS_API_KEY }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

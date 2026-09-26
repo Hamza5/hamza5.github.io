@@ -1,0 +1,18 @@
+{
+  "$comment": "Bounded tile pyramid for the location map, centred on profile.location. The map's view is pinned to the location (no dragging, and every zoom gesture keeps the centre fixed), so `window` only has to cover what Leaflet loads: the card plus the half-screen buffer it keeps on each side, and it shrinks geographically as you zoom in. `viewport` is the largest the card ever gets, from .basic-info-container's max-width — the script refuses to build if `window` is too small to cover it. `retina: true` additionally emits @2x tiles and makes the map request them (roughly 2.5x the bytes).",
+  "minZoom": 11,
+  "maxZoom": 15,
+  "window": {
+    "x": 9,
+    "y": 5
+  },
+  "viewport": {
+    "width": 1152,
+    "height": 340
+  },
+  "retina": false,
+  "styles": {
+    "light": "light_all",
+    "dark": "dark_all"
+  }
+}

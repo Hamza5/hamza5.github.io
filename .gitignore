@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# map tiles, pre-rendered at build time by scripts/generate-map-tiles.mjs
+/public/maptiles/
+
 # vercel
 .vercel
 
