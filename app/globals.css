@@ -2787,9 +2787,11 @@ a.contact-card--primary:hover {
 }
 
 /* ─── Root language gate ──────────────────────────────────────────────────
-   Served at "/" as a real page. It redirects to the visitor's language on its
-   own, so the name and these links are a quiet fallback for the cases where
-   detection cannot decide or scripting never runs — not a chooser to answer. */
+   Served at "/" as a real page, but only as a last resort: the blocking script
+   in its <head> sends the visitor to their language before this paints, and a
+   <noscript> refresh covers scripting being off. What is left here is the name
+   and the three language links — the final fallback, and the only reason this
+   stylesheet block exists. */
 .locale-gate {
   min-height: 100vh;
   display: flex;
@@ -2850,16 +2852,6 @@ a.contact-card--primary:hover {
 .locale-gate-link:hover {
   border-color: var(--accent-cyan);
   transform: translateY(-2px);
-}
-
-.locale-gate-services {
-  font-size: 0.875rem;
-  color: var(--fg-muted);
-  text-decoration: none;
-}
-.locale-gate-services:hover {
-  color: var(--accent-cyan);
-  text-decoration: underline;
 }
 
 /* ─── Icon card: one rule for every card whose mark is an icon ───────────────

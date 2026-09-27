@@ -1,6 +1,7 @@
 "use client";
 
 import { localeMeta, locales } from "@/app/lib/locales";
+import { LANG_STORAGE_KEY } from "@/app/lib/locale-redirect";
 import { localePath } from "@/app/lib/site";
 
 /**
@@ -23,7 +24,7 @@ export default function LocaleGateLinks() {
             hrefLang={localeMeta[code].htmlLang}
             onClick={() => {
               try {
-                window.localStorage.setItem("lang", code);
+                window.localStorage.setItem(LANG_STORAGE_KEY, code);
               } catch {
                 // Private mode — the URL is authoritative anyway.
               }

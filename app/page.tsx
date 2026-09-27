@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Orbitron, Space_Grotesk, Cairo } from "next/font/google";
 import { getMessages } from "@/app/lib/messages";
 import { absoluteUrl, localeAlternates, localePath, ogImageUrl } from "@/app/lib/site";
-import LocaleRedirect from "./components/locale-redirect";
+import { defaultLocale } from "@/app/lib/locales";
+import {
+  localeRedirectConfig,
+  localeRedirectScript,
+  localeUrl,
+} from "@/app/lib/locale-redirect";
 import LocaleGateLinks from "./components/locale-gate-links";
 import "./globals.css";
 
@@ -16,10 +21,19 @@ const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-cairo", di
 
 const messages = getMessages("en");
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 /**
- * Canonical points at /en because this page renders the English content; the
+ * Canonical points at /en because that is where this page's content lives; the
  * hreflang set is the same one every other page uses, in absolute form since
  * this page has no layout to inherit metadataBase from.
+ *
+ * noindex because the page is a redirect stub rather than a page of its own: the
+ * copy below is a fallback for browsers that never run the redirect, and
+ * indexing it would put a near-duplicate of /en in the index.
  */
 export const metadata: Metadata = {
   title: messages.seo.home.title,
@@ -44,7 +58,7 @@ export const metadata: Metadata = {
     description: messages.seo.home.description,
     images: [absoluteUrl(ogImageUrl("en", ""))],
   },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 const themeScript = `(function(){
@@ -59,13 +73,14 @@ const themeScript = `(function(){
  * This used to be a hand-written file in public/ that only redirected. Rendering
  * a real page instead means the export produces out/index.html the same way it
  * produces every other file, so the site cannot end up with a missing or stale
- * homepage, and there is something meaningful to show if scripting is off.
+ * homepage.
  *
- * The visitor is not asked to choose: LocaleRedirect sends them to their saved
- * language, or the one their browser asks for, without a chooser in the way.
- * What is left here is the name and a small set of language links, which cover
- * the case where detection cannot decide and the case where scripting never runs
- * at all.
+ * The visitor is never asked to choose. Three layers, in order of preference:
+ * the blocking script in <head> redirects to their saved language or their
+ * browser's, before anything is painted; a <noscript> refresh covers scripting
+ * being off; the language links below are what remains if both are unavailable.
+ * Nothing here should ever be the page somebody reads, which is why the copy is
+ * just a name, a tagline and those links.
  *
  * There is no root layout, so the document shell and the stylesheet are declared
  * here, the way app/not-found.tsx does it.
@@ -74,21 +89,28 @@ export default function RootPage() {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
+        {/* First thing in the document: the language is resolved, and the
+            navigation started, before the browser has anything to paint. */}
+        <script dangerouslySetInnerHTML={{ __html: localeRedirectScript() }} />
+        {/* Read back by scripts/generate-entry-points.mjs, which writes the
+            same redirect for every un-prefixed path. */}
+        <script
+          type="application/json"
+          id="locale-config"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localeRedirectConfig()) }}
+        />
+        <noscript>
+          <meta http-equiv="refresh" content={`0; url=${localeUrl(defaultLocale)}`} />
+        </noscript>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
         <main className={`locale-gate ${orbitron.variable} ${spaceGrotesk.variable} ${cairo.variable}`}>
-          <LocaleRedirect />
-
           <div className="locale-gate-inner">
             <h1 className="locale-gate-name">{messages.profile.fullName}</h1>
             <p className="locale-gate-subtitle">{messages.profile.shortDescription}</p>
 
             <LocaleGateLinks />
-
-            <a href={absoluteUrl("/")} className="locale-gate-services">
-              {messages.nav.services}
-            </a>
           </div>
         </main>
       </body>

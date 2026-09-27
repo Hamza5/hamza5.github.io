@@ -7,7 +7,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/generate-map-tiles.mjs",
     "build": "next build",
-    "postbuild": "node scripts/finalize-og-images.mjs",
+    "postbuild": "node scripts/finalize-og-images.mjs && node scripts/generate-entry-points.mjs",
     "start": "npx serve out",
     "lint": "eslint"
   },

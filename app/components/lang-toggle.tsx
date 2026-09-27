@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { localeMeta, locales, type Locale } from "@/app/lib/locales";
+import { LANG_STORAGE_KEY } from "@/app/lib/locale-redirect";
 
 /**
  * The three languages are three different URLs, not a client-side text swap, so
@@ -27,7 +28,7 @@ export default function LangToggle({ locale }: { locale: Locale }) {
           // straight back to the language they chose.
           onClick={() => {
             try {
-              localStorage.setItem("lang", code);
+              localStorage.setItem(LANG_STORAGE_KEY, code);
             } catch {
               // Private mode — the URL is authoritative anyway.
             }
