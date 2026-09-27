@@ -15,8 +15,9 @@ interface SectorCardProps {
 }
 
 /**
- * The illustration is the card's mark, as on the offer cards, and is decorative
- * because the heading below it already names the sector.
+ * The layout mirrors the offer cards: copy on the reading side, art on the
+ * trailing side, the art blended into the card rather than boxed. The art is
+ * decorative because the heading already names the sector.
  */
 export default function SectorCard({ sector, headingLevel = "h3" }: SectorCardProps) {
   const { lang } = useParams<{ lang: string }>();
@@ -29,14 +30,6 @@ export default function SectorCard({ sector, headingLevel = "h3" }: SectorCardPr
       className="art-card art-card--sector"
       data-sector={sector.id}
     >
-      <Illustration
-        src={sector.image.src}
-        width={sector.image.width}
-        height={sector.image.height}
-        alt=""
-        aspect="4 / 3"
-        className="art-card-art"
-      />
       <div className="art-card-body">
         <Heading className="art-card-title">{sector.name}</Heading>
         <p className="art-card-text">{sector.tagline}</p>
@@ -44,6 +37,14 @@ export default function SectorCard({ sector, headingLevel = "h3" }: SectorCardPr
           <span>{t("common.readMore")}</span>
           <Icon name="arrowRight" />
         </span>
+      </div>
+      <div className="art-card-media">
+        <Illustration
+          src={sector.image.src}
+          width={sector.image.width}
+          height={sector.image.height}
+          alt=""
+        />
       </div>
     </Link>
   );

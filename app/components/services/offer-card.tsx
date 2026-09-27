@@ -10,24 +10,24 @@ import type { LocalizedOffer } from "@/app/hooks/use-localized-services";
  * nowhere. The sector cards below it are real links, because each sector does
  * have its own page.
  *
- * The illustration is decorative: the title right below already names the
- * service, so the art carries an empty alt rather than repeating it to a screen
- * reader.
+ * The layout is a split: copy on the reading side, art on the trailing side. The
+ * illustration is decorative — the title already names the service, so the art
+ * carries an empty alt rather than repeating it to a screen reader.
  */
 export default function OfferCard({ offer }: { offer: LocalizedOffer }) {
   return (
     <article className="art-card art-card--offer">
-      <Illustration
-        src={offer.image.src}
-        width={offer.image.width}
-        height={offer.image.height}
-        alt=""
-        aspect="4 / 3"
-        className="art-card-art"
-      />
       <div className="art-card-body">
         <h3 className="art-card-title">{offer.title}</h3>
         <p className="art-card-text">{offer.description}</p>
+      </div>
+      <div className="art-card-media">
+        <Illustration
+          src={offer.image.src}
+          width={offer.image.width}
+          height={offer.image.height}
+          alt=""
+        />
       </div>
     </article>
   );

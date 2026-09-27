@@ -7,6 +7,7 @@ import ThemeToggle from "../components/theme-toggle";
 import LangToggle from "../components/lang-toggle";
 import Nav from "../components/nav";
 import ScrollNavigator from "../components/scroll-navigator";
+import Credits from "../components/credits";
 import I18nProvider from "../components/i18n-provider";
 import { NavDirectionProvider } from "../components/nav-direction-context";
 import StructuredData from "../components/structured-data";
@@ -161,6 +162,7 @@ export default async function LocaleLayout({
             <Nav />
             <ScrollNavigator />
             {children}
+            <Credits />
             <GoogleTagManager gtmId="G-WP1TDQXLS6" />
           </NavDirectionProvider>
         </I18nProvider>

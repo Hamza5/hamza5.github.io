@@ -50,7 +50,6 @@ export default function SectorSection({ sectorId }: { sectorId: string }) {
               width={sector.image.width}
               height={sector.image.height}
               alt={sector.name}
-              aspect="1 / 1"
               priority
             />
           </div>

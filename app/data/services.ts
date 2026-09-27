@@ -19,15 +19,15 @@ export interface OfferEntry {
   id: "website" | "dataCollection" | "automation" | "digitization";
   /** The home page band's icon. The /services card shows the illustration. */
   icon: string;
-  /** unDraw illustration: the card's mark on /services, and the social card art. */
+  /** Storyset illustration: the card's mark on /services, and the social card art. */
   image: Art;
 }
 
 export const offers: OfferEntry[] = [
-  { id: "website", icon: "globe", image: { src: "/images/services/offer-website.svg", width: 400, height: 387 } },
-  { id: "dataCollection", icon: "tableList", image: { src: "/images/services/offer-data.svg", width: 400, height: 336 } },
-  { id: "automation", icon: "robot", image: { src: "/images/services/offer-automation.svg", width: 400, height: 389 } },
-  { id: "digitization", icon: "folderTree", image: { src: "/images/services/offer-digitization.svg", width: 400, height: 314 } },
+  { id: "website", icon: "globe", image: { src: "/images/services/offer-website.svg", width: 750, height: 500 } },
+  { id: "dataCollection", icon: "tableList", image: { src: "/images/services/offer-data.svg", width: 750, height: 500 } },
+  { id: "automation", icon: "robot", image: { src: "/images/services/offer-automation.svg", width: 500, height: 500 } },
+  { id: "digitization", icon: "folderTree", image: { src: "/images/services/offer-digitization.svg", width: 500, height: 500 } },
 ];
 
 // ---------------------------------------------------------------------------
@@ -59,35 +59,35 @@ export const sectors: SectorEntry[] = [
     id: "realEstate",
     path: "/services/real-estate",
     icon: "building",
-    image: { src: "/images/services/sector-real-estate.svg", width: 400, height: 312 },
+    image: { src: "/images/services/sector-real-estate.svg", width: 500, height: 500 },
     caseStudyIds: ["realEstateTemplate"],
   },
   {
     id: "ecommerce",
     path: "/services/ecommerce",
     icon: "cartShopping",
-    image: { src: "/images/services/sector-ecommerce.svg", width: 400, height: 377 },
+    image: { src: "/images/services/sector-ecommerce.svg", width: 750, height: 500 },
     caseStudyIds: ["priceWatch", "digitalShelf"],
   },
   {
     id: "socialMedia",
     path: "/services/social-media",
     icon: "hashtag",
-    image: { src: "/images/services/sector-social-media.svg", width: 400, height: 222 },
+    image: { src: "/images/services/sector-social-media.svg", width: 500, height: 500 },
     caseStudyIds: ["contentAutomation"],
   },
   {
     id: "healthcare",
     path: "/services/healthcare",
     icon: "stethoscope",
-    image: { src: "/images/services/sector-healthcare.svg", width: 400, height: 635 },
+    image: { src: "/images/services/sector-healthcare.svg", width: 500, height: 500 },
     caseStudyIds: ["patientsTimetable"],
   },
   {
     id: "manufacturing",
     path: "/services/manufacturing",
     icon: "gears",
-    image: { src: "/images/services/sector-manufacturing.svg", width: 400, height: 242 },
+    image: { src: "/images/services/sector-manufacturing.svg", width: 750, height: 500 },
     caseStudyIds: ["smrisTools"],
   },
 ];

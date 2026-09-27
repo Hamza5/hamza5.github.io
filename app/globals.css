@@ -1803,24 +1803,68 @@ body {
   border: 0;
 }
 
-/* ─── Illustration art board ────────────────────────────────────────────── */
-/* unDraw art is drawn with dark ink, so it always sits on its own light
-   surface rather than on the themed page background. One constant colour
-   keeps every illustration legible in both light and dark mode. */
+/* ─── Illustration frame ───────────────────────────────────────────────── */
+/* The art is a Storyset illustration with a transparent background, kept in its
+   authored colours: white lab coats stay white, screens stay light, skin stays
+   true. Nothing here re-paints it. The frame is only a layout box, so the
+   illustration sits directly on the card with no plate and no glow. */
 .illustration-frame {
-  background: #eef1fb;
-  border-radius: 0.875rem;
-  border: 1px solid color-mix(in srgb, var(--fg-muted) 18%, transparent);
-  padding: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  line-height: 0;
 }
 
 .illustration-frame img {
   display: block;
-  mix-blend-mode: multiply;
+  width: 100%;
+  height: auto;
+}
+
+/* Dark theme: the art's dark ink (#263238) is almost exactly the dark card
+   surface (#2e2f3b), so dark garments and hair sink into the card — the legs of
+   a figure simply disappear. Rather than re-colour the artwork, a light rim is
+   dropped around its silhouette. `drop-shadow` follows the alpha channel, so the
+   rim traces the real outline: it shows where dark meets the card and stays
+   invisible over the white coat and the light screens, which already separate
+   themselves. Tune the strength via --art-rim. */
+.dark {
+  --art-rim:
+    drop-shadow(0 0 1px rgba(255, 255, 255, 0.62))
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.38))
+    drop-shadow(0 0 5px rgba(200, 214, 255, 0.22));
+}
+
+.dark .illustration-frame img {
+  filter: var(--art-rim);
+}
+
+/* ─── Site credits ──────────────────────────────────────────────────────── */
+/* Required by the Storyset/Freepik licence, so it is a full-width band on
+   every page rather than a line hidden at the bottom of a colophon. Kept
+   quiet: small, muted, no rule competing with the content above it. */
+.site-credits {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1.25rem 2.5rem;
+}
+
+.site-credits-text {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--fg-muted);
+  text-align: center;
+}
+
+.site-credits-link {
+  color: color-mix(in srgb, var(--fg-muted) 70%, var(--fg));
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.site-credits-link:hover {
+  color: var(--fg);
 }
 
 /* ─── Shared page scaffolding ───────────────────────────────────────────── */
@@ -1883,8 +1927,8 @@ body {
 }
 
 /* ─── Offer and sector card grids (services hub) ────────────────────────────
-   Both hold art cards: a 4/3 illustration board over a short block of text. The
-   columns stay few enough that the board keeps a usable size at every width. */
+   Both hold art cards, which are a split: copy plus art. The columns stay at
+   two because a third would squeeze the art column too far to read. */
 .offers-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -1906,12 +1950,6 @@ body {
 @media (min-width: 620px) {
   .sectors-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1120px) {
-  .sectors-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -2581,7 +2619,7 @@ a.contact-card--primary:hover {
 @media (prefers-reduced-motion: reduce) {
   .icon-card,
   .art-card,
-  .art-card-art img,
+  .art-card-media img,
   .case-card,
   .sector-related-link,
   .home-band-offer,
@@ -2590,7 +2628,7 @@ a.contact-card--primary:hover {
   }
   a.icon-card:hover,
   a.art-card:hover,
-  a.art-card:hover .art-card-art img,
+  a.art-card:hover .art-card-media img,
   .sector-related-link:hover,
   .home-band-offer:hover {
     transform: none;
@@ -3359,23 +3397,29 @@ a.icon-card--primary:hover {
 
 /* ─── Art card: offer and sector cards ──────────────────────────────────────
    The offer and sector cards show the illustration as their mark. The card is a
-   column: art on a fixed 4/3 board so rows line up despite the source files
-   having different proportions, then the text beneath it. */
+   split: copy on the reading side, art on the trailing side. Grid columns
+   follow the writing direction, so the art moves to the other edge in Arabic
+   without a separate rule. Below 620px the split collapses and the art sits
+   above the copy, because a 40%-wide column is too narrow to read art in. */
 .art-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.15rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem 1rem;
   background: var(--card-bg);
   border: 1px solid color-mix(in srgb, var(--fg-muted) 25%, transparent);
   border-radius: 1rem;
-  padding: 1.15rem 1.15rem 1.35rem;
+  padding: 1.15rem;
   text-decoration: none;
+  overflow: hidden;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
-.art-card-art {
-  /* The frame already draws the board; this only tunes its weight. */
-  border-radius: 0.875rem;
+@media (min-width: 620px) {
+  .art-card {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    padding: 1.35rem 1.4rem;
+  }
 }
 
 .art-card-body {
@@ -3383,7 +3427,18 @@ a.icon-card--primary:hover {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
-  flex: 1;
+  min-width: 0;
+}
+
+/* The art is the trailing column. It keeps its own proportions and is never
+   cropped, so the bloom behind it has room to fade into the card padding
+   rather than being cut off at a hard edge. */
+.art-card-media {
+  min-width: 0;
+}
+
+.art-card-media img {
+  transition: transform 0.25s ease;
 }
 
 a.art-card:hover {
@@ -3392,18 +3447,8 @@ a.art-card:hover {
   box-shadow: 0 12px 30px color-mix(in srgb, var(--glow-cyan) 14%, transparent);
 }
 
-a.art-card:hover .art-card-art img {
-  transform: scale(1.03);
-}
-
-.art-card-art img {
-  transition: transform 0.25s ease;
-}
-
-@media (min-width: 620px) {
-  .art-card {
-    padding: 1.35rem 1.4rem 1.5rem;
-  }
+a.art-card:hover .art-card-media img {
+  transform: scale(1.04);
 }
 
 .art-card-title {

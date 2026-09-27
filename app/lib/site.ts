@@ -37,7 +37,7 @@ export interface RouteEntry {
   icon: string;
   /** Key into messages: `seo.<seoKey>` and `og.<seoKey>`. */
   seoKey: string;
-  /** unDraw illustration shown on this page's social card. */
+  /** Storyset illustration shown on this page's social card. */
   ogImage: string;
   /** Short label for the social card's corner tag (services pages only). */
   ogTag?: string;
