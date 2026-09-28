@@ -2040,9 +2040,14 @@ body {
   max-width: 38rem;
 }
 
+/* Plain block, not a flex container: the illustration's `width: 100%` needs a
+   definite containing width. As a flex item the frame's base size is content
+   derived, so the percentage resolves against an indefinite width — Firefox
+   sizes that to 0 and the art collapses to nothing, while Chrome falls back to
+   the image's intrinsic size. Centring is already done by max-width +
+   margin-inline, so flex bought nothing here. Matches .art-card-media. */
 .sector-hero-media {
-  display: flex;
-  justify-content: center;
+  display: block;
   max-width: 26rem;
   margin-inline: auto;
   width: 100%;

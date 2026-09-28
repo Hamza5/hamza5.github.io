@@ -23,11 +23,15 @@ export interface OfferEntry {
   image: Art;
 }
 
+// The sizes below are the *trimmed* intrinsic sizes, printed by
+// `node scripts/storyset-illustrations.mjs`. They must be refreshed whenever
+// that script runs: the art is laid out by width (`img { width: 100% }`), so a
+// stale ratio both reserves the wrong box and lets the drawing sit small in it.
 export const offers: OfferEntry[] = [
-  { id: "website", icon: "globe", image: { src: "/images/services/offer-website.svg", width: 750, height: 500 } },
-  { id: "dataCollection", icon: "tableList", image: { src: "/images/services/offer-data.svg", width: 750, height: 500 } },
-  { id: "automation", icon: "robot", image: { src: "/images/services/offer-automation.svg", width: 500, height: 500 } },
-  { id: "digitization", icon: "folderTree", image: { src: "/images/services/offer-digitization.svg", width: 500, height: 500 } },
+  { id: "website", icon: "globe", image: { src: "/images/services/offer-website.svg", width: 584, height: 445 } },
+  { id: "dataCollection", icon: "tableList", image: { src: "/images/services/offer-data.svg", width: 638, height: 426 } },
+  { id: "automation", icon: "robot", image: { src: "/images/services/offer-automation.svg", width: 444, height: 457 } },
+  { id: "digitization", icon: "folderTree", image: { src: "/images/services/offer-digitization.svg", width: 442, height: 474 } },
 ];
 
 // ---------------------------------------------------------------------------
@@ -59,35 +63,35 @@ export const sectors: SectorEntry[] = [
     id: "realEstate",
     path: "/services/real-estate",
     icon: "building",
-    image: { src: "/images/services/sector-real-estate.svg", width: 500, height: 500 },
+    image: { src: "/images/services/sector-real-estate.svg", width: 438, height: 419 },
     caseStudyIds: ["realEstateTemplate"],
   },
   {
     id: "ecommerce",
     path: "/services/ecommerce",
     icon: "cartShopping",
-    image: { src: "/images/services/sector-ecommerce.svg", width: 750, height: 500 },
+    image: { src: "/images/services/sector-ecommerce.svg", width: 655, height: 434 },
     caseStudyIds: ["priceWatch", "digitalShelf"],
   },
   {
     id: "socialMedia",
     path: "/services/social-media",
     icon: "hashtag",
-    image: { src: "/images/services/sector-social-media.svg", width: 500, height: 500 },
+    image: { src: "/images/services/sector-social-media.svg", width: 402, height: 386 },
     caseStudyIds: ["contentAutomation"],
   },
   {
     id: "healthcare",
     path: "/services/healthcare",
     icon: "stethoscope",
-    image: { src: "/images/services/sector-healthcare.svg", width: 500, height: 500 },
+    image: { src: "/images/services/sector-healthcare.svg", width: 345, height: 415 },
     caseStudyIds: ["patientsTimetable"],
   },
   {
     id: "manufacturing",
     path: "/services/manufacturing",
     icon: "gears",
-    image: { src: "/images/services/sector-manufacturing.svg", width: 750, height: 500 },
+    image: { src: "/images/services/sector-manufacturing.svg", width: 550, height: 406 },
     caseStudyIds: ["smrisTools"],
   },
 ];
