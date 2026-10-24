@@ -96,6 +96,7 @@ export interface ProjectEntry {
   month?: number;
   tags: string[];
   url?: string;
+  apifyUrl?: string;
   githubUrl?: string;
 }
 
@@ -141,6 +142,7 @@ export const profile: Profile = {
   socialLinks: [
     { label: "Portfolio",     url: "https://hamza5.github.io" },
     { label: "GitHub",        url: "https://github.com/Hamza5" },
+    { label: "Apify",         url: "https://apify.com/hamza325" },
     { label: "LinkedIn",      url: "https://www.linkedin.com/in/hamza-abbad/" },
     { label: "Stack Overflow", url: "https://stackoverflow.com/users/5008968/hamza-abbad" },
   ],
@@ -251,6 +253,9 @@ export const profile: Profile = {
   ],
 
   projects: [
+    { id: "hamizMultiScraper",           category: "personal",  year: 2026, month: 9,  tags: ["Apify", "Node.js", "Web Scraping"],                                              apifyUrl: "https://apify.com/hamza325/hamiz-multi-scraper" },
+    { id: "tijelabinMultiScraper",       category: "personal",  year: 2026, month: 9,  tags: ["Apify", "Node.js", "Web Scraping"],                                              apifyUrl: "https://apify.com/hamza325/tijelabin-multi-scraper" },
+    { id: "ouedknissMultiScraper",       category: "personal",  year: 2026, month: 8,  tags: ["Apify", "Node.js", "REST API", "Web Scraping"],                                 apifyUrl: "https://apify.com/hamza325/ouedkniss-multi-scraper" },
     { id: "pftSmrisWebsite",             category: "work",      year: 2026, month: 5,  tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],                               url: "https://smris-crti.dz" },
     { id: "upTribe",                     category: "personal",  year: 2026, month: 3,  tags: ["Next.js", "React", "Convex", "PrimeReact", "Tailwind CSS"],                   url: "https://uptribe.cc" },
     { id: "fileBrain",                     category: "personal",  year: 2026, month: 1,  tags: ["Python", "FastAPI", "Typesense", "React", "PrimeReact", "SQLite"],                 url: "https://file-brain.com/",      githubUrl: "https://github.com/Hamza5/file-brain" },

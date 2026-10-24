@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faCloud } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import type { ProjectCategory } from "@/app/data/profile";
 import type { LocalizedProjectEntry } from "@/app/hooks/use-localized-profile";
@@ -76,7 +76,7 @@ export default function ProjectCard({ entry, index, screenshots }: Props) {
             </div>
           )}
 
-          {(entry.githubUrl || entry.url) && (
+          {(entry.githubUrl || entry.apifyUrl || entry.url) && (
             <div className="project-links">
               {entry.githubUrl && (
                 <a
@@ -88,6 +88,18 @@ export default function ProjectCard({ entry, index, screenshots }: Props) {
                 >
                   <FontAwesomeIcon icon={faGithub} />
                   <span>{t("projects.github")}</span>
+                </a>
+              )}
+              {entry.apifyUrl && (
+                <a
+                  href={entry.apifyUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="project-link-btn"
+                  aria-label="Apify Actor"
+                >
+                  <FontAwesomeIcon icon={faCloud} />
+                  <span>{t("projects.apify")}</span>
                 </a>
               )}
               {entry.url && (

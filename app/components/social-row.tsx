@@ -4,19 +4,21 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
+import { faCloud } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { profile } from "@/app/data/profile";
 
 const ICONS: Record<string, Parameters<typeof FontAwesomeIcon>[0]["icon"]> = {
   GitHub: faGithub,
+  Apify: faCloud,
   LinkedIn: faLinkedin,
   "Stack Overflow": faStackOverflow,
 };
 
 /**
  * Where the social links went when they were taken out of the hero. Kept to the
- * three that show code and professional work, since those are the ones that
- * matter to a prospective client.
+ * channels that show code, data work and professional experience, since those
+ * are the ones that matter to a prospective client.
  */
 export default function SocialRow() {
   const { t } = useTranslation();

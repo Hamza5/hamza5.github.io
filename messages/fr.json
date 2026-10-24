@@ -61,6 +61,7 @@
     "title": "Projets",
     "github": "GitHub",
     "live": "En ligne",
+    "apify": "Apify",
     "categories": {
       "personal": "Personnel",
       "freelance": "Freelance",
@@ -211,7 +212,7 @@
             "description": "Tableurs désordonnés provenant des fournisseurs, noms incohérents, images manquantes, transformés en un catalogue propre et organisé, prêt à publier."
           }
         },
-        "proof": "J'ai développé des outils de suivi de prix qui surveillent des milliers d'annonces produits et envoient des alertes instantanées dès qu'un concurrent baisse son prix. C'est le même type de travail que j'ai réalisé professionnellement pour des entreprises spécialisées dans l'intelligence commerciale."
+        "proof": "J'ai développé des outils de suivi de prix qui surveillent des milliers d'annonces produits et envoient des alertes instantanées dès qu'un concurrent baisse son prix. Trois d'entre eux sont publiés sur Apify — OuedKniss, Tijelabin et Hamiz — le même type de travail que j'ai réalisé professionnellement pour des entreprises spécialisées dans l'intelligence commerciale."
       },
       "socialMedia": {
         "name": "Créateurs et petites marques",
@@ -301,6 +302,10 @@
     "intro": "Le travail derrière les services. Il s'agit de projets réels, décrits en termes du problème résolu plutôt que de la technologie utilisée.",
     "supportsLabel": "Concerne",
     "items": {
+      "marketplaceScrapers": {
+        "title": "Trois scrapers de places de marché, publiés sur Apify",
+        "description": "Conception et publication de trois Actors de production qui transforment les places de marché algériennes en données structurées : les annonces OuedKniss, les listings Tijelabin et les produits Hamiz. Chacun gère la recherche, les catégories, les vendeurs et les pages de détail du site, normalise les prix en dinar algérien et produit un schéma plat prêt pour un tableur, une base de données ou une surveillance automatisée des prix."
+      },
       "priceWatch": {
         "title": "Surveillance automatique des prix et alertes de bonnes affaires",
         "description": "Développement d'un outil qui surveille des milliers d'annonces produits sur des places de marché en ligne et publie des alertes instantanées dès qu'un prix baisse. La vérification manuelle qui prenait des heures se fait désormais automatiquement, toutes les quelques minutes, sans que personne ne surveille un écran."
@@ -490,6 +495,18 @@
       "usthbBachelor": { "title": "Licence en Informatique" }
     },
     "projects": {
+      "hamizMultiScraper": {
+        "title": "Hamiz Multi-Scraper",
+        "description": "Un Actor Apify publié pour la place de marché à prix fixes Hamiz. Il parcourt les pages de recherche, catégorie, vendeur et produit en arabe, français ou anglais, et renvoie les prix en DZD, l'état du stock et les informations vendeur sous forme d'enregistrements plats."
+      },
+      "tijelabinMultiScraper": {
+        "title": "Tijelabin Multi-Scraper",
+        "description": "Un Actor Apify publié pour les petites annonces de Tijelabin. Les pages de recherche, catégorie, ville et boutique deviennent des annonces normalisées avec prix en dinar algérien, commune, statut et images, complétées par la découverte de produits similaires."
+      },
+      "ouedknissMultiScraper": {
+        "title": "OuedKniss Multi-Scraper",
+        "description": "Un Actor Apify publié qui transforme n'importe quelle URL OuedKniss en annonces structurées : résultats de recherche filtrés, inventaires de vendeurs ou annonce détaillée avec caractéristiques, galerie et coordonnées. Chaque ligne suit un schéma plat et normalisé, prêt pour un tableur, une base de données ou une surveillance automatisée des prix."
+      },
       "pftSmrisWebsite": {
         "title": "PFT-SMRIS",
         "description": "Site institutionnel de la PFT-SMRIS présentant les missions, les services, les équipements et les coordonnées autour de la fabrication mécanique, du prototypage et de la robotique de service."

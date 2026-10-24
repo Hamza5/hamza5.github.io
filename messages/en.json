@@ -61,6 +61,7 @@
     "title": "Projects",
     "github": "GitHub",
     "live": "Live",
+    "apify": "Apify",
     "categories": {
       "personal": "Personal",
       "freelance": "Freelance",
@@ -211,7 +212,7 @@
             "description": "Messy spreadsheets from suppliers, inconsistent naming, missing images, turned into a clean and organized catalog ready to publish."
           }
         },
-        "proof": "I've built price-tracking tools that watch thousands of product listings and send instant alerts the moment a competitor drops their price. It is the same kind of work I've done professionally for retail-intelligence companies."
+        "proof": "I've built price-tracking tools that watch thousands of product listings and send instant alerts the moment a competitor drops their price. Three of them are published on Apify — OuedKniss, Tijelabin and Hamiz — the same kind of work I've done professionally for retail-intelligence companies."
       },
       "socialMedia": {
         "name": "Creators and small brands",
@@ -301,6 +302,10 @@
     "intro": "The work behind the services. These are real projects, described in terms of the problem that was solved rather than the technology used.",
     "supportsLabel": "Relevant to",
     "items": {
+      "marketplaceScrapers": {
+        "title": "Three marketplace scrapers, published on Apify",
+        "description": "Designed and published three production Actors that turn Algerian marketplaces into structured data: OuedKniss classifieds, Tijelabin listings and Hamiz products. Each one handles the site's own search, category, seller and detail pages, normalizes prices in Algerian Dinar, and outputs a flat schema ready for spreadsheets, databases or automated price monitoring."
+      },
       "priceWatch": {
         "title": "Automatic price watch and deal alerts",
         "description": "Built a tool that watches thousands of product listings across online marketplaces and posts instant alerts the moment a price drops. The kind of manual checking that used to take hours now happens automatically, every few minutes, without anyone watching a screen."
@@ -490,6 +495,18 @@
       "usthbBachelor": { "title": "Bachelor in Computer Science" }
     },
     "projects": {
+      "hamizMultiScraper": {
+        "title": "Hamiz Multi-Scraper",
+        "description": "A published Apify Actor for Hamiz's fixed-price marketplace. It follows search, category, seller and product pages in Arabic, French or English and returns DZD prices, stock state and seller details as flat records."
+      },
+      "tijelabinMultiScraper": {
+        "title": "Tijelabin Multi-Scraper",
+        "description": "A published Apify Actor for Tijelabin's classifieds. Search, category, city and store pages become normalized listings with Algerian Dinar prices, commune, status and images, plus similar-product discovery from any listing."
+      },
+      "ouedknissMultiScraper": {
+        "title": "OuedKniss Multi-Scraper",
+        "description": "A published Apify Actor that turns any OuedKniss URL into structured listings: filtered search results, seller inventories, or a single ad with specs, gallery and contact details. Every row uses one flat, normalized schema ready for a spreadsheet, a database or an automated price watch."
+      },
       "pftSmrisWebsite": {
         "title": "PFT-SMRIS",
         "description": "Institutional website for PFT-SMRIS presenting missions, services, equipment, and contact information for mechanical fabrication, prototyping, and service robotics."

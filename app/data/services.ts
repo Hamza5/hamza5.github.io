@@ -71,7 +71,7 @@ export const sectors: SectorEntry[] = [
     path: "/services/ecommerce",
     icon: "cartShopping",
     image: { src: "/images/services/sector-ecommerce.svg", width: 655, height: 434 },
-    caseStudyIds: ["priceWatch", "digitalShelf"],
+    caseStudyIds: ["marketplaceScrapers", "priceWatch", "digitalShelf"],
   },
   {
     id: "socialMedia",
@@ -125,6 +125,18 @@ export interface CaseStudyEntry {
 }
 
 export const caseStudies: CaseStudyEntry[] = [
+  {
+    id: "marketplaceScrapers",
+    sector: "ecommerce",
+    icon: "tags",
+    screenshot: {
+      src: "/images/projects/ouedknissMultiScraper/1 OuedKniss Multi-Scraper on Apify.png",
+      width: 1440,
+      height: 900,
+      alt: "OuedKniss Multi-Scraper on Apify",
+    },
+    projectIds: ["ouedknissMultiScraper", "tijelabinMultiScraper", "hamizMultiScraper"],
+  },
   {
     id: "priceWatch",
     sector: "ecommerce",
