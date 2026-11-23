@@ -185,7 +185,7 @@
             "description": "Plans PDF et brochures transformés en un catalogue consultable et filtrable que vos clients peuvent explorer eux-mêmes avant même de vous appeler."
           }
         },
-        "proof": "J'ai déjà développé un modèle de site web conçu spécifiquement pour les promoteurs immobiliers. Il est trilingue, pensé pour mobile, avec chaque annonce à un geste d'une conversation WhatsApp."
+        "proof": "J'ai déjà développé un modèle de site web conçu spécifiquement pour les promoteurs immobiliers. Il est trilingue, pensé pour mobile, avec chaque annonce à un geste d'une conversation WhatsApp. Un Actor transforme aussi le registre de garantie du logement FGCMPI en fiches structurées."
       },
       "ecommerce": {
         "name": "Commerçants en ligne",
@@ -212,7 +212,88 @@
             "description": "Tableurs désordonnés provenant des fournisseurs, noms incohérents, images manquantes, transformés en un catalogue propre et organisé, prêt à publier."
           }
         },
-        "proof": "J'ai développé des outils de suivi de prix qui surveillent des milliers d'annonces produits et envoient des alertes instantanées dès qu'un concurrent baisse son prix. Trois d'entre eux sont publiés sur Apify — OuedKniss, Tijelabin et Hamiz — le même type de travail que j'ai réalisé professionnellement pour des entreprises spécialisées dans l'intelligence commerciale."
+        "proof": "J'ai développé des outils de suivi de prix qui surveillent des milliers d'annonces produits et envoient des alertes instantanées dès qu'un concurrent baisse son prix. Cinq d'entre eux sont publiés sur Apify — OuedKniss, Tijelabin, Hamiz, Autobip et Yassir — le même type de travail que j'ai réalisé professionnellement pour des entreprises spécialisées dans l'intelligence commerciale."
+      },
+      "businessDirectories": {
+        "name": "Annuaires d’entreprises",
+        "tagline": "Trouvez les entreprises qu’il vous faut",
+        "headline": "Trouvez les entreprises qu’il vous faut",
+        "audience": "pour les équipes qui constituent une liste de prospects",
+        "intro": "L’annuaire de la Chambre de commerce algérienne et les pages jaunes internationales recensent des milliers d’entreprises, sans moyen pratique de les filtrer ou de les exporter. Je transforme ces annuaires en listes que vous pouvez réellement interroger, trier et contacter.",
+        "serviceType": "Listes d’entreprises et données de prospection issues d’annuaires",
+        "offers": {
+          "leadLists": {
+            "title": "Une liste d’entreprises qui correspondent",
+            "description": "Choisissez le secteur, la ville ou la profession : les entreprises correspondantes arrivent dans un tableau propre."
+          },
+          "directorySweep": {
+            "title": "Des annuaires entiers, pas une seule page",
+            "description": "Arborescences de catégories, pages de villes et fiches entreprises collectées de bout en bout."
+          },
+          "contactEnrichment": {
+            "title": "Les coordonnées avec l’entreprise",
+            "description": "Numéros de téléphone, e-mails et adresses repris des fiches et joints à chaque ligne."
+          },
+          "marketMapping": {
+            "title": "Voir qui opère où",
+            "description": "Repérez les entreprises présentes dans chaque secteur et chaque ville avant de prévoir vos actions."
+          }
+        },
+        "proof": "J’ai publié un Actor pour l’annuaire de la Chambre de commerce algérienne et un autre pour 136 annuaires de pages jaunes à travers le monde. Les deux transforment la navigation page par page en une liste filtrable."
+      },
+      "recruitment": {
+        "name": "Recrutement",
+        "tagline": "Une vision plus claire du marché de l’emploi",
+        "headline": "Une vision plus claire du marché de l’emploi",
+        "audience": "pour les recruteurs et les équipes RH",
+        "intro": "Les sites d’offres publient des milliers d’annonces, mais suivre à la main ce qui est recruté et par qui est fastidieux. Je collecte les offres et les fiches entreprises pour que vous voyiez le marché d’un coup d’œil.",
+        "serviceType": "Données du marché de l’emploi et outils de sourcing pour les recruteurs",
+        "offers": {
+          "jobFeed": {
+            "title": "Un flux d’offres pertinent",
+            "description": "Filtrez par mot-clé, wilaya, type de contrat ou secteur : les nouvelles offres arrivent sous forme de lignes structurées."
+          },
+          "companyDirectory": {
+            "title": "Qui recrute, et où",
+            "description": "Fiches entreprises, secteurs et localisations collectés avec les offres qu’elles publient."
+          },
+          "candidateSourcing": {
+            "title": "Trouver les entreprises à contacter",
+            "description": "Constituez une liste cible à partir des employeurs qui correspondent aux profils que vous recrutez."
+          },
+          "salaryWatch": {
+            "title": "Voir quels postes sont proposés",
+            "description": "Suivez les intitulés et niveaux d’expérience les plus fréquents, semaine après semaine."
+          }
+        },
+        "proof": "J'ai publié un Actor pour Emploitic, le principal site d'offres d'emploi d'Algérie. Il collecte les offres, les fiches entreprises et les annuaires avec des filtres sur les 58 wilayas."
+      },
+      "legal": {
+        "name": "Juridique et réglementaire",
+        "tagline": "Ne manquez plus un texte important",
+        "headline": "Ne manquez plus un texte important",
+        "audience": "pour les équipes juridiques et conformité",
+        "intro": "Le Journal officiel publie les textes qui changent les règles, mais les retrouver suppose de connaître le numéro, la date et l’édition. Je transforme ces archives en dossiers cherchables en conservant les liens entre les textes.",
+        "serviceType": "Veille du Journal officiel et archives de textes juridiques",
+        "offers": {
+          "journalWatch": {
+            "title": "Une veille du Journal pour vous",
+            "description": "Les nouveaux numéros et textes des éditions arabe et française sont collectés à intervalles réguliers."
+          },
+          "textArchive": {
+            "title": "Une archive de textes consultable",
+            "description": "Nature, numéro, date de signature, ministère, numéro et page du JO : tout dans un tableau au lieu de centaines de PDF."
+          },
+          "regulationAlerts": {
+            "title": "Savoir ce qui a changé",
+            "description": "Suivez les textes qui abrogent, modifient ou approuvent les autres pour ne pas manquer un changement de règle."
+          },
+          "archiveExport": {
+            "title": "L’archive dans vos outils",
+            "description": "Exportez les numéros et textes dont vous avez besoin vers un tableur ou une base de données pour votre propre recherche."
+          }
+        },
+        "proof": "J'ai publié un Actor pour le Journal officiel d'Algérie. Il lit les textes juridiques en arabe et en français, y compris ceux qui abrogent, modifient ou approuvent d'autres textes."
       },
       "socialMedia": {
         "name": "Créateurs et petites marques",
@@ -266,7 +347,7 @@
             "description": "Des années de dossiers papier transformées en un système numérique organisé et cherchable que votre équipe peut réellement utiliser."
           }
         },
-        "proof": "J'ai déjà développé un système qui transforme des dossiers patients scannés en un emploi du temps numérique cherchable qu'un médecin peut utiliser en quelques secondes. Fini de fouiller dans les dossiers papier entre deux rendez-vous."
+        "proof": "J'ai déjà développé un système qui transforme des dossiers patients scannés en un emploi du temps numérique cherchable qu'un médecin peut utiliser en quelques secondes. Fini de fouiller dans les dossiers papier entre deux rendez-vous. Un Actor transforme aussi le registre national des médicaments en lignes cherchables."
       },
       "manufacturing": {
         "name": "Industriels et institutions",
@@ -303,8 +384,28 @@
     "supportsLabel": "Concerne",
     "items": {
       "marketplaceScrapers": {
-        "title": "Trois scrapers de places de marché, publiés sur Apify",
-        "description": "Conception et publication de trois Actors de production qui transforment les places de marché algériennes en données structurées : les annonces OuedKniss, les listings Tijelabin et les produits Hamiz. Chacun gère la recherche, les catégories, les vendeurs et les pages de détail du site, normalise les prix en dinar algérien et produit un schéma plat prêt pour un tableur, une base de données ou une surveillance automatisée des prix."
+        "title": "Places de marché et guides de prix, publiés sur Apify",
+        "description": "Cinq Actors publiés transforment les places de marché algériennes en données exploitables : annonces OuedKniss et Tijelabin, produits Hamiz, prix automobiles Autobip et marketplace Yassir. Annonces, prix, vendeurs et catalogues arrivent sous forme de lignes propres, prêtes pour un tableur, une base de données ou une surveillance des prix."
+      },
+      "realEstateRegister": {
+        "title": "Les registres de garantie du logement, rendus consultables",
+        "description": "Le registre FGCMPI recense en Algérie les projets de logement garantis et leurs promoteurs. L’Actor transforme ces pages en fiches structurées — projets, dates de garantie, promoteurs et coordonnées — pour qu’une recherche qui demandait de feuilleter page après page devienne un simple filtre dans un tableau."
+      },
+      "medicineRegister": {
+        "title": "Le registre national des médicaments, structuré",
+        "description": "La nomenclature des médicaments du ministère vit dans des classeurs difficiles à interroger ou à comparer. L’Actor lit les produits enregistrés, leurs principes actifs, formes, dosages et laboratoires, et y joint les listes des médicaments retirés ou non renouvelés."
+      },
+      "businessDirectoryScrapers": {
+        "title": "Annuaires d’entreprises, publiés sur Apify",
+        "description": "Deux Actors publiés ouvrent l’annuaire de la Chambre de commerce algérienne et 136 sites de pages jaunes à travers le monde. Recherchez par mot-clé, secteur, ville ou catégorie, puis récupérez noms, adresses et coordonnées sous forme de lignes au lieu de les copier page par page."
+      },
+      "jobBoardScraper": {
+        "title": "Un site d’offres d’emploi, publié sur Apify",
+        "description": "Un Actor publié pour Emploitic, le principal site d'offres d'emploi d'Algérie. Il collecte les offres complètes, l'annuaire des entreprises et les fiches employeurs, avec des filtres sur les 58 wilayas, pour que le marché se consulte dans un tableau."
+      },
+      "legalRegisterScraper": {
+        "title": "Le Journal officiel, publié sur Apify",
+        "description": "Un Actor publié pour le Journal officiel d'Algérie. Il extrait les textes juridiques avec leur numéro, leur date, leur ministère et leur page dans le numéro, ainsi que les textes qui les abrogent, les modifient ou les approuvent, en arabe ou en français, par recherche, archive complète ou calendrier des numéros."
       },
       "priceWatch": {
         "title": "Surveillance automatique des prix et alertes de bonnes affaires",
@@ -388,6 +489,18 @@
       "title": "Pour les créateurs et petites marques",
       "description": "Sites simples, publication planifiée, découverte d'audience."
     },
+    "servicesBusinessDirectories": {
+      "title": "Pour les équipes qui constituent des listes",
+      "description": "Annuaires d’entreprises et pages jaunes, transformés en listes de prospects cherchables."
+    },
+    "servicesRecruitment": {
+      "title": "Pour les recruteurs et les équipes RH",
+      "description": "Offres d'emploi et fiches entreprises du principal site algérien, en données structurées."
+    },
+    "servicesLegal": {
+      "title": "Pour les équipes juridiques et conformité",
+      "description": "Textes du Journal officiel et leurs liens, réunis dans une archive cherchable."
+    },
     "servicesHealthcare": {
       "title": "Pour les cliniques et la santé",
       "description": "Sites de réservation, dossiers numérisés, rappels de rendez-vous."
@@ -447,6 +560,18 @@
       "title": "Sites web et automatisation pour créateurs et petites marques | Hamza Abbad",
       "description": "Sites simples, publication automatisée, et découverte d'audience pour les créateurs de contenu et petites marques en ligne en Algérie."
     },
+    "servicesBusinessDirectories": {
+      "title": "Données d’annuaires et listes de prospects | Hamza Abbad",
+      "description": "Listes d’entreprises de la Chambre de commerce algérienne et des pages jaunes internationales, livrées en prospects structurés."
+    },
+    "servicesRecruitment": {
+      "title": "Données du marché de l’emploi pour recruteurs | Hamza Abbad",
+      "description": "Collectez les offres d'emploi et les fiches employeurs du principal site algérien, prêtes pour le sourcing et l'étude de marché."
+    },
+    "servicesLegal": {
+      "title": "Veille du Journal officiel et données juridiques | Hamza Abbad",
+      "description": "Dossiers cherchables du Journal officiel d'Algérie, avec les textes qui modifient, abrogent ou approuvent chaque texte."
+    },
     "servicesHealthcare": {
       "title": "Sites web et dossiers numériques pour cliniques | Hamza Abbad",
       "description": "Sites facilitant la prise de rendez-vous, dossiers patients numérisés, et rappels de rendez-vous pour cliniques et professionnels de santé en Algérie."
@@ -495,6 +620,38 @@
       "usthbBachelor": { "title": "Licence en Informatique" }
     },
     "projects": {
+      "ypBusinessDirectoriesScraper": {
+        "title": "YP Business Directories Scraper",
+        "description": "Un Actor Apify publié qui couvre 136 annuaires professionnels du réseau Woomar (pages jaunes). Recherche par mot-clé, catégorie ou ville, fiches entreprises avec coordonnées, horaires et avis, ou un lien collé qui choisit automatiquement la tâche adaptée."
+      },
+      "autobipScraper": {
+        "title": "Autobip Scraper",
+        "description": "Un Actor Apify publié pour le guide des prix automobiles en Algérie. Il lit les versions des voitures neuves avec prix, disponibilité, garantie et caractéristiques complètes, le guide des prix d'occasion par modèle et année, ainsi que les archives d'actualités, en arabe ou en français."
+      },
+      "algeriaMedicinesRegisterScraper": {
+        "title": "Algeria Medicines Register Scraper",
+        "description": "Un Actor Apify publié pour le registre national des médicaments d'Algérie (MIPH). Il liste les fichiers Excel du ministère et lit les produits qu'ils contiennent : DCI, marque, forme, dosage, conditionnement, laboratoire, dates et statut d'enregistrement, y compris les listes de non-renouvellement et de retrait."
+      },
+      "emploiticScraper": {
+        "title": "Emploitic Scraper",
+        "description": "Un Actor Apify publié pour le principal site d'offres d'emploi d'Algérie. Il collecte les offres complètes, l'annuaire des entreprises, les fiches entreprises et leurs offres, avec huit familles de filtres et les 58 wilayas dans un jeu de données normalisé."
+      },
+      "yassirMarketplaceScraper": {
+        "title": "Yassir Marketplace Scraper",
+        "description": "Un Actor Apify publié pour la marketplace Yassir (courses et restaurants) en Algérie, Tunisie, Maroc et Sénégal. Il découvre tous les magasins desservant un point de livraison ou une ville, puis récupère le catalogue complet d'un marché ou la carte d'un restaurant, sans connexion requise."
+      },
+      "joradpScraper": {
+        "title": "JORADP Scraper",
+        "description": "Un Actor Apify publié pour le Journal officiel d'Algérie. Il extrait les textes juridiques avec leur nature, numéro, date de signature, ministère et numéro et page du JO, ainsi que les textes qui les abrogent, les modifient ou les approuvent, dans l'édition arabe ou française, par recherche, archive complète ou calendrier des numéros."
+      },
+      "fgcmpiScraper": {
+        "title": "FGCMPI Scraper",
+        "description": "Un Actor Apify publié pour les registres de garantie du logement en Algérie. Il collecte les projets de logement garantis avec dates de garantie, numéros de police d'assurance, localisation et répartition des logements, ainsi que les promoteurs immobiliers affiliés avec agrément, TNPI, siège social et coordonnées."
+      },
+      "elmouchirScraper": {
+        "title": "El Mouchir Scraper",
+        "description": "Un Actor Apify publié pour elmouchir.dz, l'annuaire des entreprises de la Chambre de commerce algérienne. Recherchez parmi plus de 79 000 entreprises par mot-clé, filtrez par secteur ou parcourez le catalogue des secteurs, et récupérez adresses, activités, numéros de téléphone et e-mails sous forme d'enregistrements structurés."
+      },
       "hamizMultiScraper": {
         "title": "Hamiz Multi-Scraper",
         "description": "Un Actor Apify publié pour la place de marché à prix fixes Hamiz. Il parcourt les pages de recherche, catégorie, vendeur et produit en arabe, français ou anglais, et renvoie les prix en DZD, l'état du stock et les informations vendeur sous forme d'enregistrements plats."

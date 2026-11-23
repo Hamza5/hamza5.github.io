@@ -73,6 +73,9 @@ export function useLocalizedServices() {
 const OFFER_IDS: Record<string, string[]> = {
   realEstate:    ["projectSite", "landWatch", "autoPosting", "floorPlans"],
   ecommerce:     ["onlineStore", "priceWatch", "promoRestock", "supplierCatalog"],
+  businessDirectories: ["leadLists", "directorySweep", "contactEnrichment", "marketMapping"],
+  recruitment:   ["jobFeed", "companyDirectory", "candidateSourcing", "salaryWatch"],
+  legal:         ["journalWatch", "textArchive", "regulationAlerts", "archiveExport"],
   socialMedia:   ["simpleSite", "audienceDiscovery", "autoPosting", "weeklyReport"],
   healthcare:    ["bookingSite", "instantRecords", "reminders", "digitizeFiles"],
   manufacturing: ["corporateSite", "supplierTracking", "internalWorkflow", "technicalArchive"],

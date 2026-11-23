@@ -185,7 +185,7 @@
             "description": "PDF floor plans and brochures turned into a browsable, filterable catalog your clients can explore themselves before ever calling you."
           }
         },
-        "proof": "I've already built a dedicated website template made specifically for property developers. It is trilingual, mobile-first, with every listing one tap away from a WhatsApp conversation."
+        "proof": "I've already built a dedicated website template made specifically for property developers. It is trilingual, mobile-first, with every listing one tap away from a WhatsApp conversation. An Actor also turns the FGCMPI housing-guarantee register into structured records."
       },
       "ecommerce": {
         "name": "Online retailers",
@@ -212,7 +212,88 @@
             "description": "Messy spreadsheets from suppliers, inconsistent naming, missing images, turned into a clean and organized catalog ready to publish."
           }
         },
-        "proof": "I've built price-tracking tools that watch thousands of product listings and send instant alerts the moment a competitor drops their price. Three of them are published on Apify — OuedKniss, Tijelabin and Hamiz — the same kind of work I've done professionally for retail-intelligence companies."
+        "proof": "I've built price-tracking tools that watch thousands of product listings and send instant alerts the moment a competitor drops their price. Five of them are published on Apify — OuedKniss, Tijelabin, Hamiz, Autobip and Yassir — the same kind of work I've done professionally for retail-intelligence companies."
+      },
+      "businessDirectories": {
+        "name": "Business directories",
+        "tagline": "Find the businesses you need",
+        "headline": "Find the businesses you need",
+        "audience": "for teams building a list of prospects",
+        "intro": "The Algerian Chamber of Commerce directory and international Yellow Pages hold thousands of companies, but no useful way to filter or export them. I turn those directories into lists you can actually search, sort and contact.",
+        "serviceType": "Company lists and lead data from business directories",
+        "offers": {
+          "leadLists": {
+            "title": "A list of companies that fit your criteria",
+            "description": "Choose the sector, city or trade; get the matching companies back as a clean table."
+          },
+          "directorySweep": {
+            "title": "Whole directories, not just one page",
+            "description": "Category trees, city pages and company profiles collected end to end."
+          },
+          "contactEnrichment": {
+            "title": "Contacts that go with the company",
+            "description": "Phone numbers, e-mails and addresses pulled from the profiles and attached to each row."
+          },
+          "marketMapping": {
+            "title": "See who operates where",
+            "description": "Find which businesses are listed in which sectors and cities before you plan outreach."
+          }
+        },
+        "proof": "I published Actors for the Algerian Chamber of Commerce directory and for 136 country Yellow Pages directories. Both turn page-by-page browsing into a list you can filter."
+      },
+      "recruitment": {
+        "name": "Recruitment",
+        "tagline": "A clearer view of the job market",
+        "headline": "A clearer view of the job market",
+        "audience": "for recruiters and HR teams",
+        "intro": "Job boards publish thousands of offers, but tracking what is being hired for — and by whom — is tedious by hand. I collect the offers and company profiles so you can see the market at a glance.",
+        "serviceType": "Job-market data and sourcing tools for recruiters",
+        "offers": {
+          "jobFeed": {
+            "title": "A live feed of relevant offers",
+            "description": "Filter by keyword, wilaya, contract type or sector and get new offers as structured rows."
+          },
+          "companyDirectory": {
+            "title": "Who is hiring, and where",
+            "description": "Company profiles, sectors and locations collected alongside the offers they post."
+          },
+          "candidateSourcing": {
+            "title": "Find the companies to approach",
+            "description": "Build a target list from the employers that match the profiles you recruit."
+          },
+          "salaryWatch": {
+            "title": "See what roles are advertised",
+            "description": "Track which positions and seniority levels appear most often, week after week."
+          }
+        },
+        "proof": "I published an Actor for Emploitic, Algeria's main job board. It collects offers, company profiles and job boards with filters for 58 wilayas."
+      },
+      "legal": {
+        "name": "Legal & regulatory",
+        "tagline": "Never miss a text that matters",
+        "headline": "Never miss a text that matters",
+        "audience": "for legal and compliance teams",
+        "intro": "The Official Journal publishes the texts that change the rules, but finding them means knowing the issue, the date and the edition. I turn that archive into a searchable set of records with the links between texts intact.",
+        "serviceType": "Official journal monitoring and legal text archives",
+        "offers": {
+          "journalWatch": {
+            "title": "Watch the Journal for you",
+            "description": "New issues and texts collected from the Arabic and French editions on a schedule."
+          },
+          "textArchive": {
+            "title": "A searchable archive of texts",
+            "description": "Nature, number, signature date, ministry, issue and page — in one table instead of hundreds of PDFs."
+          },
+          "regulationAlerts": {
+            "title": "Know what changed",
+            "description": "Follow the texts that repeal, amend or approve others, so a rule change does not pass unnoticed."
+          },
+          "archiveExport": {
+            "title": "The archive in your own tools",
+            "description": "Export the issues and texts you need to a spreadsheet or database for your own search."
+          }
+        },
+        "proof": "I published an Actor for Algeria's Journal Officiel. It reads legal texts in Arabic and French, including the ones that repeal, amend or approve other texts."
       },
       "socialMedia": {
         "name": "Creators and small brands",
@@ -266,7 +347,7 @@
             "description": "Years of paper records turned into an organized, searchable digital system your staff can actually use."
           }
         },
-        "proof": "I've already built a system that turns scanned patient records into a searchable digital timetable a doctor can use in seconds. No more digging through paper files between appointments."
+        "proof": "I've already built a system that turns scanned patient records into a searchable digital timetable a doctor can use in seconds. No more digging through paper files between appointments. An Actor also turns the national medicines register into searchable rows."
       },
       "manufacturing": {
         "name": "Manufacturers and institutions",
@@ -303,8 +384,28 @@
     "supportsLabel": "Relevant to",
     "items": {
       "marketplaceScrapers": {
-        "title": "Three marketplace scrapers, published on Apify",
-        "description": "Designed and published three production Actors that turn Algerian marketplaces into structured data: OuedKniss classifieds, Tijelabin listings and Hamiz products. Each one handles the site's own search, category, seller and detail pages, normalizes prices in Algerian Dinar, and outputs a flat schema ready for spreadsheets, databases or automated price monitoring."
+        "title": "Marketplaces and price guides, published on Apify",
+        "description": "Five published Actors turn Algerian marketplaces into usable data: OuedKniss and Tijelabin classifieds, Hamiz products, Autobip car prices and the Yassir marketplace. Listings, prices, sellers and catalogues arrive as clean rows, ready for a spreadsheet, a database or a price watch."
+      },
+      "realEstateRegister": {
+        "title": "Housing guarantee records, made searchable",
+        "description": "Algeria's FGCMPI register lists guaranteed housing projects and their developers. The Actor turns those pages into structured records — projects, guarantee dates, developers and contacts — so a search that used to mean opening page after page becomes a filter in a table."
+      },
+      "medicineRegister": {
+        "title": "The national medicines register, structured",
+        "description": "The Ministry's medicine nomenclature lives in workbooks that are hard to search or compare. The Actor reads the registered products, their ingredients, forms, dosages and laboratories, and delivers the lists of withdrawn and non-renewed products alongside them."
+      },
+      "businessDirectoryScrapers": {
+        "title": "Business directories, published on Apify",
+        "description": "Two published Actors open up the Algerian Chamber of Commerce directory and 136 country Yellow Pages sites. Search by keyword, sector, city or category, then pull company names, addresses and contacts as rows instead of copying them page by page."
+      },
+      "jobBoardScraper": {
+        "title": "A job board, published on Apify",
+        "description": "A published Actor for Emploitic, Algeria's main job board. It collects full job offers, the company directory and individual employer pages, with filters across 58 wilayas, so recruiters can search the market in a table."
+      },
+      "legalRegisterScraper": {
+        "title": "The Official Journal, published on Apify",
+        "description": "A published Actor for Algeria's Journal Officiel. It extracts legal texts with their number, date, ministry and issue page, plus the texts that repeal, amend or approve them, in Arabic or French, by search, full archive or issue calendar."
       },
       "priceWatch": {
         "title": "Automatic price watch and deal alerts",
@@ -388,6 +489,18 @@
       "title": "For creators and small brands",
       "description": "Simple sites, scheduled posting, audience discovery."
     },
+    "servicesBusinessDirectories": {
+      "title": "For teams building prospect lists",
+      "description": "Company directories and Yellow Pages, turned into searchable lead lists."
+    },
+    "servicesRecruitment": {
+      "title": "For recruiters and HR teams",
+      "description": "Job offers and company profiles from Algeria's main job board, as structured data."
+    },
+    "servicesLegal": {
+      "title": "For legal and compliance teams",
+      "description": "Official Journal texts and their links, collected into a searchable archive."
+    },
     "servicesHealthcare": {
       "title": "For clinics and healthcare",
       "description": "Booking sites, digitized records, appointment reminders."
@@ -447,6 +560,18 @@
       "title": "Websites and Automation for Creators and Small Brands | Hamza Abbad",
       "description": "Simple sites, automated posting, and audience discovery for content creators and small online brands in Algeria."
     },
+    "servicesBusinessDirectories": {
+      "title": "Business Directory Data & Lead Lists | Hamza Abbad",
+      "description": "Company lists from the Algerian Chamber of Commerce and international Yellow Pages, delivered as structured leads."
+    },
+    "servicesRecruitment": {
+      "title": "Job Market Data for Recruiters in Algeria | Hamza Abbad",
+      "description": "Collect job offers and employer profiles from Algeria's main job board, ready for sourcing and market research."
+    },
+    "servicesLegal": {
+      "title": "Official Journal Monitoring & Legal Data | Hamza Abbad",
+      "description": "Searchable records from Algeria's Official Journal, with the texts that amend, repeal or approve each one."
+    },
     "servicesHealthcare": {
       "title": "Websites and Digital Records for Clinics | Hamza Abbad",
       "description": "Booking-friendly websites, digitized patient records, and appointment reminders for clinics and healthcare providers in Algeria."
@@ -495,6 +620,38 @@
       "usthbBachelor": { "title": "Bachelor in Computer Science" }
     },
     "projects": {
+      "ypBusinessDirectoriesScraper": {
+        "title": "YP Business Directories Scraper",
+        "description": "A published Apify Actor covering 136 country Yellow Pages directories from the Woomar network. Search by keyword, category or city, open company profiles for contacts, hours and reviews, or let a pasted link pick the right task automatically."
+      },
+      "autobipScraper": {
+        "title": "Autobip Scraper",
+        "description": "A published Apify Actor for Algeria's car price guide. It reads new-car versions with prices, availability, warranty and full specifications, the used-car price guide by model and year, and the news archive, in Arabic or French."
+      },
+      "algeriaMedicinesRegisterScraper": {
+        "title": "Algeria Medicines Register Scraper",
+        "description": "A published Apify Actor for Algeria's national medicines register (MIPH). It lists the Ministry's Excel files and reads the products inside them: INN, brand, form, dosage, packaging, laboratory, registration dates and status, including non-renewed and withdrawn lists."
+      },
+      "emploiticScraper": {
+        "title": "Emploitic Scraper",
+        "description": "A published Apify Actor for Algeria's main job board. Collect full job offers, the company directory, individual company profiles and their job boards, with eight filter families and all 58 wilayas in a normalized dataset."
+      },
+      "yassirMarketplaceScraper": {
+        "title": "Yassir Marketplace Scraper",
+        "description": "A published Apify Actor for Yassir's grocery and restaurant marketplace in Algeria, Tunisia, Morocco and Senegal. Discover every store serving a delivery point or city, then pull a market's full catalogue or a restaurant's menu, with no login needed."
+      },
+      "joradpScraper": {
+        "title": "JORADP Scraper",
+        "description": "A published Apify Actor for Algeria's Journal Officiel. It extracts legal texts with their nature, number, signature date, ministry and JO issue and page, plus the texts that repeal, amend or approve them, from the Arabic or French edition, by search, full archive or issue calendar."
+      },
+      "fgcmpiScraper": {
+        "title": "FGCMPI Scraper",
+        "description": "A published Apify Actor for Algeria's housing-guarantee registers. It collects guaranteed housing projects with guarantee dates, insurance policy numbers, locations and housing breakdown, plus the affiliated real-estate developers with their agrément, TNPI, registered office and contacts."
+      },
+      "elmouchirScraper": {
+        "title": "El Mouchir Scraper",
+        "description": "A published Apify Actor for elmouchir.dz, the Algerian Chamber of Commerce company directory. Search 79,000+ firms by keyword, narrow to a sector or list the sector catalog, and get addresses, sectors, phone numbers and e-mail addresses as structured records."
+      },
       "hamizMultiScraper": {
         "title": "Hamiz Multi-Scraper",
         "description": "A published Apify Actor for Hamiz's fixed-price marketplace. It follows search, category, seller and product pages in Arabic, French or English and returns DZD prices, stock state and seller details as flat records."

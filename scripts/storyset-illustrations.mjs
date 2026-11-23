@@ -44,7 +44,7 @@
  * SVG per illustration, which is what clicking through by hand would do; the
  * terms forbid bulk downloading, so please keep it to the files listed here.
  *
- * Usage: node scripts/storyset-illustrations.mjs [--sans-rognage]
+ * Usage: node scripts/storyset-illustrations.mjs [--sans-rognage] [--slot <name> ...]
  */
 
 import { writeFileSync, mkdirSync } from "node:fs";
@@ -75,6 +75,18 @@ const ILLUSTRATIONS = [
   // leaves a 2.8:1 panorama that reads as a thin strip next to the squarer
   // sector cards. `process` trims to 1.36 and keeps a figure, like the others.
   { slot: "sector-manufacturing", topic: "process", recolor: ["#FF725E"] },
+  // A figure reading a list of listings through a magnifying glass: the
+  // directory-as-index idea, without a wall of text. Only `#ff725e` is the
+  // accent here — `#ffbe9d` and `#eb996e` are the figure's skin.
+  { slot: "sector-business-directories", topic: "search", recolor: ["#FF725E"] },
+  // A recruiter comparing candidate profiles, with ratings on screen: the
+  // job-market idea rather than the empty-desk one. `#ff9a6c` and `#ffa882`
+  // are the rating stars' and the screen's accent tints, so they travel with
+  // the primary; `#ffbf9d` is skin and stays.
+  { slot: "sector-recruitment", topic: "recruitment", recolor: ["#FF725E", "#ff9a6c", "#ffa882"] },
+  // A lawyer with the scales: legal and regulatory without a gavel cliché.
+  // `#bc8579` is the suit and `#e5ab91` the skin; only the accent travels.
+  { slot: "sector-legal", topic: "lawyer", recolor: ["#FF725E"] },
 ];
 
 const STYLE = "pana";
@@ -309,11 +321,27 @@ async function resolveSvgUrl(topic, style) {
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   const trim = !process.argv.includes("--sans-rognage");
+
+  // `--slot name` restricts the run to the named slots. The licence forbids
+  // bulk downloading, so a targeted run is the right way to add one file
+  // without pulling every illustration again.
+  const slotFlag = process.argv.indexOf("--slot");
+  const wanted = slotFlag === -1 ? null : process.argv.slice(slotFlag + 1);
+  const selected = wanted
+    ? ILLUSTRATIONS.filter((entry) => wanted.includes(entry.slot))
+    : ILLUSTRATIONS;
+  if (wanted && selected.length !== wanted.length) {
+    const found = new Set(selected.map((entry) => entry.slot));
+    const missing = wanted.filter((name) => !found.has(name));
+    console.error(`unknown slot(s): ${missing.join(", ")}`);
+    process.exit(1);
+  }
+
   const sizes = [];
   let rawTotal = 0;
   let optimizedTotal = 0;
 
-  for (const { slot, topic, recolor } of ILLUSTRATIONS) {
+  for (const { slot, topic, recolor } of selected) {
     const url = await resolveSvgUrl(topic, STYLE);
     const original = await (await fetch(url)).text();
     const base = dropGroups(original, DROP_GROUPS);
@@ -342,7 +370,7 @@ async function main() {
   }
 
   console.log(
-    `\n${ILLUSTRATIONS.length} files: raw ${rawTotal} B -> optimized ${optimizedTotal} B ` +
+    `\n${selected.length} files: raw ${rawTotal} B -> optimized ${optimizedTotal} B ` +
       `(-${Math.round((1 - optimizedTotal / rawTotal) * 100)}%)`,
   );
   console.log("\nIntrinsic sizes for app/data/services.ts (trimmed, rounded):");

@@ -101,16 +101,34 @@ export const routes: RouteEntry[] = [
     ogTag: "services.sectors.realEstate.name",
   },
   {
-    path: "/services/ecommerce", group: "services", inNav: false, scrollRank: 80,
+    path: "/services/ecommerce", group: "services", inNav: false, scrollRank: 75,
     navKey: "nav.services", icon: "cartShopping", seoKey: "servicesEcommerce",
     ogImage: "/images/services/sector-ecommerce.svg",
     ogTag: "services.sectors.ecommerce.name",
   },
   {
-    path: "/services/social-media", group: "services", inNav: false, scrollRank: 90,
+    path: "/services/social-media", group: "services", inNav: false, scrollRank: 95,
     navKey: "nav.services", icon: "hashtag", seoKey: "servicesSocialMedia",
     ogImage: "/images/services/sector-social-media.svg",
     ogTag: "services.sectors.socialMedia.name",
+  },
+  {
+    path: "/services/business-directories", group: "services", inNav: false, scrollRank: 80,
+    navKey: "nav.services", icon: "addressBook", seoKey: "servicesBusinessDirectories",
+    ogImage: "/images/services/sector-business-directories.svg",
+    ogTag: "services.sectors.businessDirectories.name",
+  },
+  {
+    path: "/services/recruitment", group: "services", inNav: false, scrollRank: 85,
+    navKey: "nav.services", icon: "userGroup", seoKey: "servicesRecruitment",
+    ogImage: "/images/services/sector-recruitment.svg",
+    ogTag: "services.sectors.recruitment.name",
+  },
+  {
+    path: "/services/legal", group: "services", inNav: false, scrollRank: 90,
+    navKey: "nav.services", icon: "scaleBalanced", seoKey: "servicesLegal",
+    ogImage: "/images/services/sector-legal.svg",
+    ogTag: "services.sectors.legal.name",
   },
   {
     path: "/services/healthcare", group: "services", inNav: false, scrollRank: 100,
@@ -119,20 +137,23 @@ export const routes: RouteEntry[] = [
     ogTag: "services.sectors.healthcare.name",
   },
   {
-    path: "/services/manufacturing", group: "services", inNav: false, scrollRank: 110,
+    path: "/services/manufacturing", group: "services", inNav: false, scrollRank: 105,
     navKey: "nav.services", icon: "gears", seoKey: "servicesManufacturing",
     ogImage: "/images/services/sector-manufacturing.svg",
     ogTag: "services.sectors.manufacturing.name",
   },
 ];
 
-/** The five sector sub-paths. */
+/** The eight sector sub-paths. */
 export type SectorPath =
   | "/services/real-estate"
   | "/services/ecommerce"
   | "/services/social-media"
   | "/services/healthcare"
-  | "/services/manufacturing";
+  | "/services/manufacturing"
+  | "/services/business-directories"
+  | "/services/recruitment"
+  | "/services/legal";
 
 export function findRoute(path: string): RouteEntry | undefined {
   return routes.find((route) => route.path === path);

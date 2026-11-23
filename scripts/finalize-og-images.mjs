@@ -13,12 +13,32 @@
 // Runs via npm's postbuild hook, so CI must call `npm run build`.
 import { createHash } from "node:crypto";
 import { readdir, readFile, rename } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const OUT = "out";
 const EXPECTED = { width: 1200, height: 630 };
 const PNG_MAGIC = Buffer.from([0x89, 0x50, 0x4e, 0x47]); // ‰PNG
-const CARDS_PER_LOCALE = 14;
+
+/**
+ * One card per route in app/lib/site.ts, counted from that file rather than
+ * written down here. The count used to be a literal, and it drifted: three
+ * sector pages were added without bumping it, so the build failed on the
+ * missing cards *and* the stale constant was the reason. Reading the routes
+ * makes the check impossible to forget.
+ */
+const ROUTES_FILE = join(import.meta.dirname, "..", "app", "lib", "site.ts");
+
+function countRoutes() {
+  const source = readFileSync(ROUTES_FILE, "utf8");
+  // Each entry of the `routes` array starts with a `path:` key at four-space
+  // indentation; the array literal itself opens with `export const routes`.
+  const body = source.slice(source.indexOf("export const routes"));
+  const entries = body.match(/^\s{4}path: "/gm) ?? [];
+  return entries.length;
+}
+
+const CARDS_PER_LOCALE = countRoutes();
 
 const localeDirs = await readdir(OUT, { withFileTypes: true })
   .then((entries) =>

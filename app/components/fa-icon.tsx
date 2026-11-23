@@ -27,6 +27,9 @@ import {
   faLocationDot,
   faCircleCheck,
   faCircleInfo,
+  faAddressBook,
+  faUserGroup,
+  faScaleBalanced,
 } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
@@ -62,6 +65,9 @@ const ICONS: Record<string, IconDefinition> = {
   locationDot: faLocationDot,
   circleCheck: faCircleCheck,
   circleInfo: faCircleInfo,
+  addressBook: faAddressBook,
+  userGroup: faUserGroup,
+  scaleBalanced: faScaleBalanced,
   whatsapp: faWhatsapp,
 };
 

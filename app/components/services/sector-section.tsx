@@ -14,7 +14,7 @@ import { useLocalizedServices } from "@/app/hooks/use-localized-services";
 import { localePath } from "@/app/lib/site";
 
 /**
- * One component drives all five sector pages: the copy, the illustration and
+ * One component drives every sector page: the copy, the illustration and
  * the related case studies all come from the data layer, so adding a sector
  * means adding a data entry and a page file, not new markup.
  */

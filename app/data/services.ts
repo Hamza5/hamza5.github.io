@@ -41,6 +41,9 @@ export const offers: OfferEntry[] = [
 export type SectorId =
   | "realEstate"
   | "ecommerce"
+  | "businessDirectories"
+  | "recruitment"
+  | "legal"
   | "socialMedia"
   | "healthcare"
   | "manufacturing";
@@ -64,7 +67,7 @@ export const sectors: SectorEntry[] = [
     path: "/services/real-estate",
     icon: "building",
     image: { src: "/images/services/sector-real-estate.svg", width: 438, height: 419 },
-    caseStudyIds: ["realEstateTemplate"],
+    caseStudyIds: ["realEstateTemplate", "realEstateRegister"],
   },
   {
     id: "ecommerce",
@@ -72,6 +75,27 @@ export const sectors: SectorEntry[] = [
     icon: "cartShopping",
     image: { src: "/images/services/sector-ecommerce.svg", width: 655, height: 434 },
     caseStudyIds: ["marketplaceScrapers", "priceWatch", "digitalShelf"],
+  },
+  {
+    id: "businessDirectories",
+    path: "/services/business-directories",
+    icon: "addressBook",
+    image: { src: "/images/services/sector-business-directories.svg", width: 583, height: 351 },
+    caseStudyIds: ["businessDirectoryScrapers"],
+  },
+  {
+    id: "recruitment",
+    path: "/services/recruitment",
+    icon: "userGroup",
+    image: { src: "/images/services/sector-recruitment.svg", width: 443, height: 422 },
+    caseStudyIds: ["jobBoardScraper"],
+  },
+  {
+    id: "legal",
+    path: "/services/legal",
+    icon: "scaleBalanced",
+    image: { src: "/images/services/sector-legal.svg", width: 432, height: 406 },
+    caseStudyIds: ["legalRegisterScraper"],
   },
   {
     id: "socialMedia",
@@ -85,7 +109,7 @@ export const sectors: SectorEntry[] = [
     path: "/services/healthcare",
     icon: "stethoscope",
     image: { src: "/images/services/sector-healthcare.svg", width: 345, height: 415 },
-    caseStudyIds: ["patientsTimetable"],
+    caseStudyIds: ["patientsTimetable", "medicineRegister"],
   },
   {
     id: "manufacturing",
@@ -135,7 +159,73 @@ export const caseStudies: CaseStudyEntry[] = [
       height: 900,
       alt: "OuedKniss Multi-Scraper on Apify",
     },
-    projectIds: ["ouedknissMultiScraper", "tijelabinMultiScraper", "hamizMultiScraper"],
+    projectIds: [
+      "hamizMultiScraper",
+      "tijelabinMultiScraper",
+      "ouedknissMultiScraper",
+      "autobipScraper",
+      "yassirMarketplaceScraper",
+    ],
+  },
+  {
+    id: "realEstateRegister",
+    sector: "realEstate",
+    icon: "building",
+    screenshot: {
+      src: "/images/projects/fgcmpiScraper/1 FGCMPI Scraper on Apify.png",
+      width: 1440,
+      height: 900,
+      alt: "FGCMPI Scraper on Apify",
+    },
+    projectIds: ["fgcmpiScraper"],
+  },
+  {
+    id: "medicineRegister",
+    sector: "healthcare",
+    icon: "folderOpen",
+    screenshot: {
+      src: "/images/projects/algeriaMedicinesRegisterScraper/1 Algeria Medicines Register Scraper on Apify.png",
+      width: 1440,
+      height: 900,
+      alt: "Algeria Medicines Register Scraper on Apify",
+    },
+    projectIds: ["algeriaMedicinesRegisterScraper"],
+  },
+  {
+    id: "businessDirectoryScrapers",
+    sector: "businessDirectories",
+    icon: "addressBook",
+    screenshot: {
+      src: "/images/projects/elmouchirScraper/1 El Mouchir Scraper on Apify.png",
+      width: 1440,
+      height: 900,
+      alt: "El Mouchir Scraper on Apify",
+    },
+    projectIds: ["elmouchirScraper", "ypBusinessDirectoriesScraper"],
+  },
+  {
+    id: "jobBoardScraper",
+    sector: "recruitment",
+    icon: "userGroup",
+    screenshot: {
+      src: "/images/projects/emploiticScraper/1 Emploitic Scraper on Apify.png",
+      width: 1440,
+      height: 900,
+      alt: "Emploitic Scraper on Apify",
+    },
+    projectIds: ["emploiticScraper"],
+  },
+  {
+    id: "legalRegisterScraper",
+    sector: "legal",
+    icon: "scaleBalanced",
+    screenshot: {
+      src: "/images/projects/joradpScraper/1 JORADP Scraper on Apify.png",
+      width: 1440,
+      height: 900,
+      alt: "JORADP Scraper on Apify",
+    },
+    projectIds: ["joradpScraper"],
   },
   {
     id: "priceWatch",
